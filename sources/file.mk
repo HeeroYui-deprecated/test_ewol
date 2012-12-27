@@ -13,7 +13,7 @@ FILE_LIST:=		appl/Debug.cpp \
                 appl/TestLabel.cpp \
                 appl/TestScene.cpp
 
-LOCAL_COPY_FOLDERS := ../data/icon.*:theme/default \
+LOCAL_COPY_FOLDERS := ../data/icon.*: \
                       ../data/cube.*: \
                       ../data/grass.*: \
                       ../data/stone*: \

@@ -85,7 +85,7 @@ void APP_Init(void)
  */
 etk::UString APP_Icon(void)
 {
-	etk::UString bitmapFile("DATA:iconHuman.bmp");
+	etk::UString bitmapFile("DATA:icon.png");
 	return bitmapFile;
 }
 
