@@ -58,6 +58,8 @@ void APP_Init(void)
 	#else
 		ewol::config::FontSetDefault("FreeSerif", 14);
 	#endif
+	// set the application icon ...
+	ewol::SetIcon("DATA:icon.png");
 	
 	basicWindows = new MainWindows();
 	
@@ -80,14 +82,7 @@ void APP_Init(void)
 }
 
 
-/**
- * @brief the system request the icon file name :
- */
-etk::UString APP_Icon(void)
-{
-	etk::UString bitmapFile("DATA:icon.png");
-	return bitmapFile;
-}
+
 
 /**
  * @brief main application function Un-Initialisation

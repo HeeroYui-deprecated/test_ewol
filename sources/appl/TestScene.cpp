@@ -252,6 +252,12 @@ void TestScene::OnReceiveMessage(ewol::EObject * CallerObject, const char * even
 			vec3 newPos = vec3(etk::tool::frand(-20,20),etk::tool::frand(-20,20),etk::tool::frand(1,8));
 			APPL_DEBUG("add a box at the pos : " << newPos);
 			tmpp->Translate(newPos);
+			float angle = etk::tool::frand(-M_PI,M_PI);
+			tmpp->Rotate(vec3(1,0,0), angle);
+			angle = etk::tool::frand(-M_PI,M_PI);
+			tmpp->Rotate(vec3(0,1,0), angle);
+			angle = etk::tool::frand(-M_PI,M_PI);
+			tmpp->Rotate(vec3(0,0,1), angle);
 		}
 		firstTime = false;
 		m_gameEngine.AddElement(tmpp, true);
