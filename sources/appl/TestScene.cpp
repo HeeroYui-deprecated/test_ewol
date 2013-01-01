@@ -47,7 +47,7 @@ static const char * l_eventDown = "event-down";
 TestScene::TestScene(void)
 {
 	m_ground = new game::Element("DATA:grass.obj");
-	m_gameEngine.AddElement(m_ground, true);
+	m_gameEngine.AddElement(m_ground);
 	
 	APPL_CRITICAL("Create "__class__" (start)");
 	widget::SizerVert* mySizerVert2 = NULL;
@@ -214,11 +214,12 @@ class stupidCube : public game::Element
 		};
 		
 		// herited methode
-		virtual bool ArtificialIntelligence(int32_t deltaMicroSecond)
+		virtual bool ArtificialIntelligence(float delta)
 		{
 			if (m_mass == 0.0f) {
 				if (baseRotationVect != vec3(0,0,0) ) {
-					Rotate(baseRotationVect, 0.01);
+					APPL_DEBUG("kjhkjhkjh" << delta );
+					Rotate(baseRotationVect, 0.5 * delta );
 				}
 				if (baseMove != vec3(0,0,0) ) {
 					Translate(baseMove);
@@ -246,9 +247,9 @@ void TestScene::OnReceiveMessage(ewol::EObject * CallerObject, const char * even
 		APPL_WARNING("Receive Event from tested Scene ... : \"" << eventId << "\" ==> data=\"" << data << "\"" );
 	}
 	if (eventId == l_eventAddBox) {
-		stupidCube * tmpp = new stupidCube();
 		static bool firstTime = true;
 		if (firstTime==false) {
+			stupidCube * tmpp = new stupidCube(20);
 			vec3 newPos = vec3(etk::tool::frand(-20,20),etk::tool::frand(-20,20),etk::tool::frand(1,8));
 			APPL_DEBUG("add a box at the pos : " << newPos);
 			tmpp->Translate(newPos);
@@ -258,9 +259,12 @@ void TestScene::OnReceiveMessage(ewol::EObject * CallerObject, const char * even
 			tmpp->Rotate(vec3(0,1,0), angle);
 			angle = etk::tool::frand(-M_PI,M_PI);
 			tmpp->Rotate(vec3(0,0,1), angle);
+			m_gameEngine.AddElement(tmpp);
+		} else {
+			firstTime = false;
+			stupidCube * tmpp = new stupidCube();
+			m_gameEngine.AddElement(tmpp);
 		}
-		firstTime = false;
-		m_gameEngine.AddElement(tmpp, true);
 	} else if (eventId == l_eventAddSphere) {
 		if (NULL!=m_testWidget) {
 			
@@ -280,7 +284,7 @@ void TestScene::OnReceiveMessage(ewol::EObject * CallerObject, const char * even
 	} else if (eventId == l_eventLunch) {
 		stupidCube * tmpp = new stupidCube(250);
 		tmpp->SetSpeed(vec3(10,10,50));
-		m_gameEngine.AddElement(tmpp, true);
+		m_gameEngine.AddElement(tmpp);
 	} else if (eventId == l_eventChangeTimeSpeed1) {
 		if (NULL!=m_testWidget) {
 			m_testWidget->SetRatioTime(1);
