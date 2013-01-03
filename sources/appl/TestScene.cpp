@@ -218,7 +218,6 @@ class stupidCube : public game::Element
 		{
 			if (m_mass == 0.0f) {
 				if (baseRotationVect != vec3(0,0,0) ) {
-					APPL_DEBUG("kjhkjhkjh" << delta );
 					Rotate(baseRotationVect, 0.5 * delta );
 				}
 				if (baseMove != vec3(0,0,0) ) {
@@ -249,7 +248,7 @@ void TestScene::OnReceiveMessage(ewol::EObject * CallerObject, const char * even
 	if (eventId == l_eventAddBox) {
 		static bool firstTime = true;
 		if (firstTime==false) {
-			stupidCube * tmpp = new stupidCube(20);
+			stupidCube * tmpp = new stupidCube();
 			vec3 newPos = vec3(etk::tool::frand(-20,20),etk::tool::frand(-20,20),etk::tool::frand(1,8));
 			APPL_DEBUG("add a box at the pos : " << newPos);
 			tmpp->Translate(newPos);
