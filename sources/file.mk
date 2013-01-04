@@ -17,3 +17,5 @@ LOCAL_COPY_FOLDERS := ../data/icon.*: \
                       ../data/cube.*: \
                       ../data/grass.*: \
                       ../data/stone*: \
+                      ../data/sphere.png: \
+                      ../data/sphere.obj:

@@ -34,6 +34,7 @@ static const char * l_eventRotationY    = "event-rotation-Y";
 static const char * l_eventRotationZ    = "event-rotation-Z";
 static const char * l_eventRotation0    = "event-rotation-0";
 static const char * l_eventLunch        = "event-lunch";
+static const char * l_eventChangeTimeSpeed4 = "event-speed4";
 static const char * l_eventChangeTimeSpeed2 = "event-speed2";
 static const char * l_eventChangeTimeSpeed0 = "event-speed0.5";
 static const char * l_eventChangeTimeSpeed1 = "event-speed1";
@@ -47,7 +48,10 @@ static const char * l_eventDown = "event-down";
 TestScene::TestScene(void)
 {
 	m_ground = new game::Element("DATA:grass.obj");
-	m_gameEngine.AddElement(m_ground);
+	if (NULL != m_ground) {
+		m_ground->SetStaticMode(true);
+		m_gameEngine.AddElement(m_ground);
+	}
 	
 	APPL_CRITICAL("Create "__class__" (start)");
 	widget::SizerVert* mySizerVert2 = NULL;
@@ -124,6 +128,11 @@ TestScene::TestScene(void)
 		myButton = new widget::Button("2x speed");
 		if (NULL != myButton) {
 			myButton->RegisterOnEvent(this, ewolEventButtonPressed, l_eventChangeTimeSpeed2);
+			mySizerHori->SubWidgetAdd(myButton);
+		}
+		myButton = new widget::Button("4x speed");
+		if (NULL != myButton) {
+			myButton->RegisterOnEvent(this, ewolEventButtonPressed, l_eventChangeTimeSpeed4);
 			mySizerHori->SubWidgetAdd(myButton);
 		}
 	
@@ -232,6 +241,31 @@ class stupidCube : public game::Element
 
 
 
+class stupidSphere : public game::Element
+{
+	public:
+		stupidSphere(float poidKg=0.0f) : game::Element("DATA:sphere.obj")
+		{
+			m_mass = poidKg;
+		};
+		
+		// herited methode
+		virtual bool ArtificialIntelligence(float delta)
+		{
+			if (m_mass == 0.0f) {
+				if (baseRotationVect != vec3(0,0,0) ) {
+					Rotate(baseRotationVect, 0.5 * delta );
+				}
+				if (baseMove != vec3(0,0,0) ) {
+					Translate(baseMove);
+					baseMove = vec3(0,0,0);
+				}
+			}
+			return false;
+		}
+	
+};
+
 
 
 
@@ -249,9 +283,10 @@ void TestScene::OnReceiveMessage(ewol::EObject * CallerObject, const char * even
 		static bool firstTime = true;
 		if (firstTime==false) {
 			stupidCube * tmpp = new stupidCube();
-			vec3 newPos = vec3(etk::tool::frand(-20,20),etk::tool::frand(-20,20),etk::tool::frand(1,8));
+			vec3 newPos = vec3(etk::tool::frand(-40,40),etk::tool::frand(-40,40),etk::tool::frand(1,8));
 			APPL_DEBUG("add a box at the pos : " << newPos);
 			tmpp->Translate(newPos);
+			tmpp->Scale(etk::tool::frand(0.5,2) );
 			float angle = etk::tool::frand(-M_PI,M_PI);
 			tmpp->Rotate(vec3(1,0,0), angle);
 			angle = etk::tool::frand(-M_PI,M_PI);
@@ -266,7 +301,18 @@ void TestScene::OnReceiveMessage(ewol::EObject * CallerObject, const char * even
 		}
 	} else if (eventId == l_eventAddSphere) {
 		if (NULL!=m_testWidget) {
-			
+			stupidSphere * tmpp = new stupidSphere();
+			vec3 newPos = vec3(etk::tool::frand(-40,40),etk::tool::frand(-40,40),etk::tool::frand(1,8));
+			APPL_DEBUG("add a box at the pos : " << newPos);
+			tmpp->Translate(newPos);
+			tmpp->Scale(etk::tool::frand(0.5,2) );
+			float angle = etk::tool::frand(-M_PI,M_PI);
+			tmpp->Rotate(vec3(1,0,0), angle);
+			angle = etk::tool::frand(-M_PI,M_PI);
+			tmpp->Rotate(vec3(0,1,0), angle);
+			angle = etk::tool::frand(-M_PI,M_PI);
+			tmpp->Rotate(vec3(0,0,1), angle);
+			m_gameEngine.AddElement(tmpp);
 		}
 	} else if (eventId == l_eventUp) {
 		baseMove = vec3(0.1,0,0);
@@ -282,6 +328,8 @@ void TestScene::OnReceiveMessage(ewol::EObject * CallerObject, const char * even
 		baseRotationVect = vec3(0,0,0);
 	} else if (eventId == l_eventLunch) {
 		stupidCube * tmpp = new stupidCube(250);
+		vec3 newPos = vec3(5,5,100);
+		tmpp->Translate(newPos);
 		tmpp->SetSpeed(vec3(10,10,50));
 		m_gameEngine.AddElement(tmpp);
 	} else if (eventId == l_eventChangeTimeSpeed1) {
@@ -295,6 +343,10 @@ void TestScene::OnReceiveMessage(ewol::EObject * CallerObject, const char * even
 	} else if (eventId == l_eventChangeTimeSpeed2) {
 		if (NULL!=m_testWidget) {
 			m_testWidget->SetRatioTime(2);
+		}
+	} else if (eventId == l_eventChangeTimeSpeed4) {
+		if (NULL!=m_testWidget) {
+			m_testWidget->SetRatioTime(4);
 		}
 	}
 	
