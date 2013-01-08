@@ -165,7 +165,7 @@ TestScene::TestScene(void)
 			mySizerHori->SubWidgetAdd(mySpacer);
 		}
 		
-		m_testWidget = new widget::Scene(&m_gameEngine);
+		m_testWidget = new widget::Scene(/*&m_gameEngine*/ NULL);
 		if (NULL != m_testWidget) {
 			m_testWidget->SetExpendX(true);
 			m_testWidget->SetExpendY(true);
