@@ -5,22 +5,20 @@ include $(CLEAR_VARS)
 # load the common sources file of the platform
 include $(LOCAL_PATH)/file.mk
 
-LOCAL_CONFIG_FILES := Config.in
-
 # name of the librairy
 LOCAL_MODULE := human
 
 # name of the dependency
-LOCAL_STATIC_LIBRARIES := ewol
+LOCAL_LIBRARIES := ewol freetype libpng parsersvg tinyxml lua etk libzip
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)
 
 LOCAL_SRC_FILES := $(FILE_LIST)
 
 
-LOCAL_LDLIBS    := 
+LOCAL_LDLIBS    := -llog -landroid
 
 LOCAL_CFLAGS    :=  -DPROJECT_NAME="\"$(LOCAL_MODULE)\""
 
-include $(BUILD_EXECUTABLE)
+include $(BUILD_SHARED_LIBRARY)
 

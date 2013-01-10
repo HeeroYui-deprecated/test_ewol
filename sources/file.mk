@@ -19,3 +19,7 @@ LOCAL_COPY_FOLDERS := ../data/icon.*: \
                       ../data/stone*: \
                       ../data/sphere.png: \
                       ../data/sphere.obj:
+
+ifneq ($(__EWOL_INTEGRATED_FONT__),$(empty))
+LOCAL_COPY_FILES := ../data/FreeSerif*:fonts/FreeSerif.ttf
+endif
