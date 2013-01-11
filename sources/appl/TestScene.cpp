@@ -47,17 +47,19 @@ static const char * l_eventDown = "event-down";
 
 TestScene::TestScene(void)
 {
+	/*
 	m_ground = new game::Element("DATA:grass.obj");
 	if (NULL != m_ground) {
 		m_ground->SetStaticMode(true);
 		m_gameEngine.AddElement(m_ground);
 	}
+	*/
 	
 	APPL_CRITICAL("Create "__class__" (start)");
 	widget::SizerVert* mySizerVert2 = NULL;
 	widget::SizerHori* mySizerHori = NULL;
 	widget::Button*    myButton = NULL;
-	
+	/*
 	mySizerHori = new widget::SizerHori();
 	if (NULL == mySizerHori) {
 		APPL_DEBUG("Allocation error mySizerHori");
@@ -135,7 +137,7 @@ TestScene::TestScene(void)
 			myButton->RegisterOnEvent(this, ewolEventButtonPressed, l_eventChangeTimeSpeed4);
 			mySizerHori->SubWidgetAdd(myButton);
 		}
-	
+	*/
 	widget::Spacer* mySpacer = new widget::Spacer();
 	if (NULL != mySpacer) {
 		mySpacer->SetExpendX(false);
@@ -195,10 +197,6 @@ TestScene::TestScene(void)
 		mySpacer->SetColor(0x00FFFF80);
 		SubWidgetAdd(mySpacer);
 	}
-	// et other property on the Engine :
-	m_gameEngine.AddGravity(game::gravityEarth);
-	
-	
 	
 	APPL_CRITICAL("Create "__class__" (end)");
 }
@@ -209,7 +207,7 @@ TestScene::~TestScene(void)
 	APPL_CRITICAL("Remove "__class__" ...");
 }
 
-
+/*
 #include <ewol/game/Element.h>
 
 vec3 baseRotationVect;
@@ -239,8 +237,6 @@ class stupidCube : public game::Element
 	
 };
 
-
-
 class stupidSphere : public game::Element
 {
 	public:
@@ -265,6 +261,7 @@ class stupidSphere : public game::Element
 		}
 	
 };
+*/
 
 
 
@@ -279,6 +276,7 @@ void TestScene::OnReceiveMessage(ewol::EObject * CallerObject, const char * even
 	if (m_testWidget == CallerObject) {
 		APPL_WARNING("Receive Event from tested Scene ... : \"" << eventId << "\" ==> data=\"" << data << "\"" );
 	}
+	/*
 	if (eventId == l_eventAddBox) {
 		static bool firstTime = true;
 		if (firstTime==false) {
@@ -349,6 +347,7 @@ void TestScene::OnReceiveMessage(ewol::EObject * CallerObject, const char * even
 			m_testWidget->SetRatioTime(4);
 		}
 	}
+	*/
 	
 	return;
 }

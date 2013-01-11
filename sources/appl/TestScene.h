@@ -13,14 +13,10 @@
 #include <ewol/widget/Widget.h>
 #include <ewol/widget/Scene.h>
 #include <ewol/widget/SizerVert.h>
-#include <ewol/game/Engine.h>
 
 class TestScene : public widget::SizerVert
 {
 	private:
-		game::Element* m_ground;
-		//game::Element  m_sky;
-		game::Engine   m_gameEngine;
 		widget::Scene* m_testWidget;
 	public:
 		// Constructeur
