@@ -62,6 +62,13 @@ void tmpTestOfTheFSNode(void)
 		APPL_INFO("          TimeModifiedString() =\"" <<myNodeTest1.TimeModifiedString() << "\"");
 		APPL_INFO("          TimeAccessedString() =\"" <<myNodeTest1.TimeAccessedString() << "\"");
 	}
+	// Try remove the file : 
+	myNodeTest1.Remove();
+	if (true==myNodeTest1.Exist()) {
+		APPL_ERROR(" ==> The file might be removed ==> but it is not the case ...");
+	} else {
+		APPL_INFO(" ==> The file is removed");
+	}
 	APPL_INFO("********************************************");
 	
 	
