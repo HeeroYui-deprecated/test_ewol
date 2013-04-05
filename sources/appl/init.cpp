@@ -32,6 +32,45 @@ int main(int argc, const char *argv[])
 	return ewol::Run(argc, argv);
 }
 
+void tmpTestOfTheFSNode(void)
+{
+	APPL_INFO("==> Start test of FSNode");
+	etk::UString fileName("USERDATA:myFileTest.txt");
+	etk::FSNode myNodeTest1(fileName);
+	APPL_INFO("********************************************");
+	APPL_INFO("** Filename=\"" << fileName << "\"");
+	APPL_INFO("********************************************");
+	APPL_INFO("      GetNameFolder()      =\"" <<myNodeTest1.GetNameFolder() << "\"");
+	APPL_INFO("      GetName()            =\"" <<myNodeTest1.GetName() << "\"");
+	APPL_INFO("      GetNameFile()        =\"" <<myNodeTest1.GetNameFile() << "\"");
+	APPL_INFO("      GetRelativeFolder()  =\"" <<myNodeTest1.GetRelativeFolder() << "\"");
+	APPL_INFO("      exist                =" <<myNodeTest1.Exist());
+	if (true==myNodeTest1.Exist()) {
+		APPL_ERROR(" ==> remove the file ==> bad for the test");
+	} else {
+		APPL_INFO("      Display time when file does not exist :");
+		APPL_INFO("          TimeCreatedString()  =\"" <<myNodeTest1.TimeCreatedString() << "\"");
+		APPL_INFO("          TimeModifiedString() =\"" <<myNodeTest1.TimeModifiedString() << "\"");
+		APPL_INFO("          TimeAccessedString() =\"" <<myNodeTest1.TimeAccessedString() << "\"");
+	}
+	myNodeTest1.Touch();
+	if (false==myNodeTest1.Exist()) {
+		APPL_ERROR(" ==> Error, can not create the file ....");
+	} else {
+		APPL_INFO("      Display time when file does exist :");
+		APPL_INFO("          TimeCreatedString()  =\"" <<myNodeTest1.TimeCreatedString() << "\"");
+		APPL_INFO("          TimeModifiedString() =\"" <<myNodeTest1.TimeModifiedString() << "\"");
+		APPL_INFO("          TimeAccessedString() =\"" <<myNodeTest1.TimeAccessedString() << "\"");
+	}
+	APPL_INFO("********************************************");
+	
+	
+	APPL_INFO("==> Stop test of FSNode");
+	
+	exit(0);
+}
+
+
 
 /**
  * @brief main application function Initialisation
@@ -39,22 +78,22 @@ int main(int argc, const char *argv[])
 void APP_Init(void)
 {
 	#ifdef MODE_RELEASE
-		char * debugMode = "Release";
+		const char * debugMode = "Release";
 	#else
-		char * debugMode = "Debug";
+		const char * debugMode = "Debug";
 	#endif
 	#ifdef __TARGET_OS__Linux
-		char * osMode = "Linux";
+		const char * osMode = "Linux";
 	#elif defined(__TARGET_OS__Android)
-		char * osMode = "Android";
+		const char * osMode = "Android";
 	#elif defined(__TARGET_OS__Windows)
-		char * osMode = "Windows";
+		const char * osMode = "Windows";
 	#elif defined(__TARGET_OS__IOs)
-		char * osMode = "IOs";
+		const char * osMode = "IOs";
 	#elif defined(__TARGET_OS__MacOs)
-		char * osMode = "MacOs";
+		const char * osMode = "MacOs";
 	#else
-		char * osMode = "Unknown";
+		const char * osMode = "Unknown";
 	#endif
 	APPL_INFO("==> Init "PROJECT_NAME" (START) [" << osMode << "] (" << debugMode << ")");
 	
@@ -77,6 +116,8 @@ void APP_Init(void)
 	}
 	// create the specific windows
 	ewol::WindowsSet(basicWindows);
+	
+	tmpTestOfTheFSNode();
 	
 	
 	// add files
