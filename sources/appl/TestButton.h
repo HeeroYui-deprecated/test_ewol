@@ -13,9 +13,9 @@
 #include <ewol/widget/Widget.h>
 #include <ewol/widget/Button.h>
 #include <ewol/widget/Spacer.h>
-#include <ewol/widget/SizerVert.h>
+#include <ewol/widget/Sizer.h>
 
-class TestButton : public widget::SizerVert
+class TestButton : public widget::Sizer
 {
 	private:
 		widget::Button* m_testWidget;

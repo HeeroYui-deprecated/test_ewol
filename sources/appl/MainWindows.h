@@ -12,16 +12,16 @@
 #include <appl/Debug.h>
 #include <ewol/widget/Widget.h>
 #include <ewol/widget/Windows.h>
-#include <ewol/widget/SizerVert.h>
+#include <ewol/widget/Sizer.h>
 #include <ewol/widget/Button.h>
 #include <ewol/widget/Spacer.h>
 
 class MainWindows : public ewol::Windows
 {
 	private:
-		widget::SizerVert* m_sizerVert;
-		ewol::Widget*      m_subWidget;
-		int32_t            m_idWidget;
+		widget::Sizer* m_sizerVert;
+		ewol::Widget* m_subWidget;
+		int32_t m_idWidget;
 	public:
 		// Constructeur
 		MainWindows(void);

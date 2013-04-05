@@ -14,9 +14,9 @@
 #include <ewol/widget/Button.h>
 #include <ewol/widget/ButtonColor.h>
 #include <ewol/widget/Spacer.h>
-#include <ewol/widget/SizerVert.h>
+#include <ewol/widget/Sizer.h>
 
-class TestButtonColor : public widget::SizerVert
+class TestButtonColor : public widget::Sizer
 {
 	private:
 		widget::ButtonColor* m_testWidget;

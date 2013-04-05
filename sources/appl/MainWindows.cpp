@@ -12,7 +12,7 @@
 
 #include <ewol/widget/Button.h>
 #include <ewol/widget/CheckBox.h>
-#include <ewol/widget/SizerHori.h>
+#include <ewol/widget/Sizer.h>
 #include <ewol/widget/Label.h>
 #include <ewol/widget/Entry.h>
 #include <ewol/widget/List.h>
@@ -42,17 +42,17 @@ MainWindows::MainWindows(void) :
 	m_subWidget(NULL)
 {
 	APPL_DEBUG("CREATE WINDOWS ... ");
-	widget::SizerHori* mySizerHori = NULL;
+	widget::Sizer* mySizerHori = NULL;
 	widget::Button*    myButton = NULL;
 	
-	m_sizerVert = new widget::SizerVert();
+	m_sizerVert = new widget::Sizer(widget::Sizer::modeVert);
 	if (NULL == m_sizerVert) {
 		APPL_DEBUG("Allocation error mySizerVert");
 		return;
 	}
 	SetSubWidget(m_sizerVert);
 		
-		mySizerHori = new widget::SizerHori();
+		mySizerHori = new widget::Sizer(widget::Sizer::modeHori);
 		if (NULL == mySizerHori) {
 			APPL_DEBUG("Allocation error mySizerHori");
 			return;

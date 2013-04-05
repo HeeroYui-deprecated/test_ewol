@@ -12,9 +12,9 @@
 #include <appl/Debug.h>
 #include <ewol/widget/Widget.h>
 #include <ewol/widget/Scene.h>
-#include <ewol/widget/SizerVert.h>
+#include <ewol/widget/Sizer.h>
 
-class TestScene : public widget::SizerVert
+class TestScene : public widget::Sizer
 {
 	private:
 		widget::Scene* m_testWidget;

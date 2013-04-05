@@ -12,8 +12,7 @@
 
 #include <ewol/widget/Button.h>
 #include <ewol/widget/CheckBox.h>
-#include <ewol/widget/SizerHori.h>
-#include <ewol/widget/SizerVert.h>
+#include <ewol/widget/Sizer.h>
 #include <ewol/widget/Label.h>
 #include <ewol/widget/Entry.h>
 #include <ewol/widget/List.h>
@@ -34,14 +33,15 @@ static const char * l_eventChangeFillY       = "event-change-fill-Y";
 #undef __class__
 #define __class__	"TestButton"
 
-TestButtonColor::TestButtonColor(void)
+TestButtonColor::TestButtonColor(void) : 
+	widget::Sizer(widget::Sizer::modeVert)
 {
 	APPL_DEBUG("CREATE "__class__" ... ");
-	widget::SizerVert* mySizerVert2 = NULL;
-	widget::SizerHori* mySizerHori = NULL;
+	widget::Sizer* mySizerVert2 = NULL;
+	widget::Sizer* mySizerHori = NULL;
 	widget::Button*    myButton = NULL;
 	
-	mySizerHori = new widget::SizerHori();
+	mySizerHori = new widget::Sizer(widget::Sizer::modeHori);
 	if (NULL == mySizerHori) {
 		APPL_DEBUG("Allocation error mySizerHori");
 		return;
@@ -87,7 +87,7 @@ TestButtonColor::TestButtonColor(void)
 		SubWidgetAdd(mySpacer);
 	}
 	
-	mySizerHori = new widget::SizerHori();
+	mySizerHori = new widget::Sizer(widget::Sizer::modeHori);
 	if (NULL == mySizerHori) {
 		APPL_DEBUG("Allocation error mySizerHori");
 		return;
@@ -147,7 +147,7 @@ TestButtonColor::~TestButtonColor(void)
 
 void TestButtonColor::OnReceiveMessage(ewol::EObject * CallerObject, const char * eventId, etk::UString data)
 {
-	widget::SizerVert::OnReceiveMessage(CallerObject, eventId, data);
+	widget::Sizer::OnReceiveMessage(CallerObject, eventId, data);
 	
 	//APPL_INFO("Receive Event from the main windows ... : \"" << eventId << "\" ==> data=\"" << data << "\"" );
 	if (m_testWidget == CallerObject) {
@@ -192,7 +192,7 @@ void TestButtonColor::OnReceiveMessage(ewol::EObject * CallerObject, const char 
 
 void TestButtonColor::OnObjectRemove(ewol::EObject * removeObject)
 {
-	widget::SizerVert::OnObjectRemove(removeObject);
+	widget::Sizer::OnObjectRemove(removeObject);
 	if (m_testWidget == removeObject) {
 		m_testWidget = NULL;
 	}
