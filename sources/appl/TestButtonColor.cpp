@@ -47,6 +47,7 @@ TestButtonColor::TestButtonColor(void) :
 		return;
 	}
 	SubWidgetAdd(mySizerHori);
+		/*
 		myButton = new widget::Button("Expend X (false)");
 		if (NULL != myButton) {
 			myButton->SetToggleMode(true);
@@ -75,6 +76,7 @@ TestButtonColor::TestButtonColor(void) :
 			myButton->RegisterOnEvent(this, ewolEventButtonValue, l_eventChangeFillY);
 			mySizerHori->SubWidgetAdd(myButton);
 		}
+		*/
 		
 	widget::Spacer* mySpacer = new widget::Spacer();
 	if (NULL != mySpacer) {
@@ -104,7 +106,7 @@ TestButtonColor::TestButtonColor(void) :
 			mySpacer->SetColor(0x00FF0080);
 			mySizerHori->SubWidgetAdd(mySpacer);
 		}
-		
+		/*
 		m_testWidget = new widget::ButtonColor(draw::color::olive);
 		if (NULL != m_testWidget) {
 			m_testWidget->SetExpendX(false);
@@ -114,7 +116,7 @@ TestButtonColor::TestButtonColor(void) :
 			m_testWidget->RegisterOnEvent(this, ewolEventButtonColorChange);
 			mySizerHori->SubWidgetAdd(m_testWidget);
 		}
-		
+		*/
 		mySpacer = new widget::Spacer();
 		if (NULL != mySpacer) {
 			mySpacer->SetExpendX(false);
@@ -156,33 +158,33 @@ void TestButtonColor::OnReceiveMessage(ewol::EObject * CallerObject, const char 
 	if (eventId == l_eventChangeExpendX) {
 		if (NULL!=m_testWidget) {
 			if (data=="1") {
-				m_testWidget->SetExpendX(true);
+				//m_testWidget->SetExpendX(true);
 			} else {
-				m_testWidget->SetExpendX(false);
+				//m_testWidget->SetExpendX(false);
 			}
 		}
 	} else if (eventId == l_eventChangeExpendY) {
 		if (NULL!=m_testWidget) {
 			if (data=="1") {
-				m_testWidget->SetExpendY(true);
+				//m_testWidget->SetExpendY(true);
 			} else {
-				m_testWidget->SetExpendY(false);
+				//m_testWidget->SetExpendY(false);
 			}
 		}
 	} else if (eventId == l_eventChangeFillX) {
 		if (NULL!=m_testWidget) {
 			if (data=="1") {
-				m_testWidget->SetFillX(true);
+				//m_testWidget->SetFillX(true);
 			} else {
-				m_testWidget->SetFillX(false);
+				//m_testWidget->SetFillX(false);
 			}
 		}
 	} else if (eventId == l_eventChangeFillY) {
 		if (NULL!=m_testWidget) {
 			if (data=="1") {
-				m_testWidget->SetFillY(true);
+				//m_testWidget->SetFillY(true);
 			} else {
-				m_testWidget->SetFillY(false);
+				//m_testWidget->SetFillY(false);
 			}
 		}
 	}

@@ -50,6 +50,7 @@ TestLabel::TestLabel(void) :
 		return;
 	}
 	SubWidgetAdd(mySizerHori);
+		/*
 		myButton = new widget::Button("Expend X (false)");
 		if (NULL != myButton) {
 			myButton->SetToggleMode(true);
@@ -90,6 +91,7 @@ TestLabel::TestLabel(void) :
 			myButton->RegisterOnEvent(this, ewolEventButtonPressed, l_eventChangeLabel);
 			mySizerHori->SubWidgetAdd(myButton);
 		}
+		*/
 		
 	widget::Spacer* mySpacer = new widget::Spacer();
 	if (NULL != mySpacer) {

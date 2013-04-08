@@ -58,6 +58,7 @@ MainWindows::MainWindows(void) :
 			return;
 		}
 		m_sizerVert->SubWidgetAdd(mySizerHori);
+			/*
 			myButton = new widget::Button("default theme (cube)");
 			if (NULL != myButton) {
 				myButton->SetToggleMode(true);
@@ -75,6 +76,7 @@ MainWindows::MainWindows(void) :
 				myButton->RegisterOnEvent(this, ewolEventButtonPressed, l_eventChangeWidgetNext);
 				mySizerHori->SubWidgetAdd(myButton);
 			}
+			*/
 		widget::Spacer* mySpacer = new widget::Spacer();
 		if (NULL != mySpacer) {
 			mySpacer->SetExpendX(false);
@@ -125,7 +127,7 @@ void MainWindows::OnReceiveMessage(ewol::EObject * CallerObject, const char * ev
 	}
 	// special init forcing ...
 	if(CallerObject == NULL) {
-		m_idWidget = 4;
+		m_idWidget = 1;
 	}
 	switch(m_idWidget)
 	{
