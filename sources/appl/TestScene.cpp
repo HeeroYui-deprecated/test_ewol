@@ -268,7 +268,7 @@ class stupidSphere : public game::Element
 
 
 
-void TestScene::OnReceiveMessage(ewol::EObject * CallerObject, const char * eventId, etk::UString data)
+void TestScene::OnReceiveMessage(ewol::EObject * CallerObject, const char * eventId, const etk::UString& data)
 {
 	widget::Sizer::OnReceiveMessage(CallerObject, eventId, data);
 	

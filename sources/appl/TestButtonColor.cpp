@@ -147,7 +147,7 @@ TestButtonColor::~TestButtonColor(void)
 }
 
 
-void TestButtonColor::OnReceiveMessage(ewol::EObject * CallerObject, const char * eventId, etk::UString data)
+void TestButtonColor::OnReceiveMessage(ewol::EObject * CallerObject, const char * eventId, const etk::UString& data)
 {
 	widget::Sizer::OnReceiveMessage(CallerObject, eventId, data);
 	

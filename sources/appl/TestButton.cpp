@@ -55,35 +55,35 @@ TestButton::TestButton(void) :
 		myButton = new widget::Button();
 		if (NULL != myButton) {
 			myButton->SetToggleMode(true);
-			myButton->SetSubWidget(new widget::Label("Expend X <br/> (false)"));
-			myButton->SetSubWidget(new widget::Label("Expend X <br/> (true)"), true);
+			myButton->SetSubWidget(      new widget::Label("Expend X <br/> (false)"));
+			myButton->SetSubWidgetToggle(new widget::Label("Expend X <br/><b>(true)</b>"));
 			myButton->RegisterOnEvent(this, ewolEventButtonValue, l_eventChangeExpendX);
 			mySizerHori->SubWidgetAdd(myButton);
 		}
 		myButton = new widget::Button();
 		if (NULL != myButton) {
 			myButton->SetToggleMode(true);
-			myButton->SetSubWidget(new widget::Label("Expend Y <br/> (false)"));
-			myButton->SetSubWidget(new widget::Label("Expend Y <br/> (true)"), true);
+			myButton->SetSubWidget(      new widget::Label("Expend Y <br/> (false)"));
+			myButton->SetSubWidgetToggle(new widget::Label("Expend Y <br/><b>(true)</b>"));
 			myButton->RegisterOnEvent(this, ewolEventButtonValue, l_eventChangeExpendY);
 			mySizerHori->SubWidgetAdd(myButton);
 		}
-		/*
-		myButton = new widget::Button("Toggle<br/>(false)");
+		myButton = new widget::Button();
 		if (NULL != myButton) {
 			myButton->SetToggleMode(true);
-			myButton->SetLabelToggle("Toggle<br/><b>(true)</b>");
+			myButton->SetSubWidget(      new widget::Label("Toggle<br/>(false)"));
+			myButton->SetSubWidgetToggle(new widget::Label("Toggle<br/><b>(true)</b>"));
 			myButton->RegisterOnEvent(this, ewolEventButtonValue, l_eventChangeToggle);
 			mySizerHori->SubWidgetAdd(myButton);
 		}
-		myButton = new widget::Button("Text On toggle state<br/>(false)");
+		myButton = new widget::Button();
 		if (NULL != myButton) {
 			myButton->SetToggleMode(true);
-			myButton->SetLabelToggle("Text On toggle state<br/><b>(true)</b>");
+			myButton->SetSubWidget(      new widget::Label("Text On toggle state<br/>(false)"));
+			myButton->SetSubWidgetToggle(new widget::Label("Text On toggle state<br/><b>(true)</b>"));
 			myButton->RegisterOnEvent(this, ewolEventButtonValue, l_eventChangeTextToggle);
 			mySizerHori->SubWidgetAdd(myButton);
 		}
-		*/
 	
 	mySizerHori = new widget::Sizer(widget::Sizer::modeHori);
 	if (NULL == mySizerHori) {
@@ -95,40 +95,25 @@ TestButton::TestButton(void) :
 		myButton = new widget::Button();
 		if (NULL != myButton) {
 			myButton->SetToggleMode(true);
-			myButton->SetSubWidget(new widget::Label("Fill Y <br/> (false)"));
-			myButton->SetSubWidget(new widget::Label("Fill Y <br/> (true)"), true);
+			myButton->SetSubWidget(      new widget::Label("Fill Y <br/> (false)"));
+			myButton->SetSubWidgetToggle(new widget::Label("Fill Y <br/> (true)"));
 			myButton->RegisterOnEvent(this, ewolEventButtonValue, l_eventChangeFillX);
 			mySizerHori->SubWidgetAdd(myButton);
 		}
 		myButton = new widget::Button();
 		if (NULL != myButton) {
 			myButton->SetToggleMode(true);
-			myButton->SetSubWidget(new widget::Label("Fill Y <br/> (false)"));
-			myButton->SetSubWidget(new widget::Label("Fill Y <br/> (true)"), true);
+			myButton->SetSubWidget(      new widget::Label("Fill Y <br/> (false)"));
+			myButton->SetSubWidgetToggle(new widget::Label("Fill Y <br/> (true)"));
 			myButton->RegisterOnEvent(this, ewolEventButtonValue, l_eventChangeFillY);
 			mySizerHori->SubWidgetAdd(myButton);
 		}
-		/*
-		myButton = new widget::Button("Image (false)");
+		myButton = new widget::Button();
 		if (NULL != myButton) {
-			myButton->SetToggleMode(true);
-			myButton->SetLabelToggle("Image (true)");
-			myButton->RegisterOnEvent(this, ewolEventButtonValue, l_eventChangeImage);
-			mySizerHori->SubWidgetAdd(myButton);
-		}
-		myButton = new widget::Button("Image Toggle (false)");
-		if (NULL != myButton) {
-			myButton->SetToggleMode(true);
-			myButton->SetLabelToggle("Image Toggle (true)");
-			myButton->RegisterOnEvent(this, ewolEventButtonValue, l_eventChangeImageToggle);
-			mySizerHori->SubWidgetAdd(myButton);
-		}
-		myButton = new widget::Button("Change Text");
-		if (NULL != myButton) {
+			myButton->SetSubWidget(new widget::Label("Change Text<br/> and other ..."));
 			myButton->RegisterOnEvent(this, ewolEventButtonPressed, l_eventChangeText);
 			mySizerHori->SubWidgetAdd(myButton);
 		}
-		*/
 	widget::Spacer* mySpacer = new widget::Spacer();
 	if (NULL != mySpacer) {
 		mySpacer->SetExpendX(false);
@@ -205,14 +190,14 @@ TestButton::~TestButton(void)
 }
 
 
-void TestButton::OnReceiveMessage(ewol::EObject * CallerObject, const char * eventId, etk::UString data)
+void TestButton::OnReceiveMessage(ewol::EObject * CallerObject, const char * eventId, const etk::UString& data)
 {
 	widget::Sizer::OnReceiveMessage(CallerObject, eventId, data);
 	
 	//APPL_INFO("Receive Event from the main windows ... : \"" << eventId << "\" ==> data=\"" << data << "\"" );
-	if (m_testWidget == CallerObject) {
+	//if (m_testWidget == CallerObject) {
 		APPL_WARNING("Receive Event from tested Button ... : \"" << eventId << "\" ==> data=\"" << data << "\"" );
-	}
+	//}
 	if (eventId == l_eventChangeExpendX) {
 		if (NULL!=m_testWidget) {
 			if (data=="1") {
@@ -256,9 +241,9 @@ void TestButton::OnReceiveMessage(ewol::EObject * CallerObject, const char * eve
 	} else if (eventId == l_eventChangeTextToggle) {
 		if (NULL!=m_testWidget) {
 			if (data=="1") {
-				//m_testWidget->SetLabelToggle("A stupid very long text on toggle <br/><br/> and on multiple lines");
+				m_testWidget->SetSubWidgetToggle(new widget::Label("A stupid very long text on toggle <br/><br/> and on multiple lines"));
 			} else {
-				//m_testWidget->SetLabelToggle("");
+				m_testWidget->SetSubWidgetToggle(NULL);
 			}
 		}
 	} else if (eventId == l_eventChangeImage) {
@@ -281,38 +266,47 @@ void TestButton::OnReceiveMessage(ewol::EObject * CallerObject, const char * eve
 	} else if (eventId == l_eventChangeText) {
 		if (NULL!=m_testWidget) {
 			static int32_t countTextID = 1;
-			switch (countTextID%10)
+			switch (countTextID)
 			{
 				case 0:
-					//m_testWidget->SetLabel("simple Text");
+					m_testWidget->SetSubWidget(new widget::Label("simple Text"));
 					break;
 				case 1:
-					//m_testWidget->SetLabel("<left>Align Left</left>");
+					m_testWidget->SetSubWidget(new widget::Label("<left>Align Left</left>"));
 					break;
 				case 2:
-					//m_testWidget->SetLabel("<right>Align right</right>");
+					m_testWidget->SetSubWidget(new widget::Label("<right>Align right</right>"));
 					break;
 				case 3:
-					//m_testWidget->SetLabel("simple Text<br/> With Some Other Lines<br/> and more if you want ...<br/> plop");
+					m_testWidget->SetSubWidget(new widget::Label("<center>Align center</center>"));
 					break;
 				case 4:
-					//m_testWidget->SetLabel("simple <bold>Text</bold> with bold");
+					m_testWidget->SetSubWidget(new widget::Label("simple Text<br/> With Some Other Lines<br/> and more if you want ...<br/> plop"));
 					break;
 				case 5:
-					//m_testWidget->SetLabel("simple <italic>Text</italic> with italic");
+					m_testWidget->SetSubWidget(new widget::Label("simple <bold>Text</bold> with bold"));
 					break;
 				case 6:
-					//m_testWidget->SetLabel("simple <italic><bold>Text</bold></italic> with italic bold");
+					m_testWidget->SetSubWidget(new widget::Label("simple <italic>Text</italic> with italic"));
 					break;
 				case 7:
-					//m_testWidget->SetLabel("");
+					m_testWidget->SetSubWidget(new widget::Label("simple <italic><bold>Text</bold></italic> with italic bold"));
 					break;
 				case 8:
-					//m_testWidget->SetLabel("simple <font color=\"#FFFF0088\">Text</font> with colored text");
+					m_testWidget->SetSubWidget(NULL);
+					break;
+				case 9:
+					m_testWidget->SetSubWidget(new widget::Label("simple <font color=\"#FFFF0088\">Text</font> with colored text"));
 					break;
 				default:
-					//m_testWidget->SetLabel("My <font color=\"#FF0000\">Button</font> <br/> And Some under line<br/> plop <br/> and an other super long line ...");
+					m_testWidget->SetSubWidget(new widget::Label("My <font color=\"#FF0000\">Button</font> <br/> And Some under line<br/> plop <br/> and an other super long line ..."));
+					countTextID=-1;
 					break;
+			}
+			// set at the subWidget all the space they can ...
+			if (NULL != m_testWidget->GetSubWidget()){
+				m_testWidget->GetSubWidget()->SetFill(bvec2(true,true));
+				m_testWidget->GetSubWidget()->SetExpand(bvec2(true,true));
 			}
 			countTextID++;
 		}

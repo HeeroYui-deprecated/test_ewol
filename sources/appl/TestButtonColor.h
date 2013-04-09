@@ -24,11 +24,10 @@ class TestButtonColor : public widget::Sizer
 		// Constructeur
 		TestButtonColor(void);
 		virtual ~TestButtonColor(void);
+	public:
 		// Derived function
 		virtual const char * const GetObjectType(void) { return "TestButton"; };
-		// Derived function
-		virtual void OnReceiveMessage(ewol::EObject * CallerObject, const char * eventId, etk::UString data);
-		// Derived function
+		virtual void OnReceiveMessage(ewol::EObject * CallerObject, const char * eventId, const etk::UString& data);
 		virtual void OnObjectRemove(ewol::EObject * removeObject);
 };
 

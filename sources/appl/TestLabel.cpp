@@ -162,7 +162,7 @@ TestLabel::~TestLabel(void)
 }
 
 
-void TestLabel::OnReceiveMessage(ewol::EObject * CallerObject, const char * eventId, etk::UString data)
+void TestLabel::OnReceiveMessage(ewol::EObject * CallerObject, const char * eventId, const etk::UString& data)
 {
 	widget::Sizer::OnReceiveMessage(CallerObject, eventId, data);
 	
