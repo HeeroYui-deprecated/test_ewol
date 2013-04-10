@@ -43,7 +43,7 @@ MainWindows::MainWindows(void) :
 {
 	APPL_DEBUG("CREATE WINDOWS ... ");
 	widget::Sizer* mySizerHori = NULL;
-	widget::Button*    myButton = NULL;
+	widget::Button* myButton = NULL;
 	
 	m_sizerVert = new widget::Sizer(widget::Sizer::modeVert);
 	if (NULL == m_sizerVert) {
@@ -58,31 +58,30 @@ MainWindows::MainWindows(void) :
 			return;
 		}
 		m_sizerVert->SubWidgetAdd(mySizerHori);
-			/*
-			myButton = new widget::Button("default theme (cube)");
+			myButton = new widget::Button();
 			if (NULL != myButton) {
+				myButton->SetSubWidget(new widget::Label("default theme (cube)"));
+				myButton->SetSubWidgetToggle(new widget::Label("rounded theme"));
 				myButton->SetToggleMode(true);
-				myButton->SetLabelToggle("rounded theme");
 				myButton->RegisterOnEvent(this, ewolEventButtonValue, l_eventChangeTheme);
 				mySizerHori->SubWidgetAdd(myButton);
 			}
-			myButton = new widget::Button("Previous Widget test");
+			myButton = new widget::Button();
 			if (NULL != myButton) {
+				myButton->SetSubWidget(new widget::Label("Previous Widget test"));
 				myButton->RegisterOnEvent(this, ewolEventButtonPressed, l_eventChangeWidgetPrevious);
 				mySizerHori->SubWidgetAdd(myButton);
 			}
-			myButton = new widget::Button("Next Widget test");
+			myButton = new widget::Button();
 			if (NULL != myButton) {
+				myButton->SetSubWidget(new widget::Label("Next Widget test"));
 				myButton->RegisterOnEvent(this, ewolEventButtonPressed, l_eventChangeWidgetNext);
 				mySizerHori->SubWidgetAdd(myButton);
 			}
-			*/
 		widget::Spacer* mySpacer = new widget::Spacer();
 		if (NULL != mySpacer) {
-			mySpacer->SetExpendX(false);
-			mySpacer->SetExpendY(false);
-			mySpacer->SetFillX(true);
-			mySpacer->SetFillY(false);
+			mySpacer->SetExpand(bvec2(false,false));
+			mySpacer->SetFill(bvec2(true,false));
 			mySpacer->SetSize(3);
 			mySpacer->SetColor(0x000000FF);
 			m_sizerVert->SubWidgetAdd(mySpacer);
@@ -98,7 +97,7 @@ MainWindows::~MainWindows(void)
 }
 
 
-void MainWindows::OnReceiveMessage(ewol::EObject * CallerObject, const char * eventId, etk::UString data)
+void MainWindows::OnReceiveMessage(ewol::EObject * CallerObject, const char * eventId, const etk::UString& data)
 {
 	if(    CallerObject != this
 	    && CallerObject != NULL) {
@@ -136,8 +135,7 @@ void MainWindows::OnReceiveMessage(ewol::EObject * CallerObject, const char * ev
 		case 0:
 			m_subWidget = (ewol::Widget*)new widget::Label("Test software for EWOL");
 			if (NULL != m_subWidget) {
-				m_subWidget->SetExpendX(true);
-				m_subWidget->SetExpendY(true);
+				m_subWidget->SetExpand(bvec2(true,true));
 				m_sizerVert->SubWidgetAdd(m_subWidget);
 			}
 			break;

@@ -140,10 +140,8 @@ TestScene::TestScene(void) :
 	*/
 	widget::Spacer* mySpacer = new widget::Spacer();
 	if (NULL != mySpacer) {
-		mySpacer->SetExpendX(false);
-		mySpacer->SetExpendY(false);
-		mySpacer->SetFillX(true);
-		mySpacer->SetFillY(false);
+		mySpacer->SetExpand(bvec2(false,false));
+		mySpacer->SetFill(bvec2(true,false));
 		mySpacer->SetSize(10);
 		mySpacer->SetColor(0xFF000080);
 		SubWidgetAdd(mySpacer);
@@ -158,10 +156,8 @@ TestScene::TestScene(void) :
 	
 		mySpacer = new widget::Spacer();
 		if (NULL != mySpacer) {
-			mySpacer->SetExpendX(false);
-			mySpacer->SetExpendY(false);
-			mySpacer->SetFillX(false);
-			mySpacer->SetFillY(true);
+			mySpacer->SetExpand(bvec2(false,false));
+			mySpacer->SetFill(bvec2(false,true));
 			mySpacer->SetSize(10);
 			mySpacer->SetColor(0x00FF0080);
 			mySizerHori->SubWidgetAdd(mySpacer);
@@ -169,19 +165,15 @@ TestScene::TestScene(void) :
 		
 		m_testWidget = new widget::Scene(/*&m_gameEngine*/ NULL);
 		if (NULL != m_testWidget) {
-			m_testWidget->SetExpendX(true);
-			m_testWidget->SetExpendY(true);
-			m_testWidget->SetFillX(true);
-			m_testWidget->SetFillY(true);
+			m_testWidget->SetExpand(bvec2(true,true));
+			m_testWidget->SetFill(bvec2(true,true));
 			mySizerHori->SubWidgetAdd(m_testWidget);
 		}
 		
 		mySpacer = new widget::Spacer();
 		if (NULL != mySpacer) {
-			mySpacer->SetExpendX(false);
-			mySpacer->SetExpendY(false);
-			mySpacer->SetFillX(false);
-			mySpacer->SetFillY(true);
+			mySpacer->SetExpand(bvec2(false,false));
+			mySpacer->SetFill(bvec2(false,true));
 			mySpacer->SetSize(10);
 			mySpacer->SetColor(0x0000FF80);
 			mySizerHori->SubWidgetAdd(mySpacer);
@@ -189,10 +181,8 @@ TestScene::TestScene(void) :
 		
 	mySpacer = new widget::Spacer();
 	if (NULL != mySpacer) {
-		mySpacer->SetExpendX(false);
-		mySpacer->SetExpendY(false);
-		mySpacer->SetFillX(true);
-		mySpacer->SetFillY(false);
+		mySpacer->SetExpand(bvec2(false,false));
+		mySpacer->SetFill(bvec2(true,false));
 		mySpacer->SetSize(10);
 		mySpacer->SetColor(0x00FFFF80);
 		SubWidgetAdd(mySpacer);

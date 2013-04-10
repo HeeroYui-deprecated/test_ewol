@@ -39,7 +39,8 @@ static const char * l_eventChangeImageToggle = "event-change-image-toggle";
 #define __class__	"TestButton"
 
 TestButton::TestButton(void) : 
-	widget::Sizer(widget::Sizer::modeVert)
+	widget::Sizer(widget::Sizer::modeVert),
+	m_testWidget(NULL)
 {
 	APPL_CRITICAL("Create "__class__" (start)");
 	widget::Sizer* mySizerVert2 = NULL;
@@ -95,8 +96,8 @@ TestButton::TestButton(void) :
 		myButton = new widget::Button();
 		if (NULL != myButton) {
 			myButton->SetToggleMode(true);
-			myButton->SetSubWidget(      new widget::Label("Fill Y <br/> (false)"));
-			myButton->SetSubWidgetToggle(new widget::Label("Fill Y <br/> (true)"));
+			myButton->SetSubWidget(      new widget::Label("Fill X <br/> (false)"));
+			myButton->SetSubWidgetToggle(new widget::Label("Fill X <br/> (true)"));
 			myButton->RegisterOnEvent(this, ewolEventButtonValue, l_eventChangeFillX);
 			mySizerHori->SubWidgetAdd(myButton);
 		}
@@ -116,10 +117,8 @@ TestButton::TestButton(void) :
 		}
 	widget::Spacer* mySpacer = new widget::Spacer();
 	if (NULL != mySpacer) {
-		mySpacer->SetExpendX(false);
-		mySpacer->SetExpendY(false);
-		mySpacer->SetFillX(true);
-		mySpacer->SetFillY(false);
+		mySpacer->SetExpand(bvec2(false,false));
+		mySpacer->SetFill(bvec2(true,false));
 		mySpacer->SetSize(10);
 		mySpacer->SetColor(0xFF000080);
 		SubWidgetAdd(mySpacer);
@@ -134,10 +133,8 @@ TestButton::TestButton(void) :
 	
 		mySpacer = new widget::Spacer();
 		if (NULL != mySpacer) {
-			mySpacer->SetExpendX(false);
-			mySpacer->SetExpendY(false);
-			mySpacer->SetFillX(false);
-			mySpacer->SetFillY(true);
+			mySpacer->SetExpand(bvec2(false,false));
+			mySpacer->SetFill(bvec2(false,true));
 			mySpacer->SetSize(10);
 			mySpacer->SetColor(0x00FF0080);
 			mySizerHori->SubWidgetAdd(mySpacer);
@@ -146,10 +143,8 @@ TestButton::TestButton(void) :
 		m_testWidget = new widget::Button();
 		if (NULL != m_testWidget) {
 			m_testWidget->SetSubWidget(new widget::Label("My <font color=\"#FF0000\">Button</font> <br/> And Some under line<br/> plop <br/> and an other super long line ..."));
-			m_testWidget->SetExpendX(false);
-			m_testWidget->SetExpendY(false);
-			m_testWidget->SetFillX(false);
-			m_testWidget->SetFillY(false);
+			m_testWidget->SetExpand(bvec2(false,false));
+			m_testWidget->SetFill(bvec2(false,false));
 			m_testWidget->RegisterOnEvent(this, ewolEventButtonPressed);
 			m_testWidget->RegisterOnEvent(this, ewolEventButtonDown);
 			m_testWidget->RegisterOnEvent(this, ewolEventButtonUp);
@@ -161,10 +156,8 @@ TestButton::TestButton(void) :
 		
 		mySpacer = new widget::Spacer();
 		if (NULL != mySpacer) {
-			mySpacer->SetExpendX(false);
-			mySpacer->SetExpendY(false);
-			mySpacer->SetFillX(false);
-			mySpacer->SetFillY(true);
+			mySpacer->SetExpand(bvec2(false,false));
+			mySpacer->SetFill(bvec2(false,true));
 			mySpacer->SetSize(10);
 			mySpacer->SetColor(0x0000FF80);
 			mySizerHori->SubWidgetAdd(mySpacer);
@@ -172,10 +165,8 @@ TestButton::TestButton(void) :
 		
 	mySpacer = new widget::Spacer();
 	if (NULL != mySpacer) {
-		mySpacer->SetExpendX(false);
-		mySpacer->SetExpendY(false);
-		mySpacer->SetFillX(true);
-		mySpacer->SetFillY(false);
+		mySpacer->SetExpand(bvec2(false,false));
+		mySpacer->SetFill(bvec2(true,false));
 		mySpacer->SetSize(10);
 		mySpacer->SetColor(0x00FFFF80);
 		SubWidgetAdd(mySpacer);
@@ -201,33 +192,33 @@ void TestButton::OnReceiveMessage(ewol::EObject * CallerObject, const char * eve
 	if (eventId == l_eventChangeExpendX) {
 		if (NULL!=m_testWidget) {
 			if (data=="1") {
-				m_testWidget->SetExpendX(true);
+				m_testWidget->SetExpand(bvec2(true,m_testWidget->GetExpand().y()));
 			} else {
-				m_testWidget->SetExpendX(false);
+				m_testWidget->SetExpand(bvec2(false,m_testWidget->GetExpand().y()));
 			}
 		}
 	} else if (eventId == l_eventChangeExpendY) {
 		if (NULL!=m_testWidget) {
 			if (data=="1") {
-				m_testWidget->SetExpendY(true);
+				m_testWidget->SetExpand(bvec2(m_testWidget->GetExpand().x(),true));
 			} else {
-				m_testWidget->SetExpendY(false);
+				m_testWidget->SetExpand(bvec2(m_testWidget->GetExpand().x(),false));
 			}
 		}
 	} else if (eventId == l_eventChangeFillX) {
 		if (NULL!=m_testWidget) {
 			if (data=="1") {
-				m_testWidget->SetFillX(true);
+				m_testWidget->SetFill(bvec2(true,m_testWidget->GetFill().y()));
 			} else {
-				m_testWidget->SetFillX(false);
+				m_testWidget->SetFill(bvec2(false,m_testWidget->GetFill().y()));
 			}
 		}
 	} else if (eventId == l_eventChangeFillY) {
 		if (NULL!=m_testWidget) {
 			if (data=="1") {
-				m_testWidget->SetFillY(true);
+				m_testWidget->SetFill(bvec2(m_testWidget->GetFill().x(),true));
 			} else {
-				m_testWidget->SetFillY(false);
+				m_testWidget->SetFill(bvec2(m_testWidget->GetFill().x(),false));
 			}
 		}
 	} else if (eventId == l_eventChangeToggle) {
