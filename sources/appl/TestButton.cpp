@@ -19,6 +19,7 @@
 #include <ewol/widget/ContextMenu.h>
 #include <ewol/widget/PopUp.h>
 #include <ewol/widget/Slider.h>
+#include <ewol/widget/Composer.h>
 #include <ewol/widget/Menu.h>
 #include <ewol/widget/meta/FileChooser.h>
 #include <ewol/widget/meta/Parameter.h>
@@ -288,6 +289,25 @@ void TestButton::OnReceiveMessage(ewol::EObject * CallerObject, const char * eve
 					break;
 				case 9:
 					m_testWidget->SetSubWidget(new widget::Label("simple <font color=\"#FFFF0088\">Text</font> with colored text"));
+					break;
+				case 10:
+					m_testWidget->SetSubWidget(
+					    new widget::Composer(widget::Composer::String,
+					        "<composer>\n"
+					        "	<label>ploppp</label>\n"
+					        "</composer\n"));
+					break;
+				case 11:
+					m_testWidget->SetSubWidget(
+					    new widget::Composer(widget::Composer::String,
+					        "<composer>\n"
+					        "	<sizer mode=\"vert\" addmode=\"invert\">\n"
+					        "		<label>ploppp</label>\n"
+					        "		<label expand=\"true,true\"><![CDATA[<center>** ** * *<br/>** * * * *</center>]]></label>\n"
+					        "	</sizer>\n"
+					        "	\n"
+					        "	\n"
+					        "</composer\n"));
 					break;
 				default:
 					m_testWidget->SetSubWidget(new widget::Label("My <font color=\"#FF0000\">Button</font> <br/> And Some under line<br/> plop <br/> and an other super long line ..."));
