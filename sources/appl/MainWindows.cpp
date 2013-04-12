@@ -26,6 +26,7 @@
 #include <appl/TestButton.h>
 #include <appl/TestButtonColor.h>
 #include <appl/TestLabel.h>
+#include <appl/TestImage.h>
 #include <appl/TestScene.h>
 
 
@@ -39,7 +40,8 @@ static const char * l_eventChangeWidgetPrevious  = "event-change-widget-test-pre
 
 MainWindows::MainWindows(void) :
 	m_idWidget(0),
-	m_subWidget(NULL)
+	m_subWidget(NULL),
+	m_testName(NULL)
 {
 	APPL_DEBUG("CREATE WINDOWS ... ");
 	widget::Sizer* mySizerHori = NULL;
@@ -77,6 +79,10 @@ MainWindows::MainWindows(void) :
 				myButton->SetSubWidget(new widget::Label("Next Widget test"));
 				myButton->RegisterOnEvent(this, ewolEventButtonPressed, l_eventChangeWidgetNext);
 				mySizerHori->SubWidgetAdd(myButton);
+			}
+			m_testName = new widget::Label("none");
+			if (NULL != m_testName) {
+				mySizerHori->SubWidgetAdd(m_testName);
 			}
 		widget::Spacer* mySpacer = new widget::Spacer();
 		if (NULL != mySpacer) {
@@ -138,30 +144,42 @@ void MainWindows::OnReceiveMessage(ewol::EObject * CallerObject, const char * ev
 				m_subWidget->SetExpand(bvec2(true,true));
 				m_sizerVert->SubWidgetAdd(m_subWidget);
 			}
+			if (m_testName!=NULL) { m_testName->SetLabel("Label"); };
 			break;
 		case 1:
 			m_subWidget = (ewol::Widget*)new TestButton();
 			if (NULL != m_subWidget) {
 				m_sizerVert->SubWidgetAdd(m_subWidget);
 			}
+			if (m_testName!=NULL) { m_testName->SetLabel("TestButton"); };
 			break;
 		case 2:
 			m_subWidget = (ewol::Widget*)new TestButtonColor();
 			if (NULL != m_subWidget) {
 				m_sizerVert->SubWidgetAdd(m_subWidget);
 			}
+			if (m_testName!=NULL) { m_testName->SetLabel("TestButtonColor"); };
 			break;
 		case 3:
 			m_subWidget = (ewol::Widget*)new TestLabel();
 			if (NULL != m_subWidget) {
 				m_sizerVert->SubWidgetAdd(m_subWidget);
 			}
+			if (m_testName!=NULL) { m_testName->SetLabel("TestLabel"); };
 			break;
 		case 4:
+			m_subWidget = (ewol::Widget*)new TestImage();
+			if (NULL != m_subWidget) {
+				m_sizerVert->SubWidgetAdd(m_subWidget);
+			}
+			if (m_testName!=NULL) { m_testName->SetLabel("TestImage"); };
+			break;
+		case 5:
 			m_subWidget = (ewol::Widget*)new TestScene();
 			if (NULL != m_subWidget) {
 				m_sizerVert->SubWidgetAdd(m_subWidget);
 			}
+			if (m_testName!=NULL) { m_testName->SetLabel("TestScene"); };
 			break;
 	}
 }
@@ -173,5 +191,7 @@ void MainWindows::OnObjectRemove(ewol::EObject * removeObject)
 		m_subWidget = NULL;
 	} else if (m_sizerVert == removeObject) {
 		m_sizerVert = NULL;
+	} else if (m_testName == removeObject) {
+		m_testName = NULL;
 	}
 }

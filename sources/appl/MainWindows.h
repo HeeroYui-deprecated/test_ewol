@@ -14,6 +14,7 @@
 #include <ewol/widget/Windows.h>
 #include <ewol/widget/Sizer.h>
 #include <ewol/widget/Button.h>
+#include <ewol/widget/Label.h>
 #include <ewol/widget/Spacer.h>
 
 class MainWindows : public ewol::Windows
@@ -21,6 +22,7 @@ class MainWindows : public ewol::Windows
 	private:
 		widget::Sizer* m_sizerVert;
 		ewol::Widget* m_subWidget;
+		widget::Label* m_testName;
 		int32_t m_idWidget;
 	public:
 		// Constructeur

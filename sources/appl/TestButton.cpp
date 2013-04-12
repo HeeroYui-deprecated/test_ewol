@@ -187,9 +187,9 @@ void TestButton::OnReceiveMessage(ewol::EObject * CallerObject, const char * eve
 	widget::Sizer::OnReceiveMessage(CallerObject, eventId, data);
 	
 	//APPL_INFO("Receive Event from the main windows ... : \"" << eventId << "\" ==> data=\"" << data << "\"" );
-	//if (m_testWidget == CallerObject) {
+	if (m_testWidget == CallerObject) {
 		APPL_WARNING("Receive Event from tested Button ... : \"" << eventId << "\" ==> data=\"" << data << "\"" );
-	//}
+	}
 	if (eventId == l_eventChangeExpendX) {
 		if (NULL!=m_testWidget) {
 			if (data=="1") {
