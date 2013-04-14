@@ -10,6 +10,7 @@
 #include <etk/UString.h>
 #include <etk/os/FSNode.h>
 #include <ewol/ewol.h>
+#include <ewol/Dimension.h>
 #include <ewol/config.h>
 #include <ewol/commandLine.h>
 #include <ewol/eObject/EObject.h>
@@ -77,7 +78,24 @@ void tmpTestOfTheFSNode(void)
 	exit(0);
 }
 
-
+void tmpTestOfTheDimension(void)
+{
+	APPL_INFO("==> test of Dimension (START)");
+	
+	ewol::Dimension myDimention(vec2(5,5), ewol::Dimension::Centimeter);
+	APPL_INFO("    set dimension at : " << myDimention);
+	APPL_INFO("    set dimension at : " << myDimention.GetCentimeter() << " cm");
+	APPL_INFO("    set dimension at : " << myDimention.GetMillimeter() << " mm");
+	APPL_INFO("    set dimension at : " << myDimention.GetKilometer() << " km");
+	APPL_INFO("    set dimension at : " << myDimention.GetMeter() << " m");
+	APPL_INFO("    set dimension at : " << myDimention.GetInch() << " Inch");
+	APPL_INFO("    set dimension at : " << myDimention.GetFoot() << " ft");
+	APPL_INFO("    set dimension at : " << myDimention.GetPourcent() << " %");
+	APPL_INFO("    set dimension at : " << myDimention.GetPixel() << " px");
+	
+	APPL_INFO("==> test of Dimension (STOP)");
+	exit(0);
+}
 
 /**
  * @brief main application function Initialisation
@@ -125,7 +143,7 @@ void APP_Init(void)
 	ewol::WindowsSet(basicWindows);
 	
 	//tmpTestOfTheFSNode();
-	
+	//tmpTestOfTheDimension();
 	
 	// add files
 	APPL_INFO("show list of command line input : ");
