@@ -100,7 +100,7 @@ TestImage::TestImage(void) :
 	if (NULL != mySpacer) {
 		mySpacer->SetExpand(bvec2(false,false));
 		mySpacer->SetFill(bvec2(true,false));
-		mySpacer->SetSize(10);
+		mySpacer->SetMinSize(vec2(10,10));
 		mySpacer->SetColor(0xFF000080);
 		SubWidgetAdd(mySpacer);
 	}
@@ -116,7 +116,7 @@ TestImage::TestImage(void) :
 		if (NULL != mySpacer) {
 			mySpacer->SetExpand(bvec2(false,false));
 			mySpacer->SetFill(bvec2(false,true));
-			mySpacer->SetSize(10);
+			mySpacer->SetMinSize(vec2(10,10));
 			mySpacer->SetColor(0x00FF0080);
 			mySizerHori->SubWidgetAdd(mySpacer);
 		}
@@ -133,7 +133,7 @@ TestImage::TestImage(void) :
 		if (NULL != mySpacer) {
 			mySpacer->SetExpand(bvec2(false,false));
 			mySpacer->SetFill(bvec2(false,true));
-			mySpacer->SetSize(10);
+			mySpacer->SetMinSize(vec2(10,10));
 			mySpacer->SetColor(0x0000FF80);
 			mySizerHori->SubWidgetAdd(mySpacer);
 		}
@@ -142,7 +142,7 @@ TestImage::TestImage(void) :
 	if (NULL != mySpacer) {
 		mySpacer->SetExpand(bvec2(false,false));
 		mySpacer->SetFill(bvec2(true,false));
-		mySpacer->SetSize(10);
+		mySpacer->SetMinSize(vec2(10,10));
 		mySpacer->SetColor(0x00FFFF80);
 		SubWidgetAdd(mySpacer);
 	}

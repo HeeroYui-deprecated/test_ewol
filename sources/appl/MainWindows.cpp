@@ -27,7 +27,7 @@
 #include <appl/TestButtonColor.h>
 #include <appl/TestLabel.h>
 #include <appl/TestImage.h>
-#include <appl/TestScene.h>
+//#include <appl/TestScene.h>
 
 
 static const char * l_eventChangeTheme           = "event-change-theme";
@@ -88,7 +88,7 @@ MainWindows::MainWindows(void) :
 		if (NULL != mySpacer) {
 			mySpacer->SetExpand(bvec2(false,false));
 			mySpacer->SetFill(bvec2(true,false));
-			mySpacer->SetSize(3);
+			mySpacer->SetMinSize(vec2(3,3));
 			mySpacer->SetColor(0x000000FF);
 			m_sizerVert->SubWidgetAdd(mySpacer);
 		}
@@ -174,13 +174,14 @@ void MainWindows::OnReceiveMessage(ewol::EObject * CallerObject, const char * ev
 			}
 			if (m_testName!=NULL) { m_testName->SetLabel("TestImage"); };
 			break;
-		case 5:
+		/*case 5:
 			m_subWidget = (ewol::Widget*)new TestScene();
 			if (NULL != m_subWidget) {
 				m_sizerVert->SubWidgetAdd(m_subWidget);
 			}
 			if (m_testName!=NULL) { m_testName->SetLabel("TestScene"); };
 			break;
+		*/
 	}
 }
 
