@@ -93,7 +93,8 @@ MainWindows::MainWindows(void) :
 			m_sizerVert->SubWidgetAdd(mySpacer);
 		}
 		// add the basic widget with a strange methode ...
-		OnReceiveMessage(NULL, NULL, "");
+		ewol::EMessage msg(NULL, NULL, "");
+		OnReceiveMessage(msg);
 }
 
 
@@ -103,15 +104,15 @@ MainWindows::~MainWindows(void)
 }
 
 
-void MainWindows::OnReceiveMessage(ewol::EObject * CallerObject, const char * eventId, const etk::UString& data)
+void MainWindows::OnReceiveMessage(const ewol::EMessage& _msg)
 {
-	if(    CallerObject != this
-	    && CallerObject != NULL) {
-		ewol::Windows::OnReceiveMessage(CallerObject, eventId, data);
+	if(    _msg.GetCaller() != this
+	    && _msg.GetCaller() != NULL) {
+		ewol::Windows::OnReceiveMessage(_msg);
 	}
-	APPL_INFO("Receive Event from the main windows ... : \"" << eventId << "\" ==> data=\"" << data << "\"" );
-	if (eventId == l_eventChangeTheme) {
-		if (data=="1") {
+	APPL_INFO("Receive Event from the main windows ... : " << _msg );
+	if (_msg.GetMessage() == l_eventChangeTheme) {
+		if (_msg.GetData()=="1") {
 			etk::theme::SetName("GUI", "rounded");
 		} else {
 			etk::theme::SetName("GUI", "default");
@@ -119,9 +120,9 @@ void MainWindows::OnReceiveMessage(ewol::EObject * CallerObject, const char * ev
 		// Reload shaders and graphic system ...
 		ewol::resource::ReLoadResources();
 		return;
-	} else if (eventId == l_eventChangeWidgetPrevious) {
+	} else if (_msg.GetMessage() == l_eventChangeWidgetPrevious) {
 		m_idWidget--;
-	} else if (eventId == l_eventChangeWidgetNext) {
+	} else if (_msg.GetMessage() == l_eventChangeWidgetNext) {
 		m_idWidget++;
 	}
 	
@@ -131,7 +132,7 @@ void MainWindows::OnReceiveMessage(ewol::EObject * CallerObject, const char * ev
 		m_subWidget = NULL;
 	}
 	// special init forcing ...
-	if(CallerObject == NULL) {
+	if(_msg.GetCaller() == NULL) {
 		m_idWidget = 1;
 	}
 	switch(m_idWidget)

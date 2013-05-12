@@ -258,15 +258,15 @@ class stupidSphere : public game::Element
 
 
 
-void TestScene::OnReceiveMessage(ewol::EObject * CallerObject, const char * eventId, const etk::UString& data)
+void TestScene::OnReceiveMessage(const ewol::EMessage& _msg)
 {
-	widget::Sizer::OnReceiveMessage(CallerObject, eventId, data);
+	widget::Sizer::OnReceiveMessage(_msg);
 	
+	/*
 	//APPL_INFO("Receive Event from the main windows ... : \"" << eventId << "\" ==> data=\"" << data << "\"" );
 	if (m_testWidget == CallerObject) {
 		APPL_WARNING("Receive Event from tested Scene ... : \"" << eventId << "\" ==> data=\"" << data << "\"" );
 	}
-	/*
 	if (eventId == l_eventAddBox) {
 		static bool firstTime = true;
 		if (firstTime==false) {

@@ -140,41 +140,41 @@ TestButtonColor::~TestButtonColor(void)
 }
 
 
-void TestButtonColor::OnReceiveMessage(ewol::EObject * CallerObject, const char * eventId, const etk::UString& data)
+void TestButtonColor::OnReceiveMessage(const ewol::EMessage& _msg)
 {
-	widget::Sizer::OnReceiveMessage(CallerObject, eventId, data);
+	widget::Sizer::OnReceiveMessage(_msg);
 	
 	//APPL_INFO("Receive Event from the main windows ... : \"" << eventId << "\" ==> data=\"" << data << "\"" );
-	if (m_testWidget == CallerObject) {
-		APPL_WARNING("Receive Event from tested Button ... : \"" << eventId << "\" ==> data=\"" << data << "\"" );
+	if (m_testWidget == _msg.GetCaller()) {
+		APPL_WARNING("Receive Event from tested Button ... : " << _msg );
 	}
-	if (eventId == l_eventChangeExpendX) {
+	if (_msg.GetMessage() == l_eventChangeExpendX) {
 		if (NULL!=m_testWidget) {
-			if (data=="1") {
+			if (_msg.GetData()=="1") {
 				m_testWidget->SetExpand(bvec2(true,m_testWidget->GetExpand().y()));
 			} else {
 				m_testWidget->SetExpand(bvec2(true,m_testWidget->GetExpand().y()));
 			}
 		}
-	} else if (eventId == l_eventChangeExpendY) {
+	} else if (_msg.GetMessage() == l_eventChangeExpendY) {
 		if (NULL!=m_testWidget) {
-			if (data=="1") {
+			if (_msg.GetData()=="1") {
 				m_testWidget->SetExpand(bvec2(m_testWidget->GetExpand().x(),true));
 			} else {
 				m_testWidget->SetExpand(bvec2(m_testWidget->GetExpand().x(),false));
 			}
 		}
-	} else if (eventId == l_eventChangeFillX) {
+	} else if (_msg.GetMessage() == l_eventChangeFillX) {
 		if (NULL!=m_testWidget) {
-			if (data=="1") {
+			if (_msg.GetData()=="1") {
 				m_testWidget->SetFill(bvec2(true,m_testWidget->GetFill().y()));
 			} else {
 				m_testWidget->SetFill(bvec2(false,m_testWidget->GetFill().y()));
 			}
 		}
-	} else if (eventId == l_eventChangeFillY) {
+	} else if (_msg.GetMessage() == l_eventChangeFillY) {
 		if (NULL!=m_testWidget) {
-			if (data=="1") {
+			if (_msg.GetData()=="1") {
 				m_testWidget->SetFill(bvec2(m_testWidget->GetFill().x(),true));
 			} else {
 				m_testWidget->SetFill(bvec2(m_testWidget->GetFill().x(),false));

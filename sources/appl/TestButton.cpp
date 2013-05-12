@@ -182,80 +182,80 @@ TestButton::~TestButton(void)
 }
 
 
-void TestButton::OnReceiveMessage(ewol::EObject * CallerObject, const char * eventId, const etk::UString& data)
+void TestButton::OnReceiveMessage(const ewol::EMessage& _msg)
 {
-	widget::Sizer::OnReceiveMessage(CallerObject, eventId, data);
+	widget::Sizer::OnReceiveMessage(_msg);
 	
 	//APPL_INFO("Receive Event from the main windows ... : \"" << eventId << "\" ==> data=\"" << data << "\"" );
-	if (m_testWidget == CallerObject) {
-		APPL_WARNING("Receive Event from tested Button ... : \"" << eventId << "\" ==> data=\"" << data << "\"" );
+	if (m_testWidget == _msg.GetCaller()) {
+		APPL_WARNING("Receive Event from tested Button ... : " << _msg );
 	}
-	if (eventId == l_eventChangeExpendX) {
+	if (_msg.GetMessage() == l_eventChangeExpendX) {
 		if (NULL!=m_testWidget) {
-			if (data=="1") {
+			if (_msg.GetData()=="1") {
 				m_testWidget->SetExpand(bvec2(true,m_testWidget->GetExpand().y()));
 			} else {
 				m_testWidget->SetExpand(bvec2(false,m_testWidget->GetExpand().y()));
 			}
 		}
-	} else if (eventId == l_eventChangeExpendY) {
+	} else if (_msg.GetMessage() == l_eventChangeExpendY) {
 		if (NULL!=m_testWidget) {
-			if (data=="1") {
+			if (_msg.GetData()=="1") {
 				m_testWidget->SetExpand(bvec2(m_testWidget->GetExpand().x(),true));
 			} else {
 				m_testWidget->SetExpand(bvec2(m_testWidget->GetExpand().x(),false));
 			}
 		}
-	} else if (eventId == l_eventChangeFillX) {
+	} else if (_msg.GetMessage() == l_eventChangeFillX) {
 		if (NULL!=m_testWidget) {
-			if (data=="1") {
+			if (_msg.GetData()=="1") {
 				m_testWidget->SetFill(bvec2(true,m_testWidget->GetFill().y()));
 			} else {
 				m_testWidget->SetFill(bvec2(false,m_testWidget->GetFill().y()));
 			}
 		}
-	} else if (eventId == l_eventChangeFillY) {
+	} else if (_msg.GetMessage() == l_eventChangeFillY) {
 		if (NULL!=m_testWidget) {
-			if (data=="1") {
+			if (_msg.GetData()=="1") {
 				m_testWidget->SetFill(bvec2(m_testWidget->GetFill().x(),true));
 			} else {
 				m_testWidget->SetFill(bvec2(m_testWidget->GetFill().x(),false));
 			}
 		}
-	} else if (eventId == l_eventChangeToggle) {
+	} else if (_msg.GetMessage() == l_eventChangeToggle) {
 		if (NULL!=m_testWidget) {
-			if (data=="1") {
+			if (_msg.GetData()=="1") {
 				m_testWidget->SetToggleMode(true);
 			} else {
 				m_testWidget->SetToggleMode(false);
 			}
 		}
-	} else if (eventId == l_eventChangeTextToggle) {
+	} else if (_msg.GetMessage() == l_eventChangeTextToggle) {
 		if (NULL!=m_testWidget) {
-			if (data=="1") {
+			if (_msg.GetData()=="1") {
 				m_testWidget->SetSubWidgetToggle(new widget::Label("A stupid very long text on toggle <br/><br/> and on multiple lines"));
 			} else {
 				m_testWidget->SetSubWidgetToggle(NULL);
 			}
 		}
-	} else if (eventId == l_eventChangeImage) {
+	} else if (_msg.GetMessage() == l_eventChangeImage) {
 		if (NULL!=m_testWidget) {
-			if (data=="1") {
+			if (_msg.GetData()=="1") {
 				//m_testWidget->SetImage("THEME:GUI:icon.png");
 				//m_testWidget->SetImageSize(50);
 			} else {
 				//m_testWidget->SetImage("");
 			}
 		}
-	} else if (eventId == l_eventChangeImageToggle) {
+	} else if (_msg.GetMessage() == l_eventChangeImageToggle) {
 		if (NULL!=m_testWidget) {
-			if (data=="1") {
+			if (_msg.GetData()=="1") {
 				//m_testWidget->SetImageToggle("THEME:GUI:icon.png");
 			} else {
 				//m_testWidget->SetImageToggle("");
 			}
 		}
-	} else if (eventId == l_eventChangeText) {
+	} else if (_msg.GetMessage() == l_eventChangeText) {
 		if (NULL!=m_testWidget) {
 			static int32_t countTextID = 1;
 			switch (countTextID)
