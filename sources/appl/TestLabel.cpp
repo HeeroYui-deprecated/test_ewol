@@ -55,7 +55,7 @@ TestLabel::TestLabel(void) :
 			myButton->SetToggleMode(true);
 			myButton->SetSubWidget(      new widget::Label("Expand X (false)"));
 			myButton->SetSubWidgetToggle(new widget::Label("Expand X (true)"));
-			myButton->RegisterOnEvent(this, ewolEventButtonValue, l_eventChangeExpendX);
+			myButton->RegisterOnEvent(this, widget::Button::eventValue, l_eventChangeExpendX);
 			mySizerHori->SubWidgetAdd(myButton);
 		}
 		myButton = new widget::Button();
@@ -63,7 +63,7 @@ TestLabel::TestLabel(void) :
 			myButton->SetToggleMode(true);
 			myButton->SetSubWidget(      new widget::Label("Expand Y (false)"));
 			myButton->SetSubWidgetToggle(new widget::Label("Expand Y (true)"));
-			myButton->RegisterOnEvent(this, ewolEventButtonValue, l_eventChangeExpendY);
+			myButton->RegisterOnEvent(this, widget::Button::eventValue, l_eventChangeExpendY);
 			mySizerHori->SubWidgetAdd(myButton);
 		}
 		myButton = new widget::Button();
@@ -71,7 +71,7 @@ TestLabel::TestLabel(void) :
 			myButton->SetToggleMode(true);
 			myButton->SetSubWidget(      new widget::Label("Fill X (false)"));
 			myButton->SetSubWidgetToggle(new widget::Label("Fill X (true)"));
-			myButton->RegisterOnEvent(this, ewolEventButtonValue, l_eventChangeFillX);
+			myButton->RegisterOnEvent(this, widget::Button::eventValue, l_eventChangeFillX);
 			mySizerHori->SubWidgetAdd(myButton);
 		}
 		myButton = new widget::Button();
@@ -79,7 +79,7 @@ TestLabel::TestLabel(void) :
 			myButton->SetToggleMode(true);
 			myButton->SetSubWidget(      new widget::Label("Fill Y (false)"));
 			myButton->SetSubWidgetToggle(new widget::Label("Fill Y (true)"));
-			myButton->RegisterOnEvent(this, ewolEventButtonValue, l_eventChangeFillY);
+			myButton->RegisterOnEvent(this, widget::Button::eventValue, l_eventChangeFillY);
 			mySizerHori->SubWidgetAdd(myButton);
 		}
 		myButton = new widget::Button();
@@ -87,13 +87,13 @@ TestLabel::TestLabel(void) :
 			myButton->SetToggleMode(true);
 			myButton->SetSubWidget(      new widget::Label("no Max size"));
 			myButton->SetSubWidgetToggle(new widget::Label("maxSize (400,99999999)"));
-			myButton->RegisterOnEvent(this, ewolEventButtonValue, l_eventChangeMaxSize);
+			myButton->RegisterOnEvent(this, widget::Button::eventValue, l_eventChangeMaxSize);
 			mySizerHori->SubWidgetAdd(myButton);
 		}
 		myButton = new widget::Button();
 		if (NULL != myButton) {
 			myButton->SetSubWidget(new widget::Label("Next Label"));
-			myButton->RegisterOnEvent(this, ewolEventButtonPressed, l_eventChangeLabel);
+			myButton->RegisterOnEvent(this, widget::Button::eventPressed, l_eventChangeLabel);
 			mySizerHori->SubWidgetAdd(myButton);
 		}
 		

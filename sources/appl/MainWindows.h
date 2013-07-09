@@ -33,7 +33,7 @@ class MainWindows : public ewol::Windows
 		// Derived function
 		virtual void OnReceiveMessage(const ewol::EMessage& _msg);
 		// Derived function
-		virtual void OnObjectRemove(ewol::EObject * removeObject);
+		virtual void OnObjectRemove(ewol::EObject* _removeObject);
 };
 
 #endif

@@ -65,19 +65,19 @@ MainWindows::MainWindows(void) :
 				myButton->SetSubWidget(new widget::Label("default theme (cube)"));
 				myButton->SetSubWidgetToggle(new widget::Label("rounded theme"));
 				myButton->SetToggleMode(true);
-				myButton->RegisterOnEvent(this, ewolEventButtonValue, l_eventChangeTheme);
+				myButton->RegisterOnEvent(this, widget::Button::eventValue, l_eventChangeTheme);
 				mySizerHori->SubWidgetAdd(myButton);
 			}
 			myButton = new widget::Button();
 			if (NULL != myButton) {
 				myButton->SetSubWidget(new widget::Label("Previous Widget test"));
-				myButton->RegisterOnEvent(this, ewolEventButtonPressed, l_eventChangeWidgetPrevious);
+				myButton->RegisterOnEvent(this, widget::Button::eventPressed, l_eventChangeWidgetPrevious);
 				mySizerHori->SubWidgetAdd(myButton);
 			}
 			myButton = new widget::Button();
 			if (NULL != myButton) {
 				myButton->SetSubWidget(new widget::Label("Next Widget test"));
-				myButton->RegisterOnEvent(this, ewolEventButtonPressed, l_eventChangeWidgetNext);
+				myButton->RegisterOnEvent(this, widget::Button::eventPressed, l_eventChangeWidgetNext);
 				mySizerHori->SubWidgetAdd(myButton);
 			}
 			m_testName = new widget::Label("none");

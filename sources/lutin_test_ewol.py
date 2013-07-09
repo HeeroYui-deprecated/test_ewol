@@ -17,7 +17,7 @@ def Create(target):
 		'appl/TestLabel.cpp'])
 	# 'appl/TestScene.cpp'
 	
-	myModule.AddModuleDepend(['ewol', 'bullet'])
+	myModule.AddModuleDepend(['bullet', 'ewol'])
 	
 	now = datetime.datetime.now()
 	

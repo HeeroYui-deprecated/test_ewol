@@ -55,7 +55,7 @@ TestImage::TestImage(void) :
 			myButton->SetToggleMode(true);
 			myButton->SetSubWidget(      new widget::Label("Expend X <br/> (false)"));
 			myButton->SetSubWidgetToggle(new widget::Label("Expend X <br/><b>(true)</b>"));
-			myButton->RegisterOnEvent(this, ewolEventButtonValue, l_eventChangeExpendX);
+			myButton->RegisterOnEvent(this, widget::Button::eventValue, l_eventChangeExpendX);
 			mySizerHori->SubWidgetAdd(myButton);
 		}
 		myButton = new widget::Button();
@@ -63,7 +63,7 @@ TestImage::TestImage(void) :
 			myButton->SetToggleMode(true);
 			myButton->SetSubWidget(      new widget::Label("Expend Y <br/> (false)"));
 			myButton->SetSubWidgetToggle(new widget::Label("Expend Y <br/><b>(true)</b>"));
-			myButton->RegisterOnEvent(this, ewolEventButtonValue, l_eventChangeExpendY);
+			myButton->RegisterOnEvent(this, widget::Button::eventValue, l_eventChangeExpendY);
 			mySizerHori->SubWidgetAdd(myButton);
 		}
 	
@@ -79,7 +79,7 @@ TestImage::TestImage(void) :
 			myButton->SetToggleMode(true);
 			myButton->SetSubWidget(      new widget::Label("Fill X <br/> (false)"));
 			myButton->SetSubWidgetToggle(new widget::Label("Fill X <br/> (true)"));
-			myButton->RegisterOnEvent(this, ewolEventButtonValue, l_eventChangeFillX);
+			myButton->RegisterOnEvent(this, widget::Button::eventValue, l_eventChangeFillX);
 			mySizerHori->SubWidgetAdd(myButton);
 		}
 		myButton = new widget::Button();
@@ -87,13 +87,13 @@ TestImage::TestImage(void) :
 			myButton->SetToggleMode(true);
 			myButton->SetSubWidget(      new widget::Label("Fill Y <br/> (false)"));
 			myButton->SetSubWidgetToggle(new widget::Label("Fill Y <br/> (true)"));
-			myButton->RegisterOnEvent(this, ewolEventButtonValue, l_eventChangeFillY);
+			myButton->RegisterOnEvent(this, widget::Button::eventValue, l_eventChangeFillY);
 			mySizerHori->SubWidgetAdd(myButton);
 		}
 		myButton = new widget::Button();
 		if (NULL != myButton) {
 			myButton->SetSubWidget(new widget::Label("Change Image"));
-			myButton->RegisterOnEvent(this, ewolEventButtonPressed, l_eventChangeImage);
+			myButton->RegisterOnEvent(this,widget::Button::eventPressed, l_eventChangeImage);
 			mySizerHori->SubWidgetAdd(myButton);
 		}
 	widget::Spacer* mySpacer = new widget::Spacer();

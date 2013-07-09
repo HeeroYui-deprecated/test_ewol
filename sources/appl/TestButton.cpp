@@ -59,7 +59,7 @@ TestButton::TestButton(void) :
 			myButton->SetToggleMode(true);
 			myButton->SetSubWidget(      new widget::Label("Expend X <br/> (false)"));
 			myButton->SetSubWidgetToggle(new widget::Label("Expend X <br/><b>(true)</b>"));
-			myButton->RegisterOnEvent(this, ewolEventButtonValue, l_eventChangeExpendX);
+			myButton->RegisterOnEvent(this, widget::Button::eventValue, l_eventChangeExpendX);
 			mySizerHori->SubWidgetAdd(myButton);
 		}
 		myButton = new widget::Button();
@@ -67,7 +67,7 @@ TestButton::TestButton(void) :
 			myButton->SetToggleMode(true);
 			myButton->SetSubWidget(      new widget::Label("Expend Y <br/> (false)"));
 			myButton->SetSubWidgetToggle(new widget::Label("Expend Y <br/><b>(true)</b>"));
-			myButton->RegisterOnEvent(this, ewolEventButtonValue, l_eventChangeExpendY);
+			myButton->RegisterOnEvent(this, widget::Button::eventValue, l_eventChangeExpendY);
 			mySizerHori->SubWidgetAdd(myButton);
 		}
 		myButton = new widget::Button();
@@ -75,7 +75,7 @@ TestButton::TestButton(void) :
 			myButton->SetToggleMode(true);
 			myButton->SetSubWidget(      new widget::Label("Toggle<br/>(false)"));
 			myButton->SetSubWidgetToggle(new widget::Label("Toggle<br/><b>(true)</b>"));
-			myButton->RegisterOnEvent(this, ewolEventButtonValue, l_eventChangeToggle);
+			myButton->RegisterOnEvent(this, widget::Button::eventValue, l_eventChangeToggle);
 			mySizerHori->SubWidgetAdd(myButton);
 		}
 		myButton = new widget::Button();
@@ -83,7 +83,7 @@ TestButton::TestButton(void) :
 			myButton->SetToggleMode(true);
 			myButton->SetSubWidget(      new widget::Label("Text On toggle state<br/>(false)"));
 			myButton->SetSubWidgetToggle(new widget::Label("Text On toggle state<br/><b>(true)</b>"));
-			myButton->RegisterOnEvent(this, ewolEventButtonValue, l_eventChangeTextToggle);
+			myButton->RegisterOnEvent(this, widget::Button::eventValue, l_eventChangeTextToggle);
 			mySizerHori->SubWidgetAdd(myButton);
 		}
 	
@@ -99,7 +99,7 @@ TestButton::TestButton(void) :
 			myButton->SetToggleMode(true);
 			myButton->SetSubWidget(      new widget::Label("Fill X <br/> (false)"));
 			myButton->SetSubWidgetToggle(new widget::Label("Fill X <br/> (true)"));
-			myButton->RegisterOnEvent(this, ewolEventButtonValue, l_eventChangeFillX);
+			myButton->RegisterOnEvent(this, widget::Button::eventValue, l_eventChangeFillX);
 			mySizerHori->SubWidgetAdd(myButton);
 		}
 		myButton = new widget::Button();
@@ -107,13 +107,13 @@ TestButton::TestButton(void) :
 			myButton->SetToggleMode(true);
 			myButton->SetSubWidget(      new widget::Label("Fill Y <br/> (false)"));
 			myButton->SetSubWidgetToggle(new widget::Label("Fill Y <br/> (true)"));
-			myButton->RegisterOnEvent(this, ewolEventButtonValue, l_eventChangeFillY);
+			myButton->RegisterOnEvent(this, widget::Button::eventValue, l_eventChangeFillY);
 			mySizerHori->SubWidgetAdd(myButton);
 		}
 		myButton = new widget::Button();
 		if (NULL != myButton) {
 			myButton->SetSubWidget(new widget::Label("Change Text<br/> and other ..."));
-			myButton->RegisterOnEvent(this, ewolEventButtonPressed, l_eventChangeText);
+			myButton->RegisterOnEvent(this, widget::Button::eventPressed, l_eventChangeText);
 			mySizerHori->SubWidgetAdd(myButton);
 		}
 	widget::Spacer* mySpacer = new widget::Spacer();
@@ -146,12 +146,12 @@ TestButton::TestButton(void) :
 			m_testWidget->SetSubWidget(new widget::Label("My <font color=\"#FF0000\">Button</font> <br/> And Some under line<br/> plop <br/> and an other super long line ..."));
 			m_testWidget->SetExpand(bvec2(false,false));
 			m_testWidget->SetFill(bvec2(false,false));
-			m_testWidget->RegisterOnEvent(this, ewolEventButtonPressed);
-			m_testWidget->RegisterOnEvent(this, ewolEventButtonDown);
-			m_testWidget->RegisterOnEvent(this, ewolEventButtonUp);
-			m_testWidget->RegisterOnEvent(this, ewolEventButtonEnter);
-			m_testWidget->RegisterOnEvent(this, ewolEventButtonLeave);
-			m_testWidget->RegisterOnEvent(this, ewolEventButtonValue);
+			m_testWidget->RegisterOnEvent(this, widget::Button::eventPressed);
+			m_testWidget->RegisterOnEvent(this, widget::Button::eventDown);
+			m_testWidget->RegisterOnEvent(this, widget::Button::eventUp);
+			m_testWidget->RegisterOnEvent(this, widget::Button::eventEnter);
+			m_testWidget->RegisterOnEvent(this, widget::Button::eventLeave);
+			m_testWidget->RegisterOnEvent(this, widget::Button::eventValue);
 			mySizerHori->SubWidgetAdd(m_testWidget);
 		}
 		
