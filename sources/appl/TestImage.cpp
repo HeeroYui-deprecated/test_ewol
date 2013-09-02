@@ -93,7 +93,7 @@ TestImage::TestImage(void) :
 		myButton = new widget::Button();
 		if (NULL != myButton) {
 			myButton->SetSubWidget(new widget::Label("Change Image"));
-			myButton->RegisterOnEvent(this,widget::Button::eventPressed, l_eventChangeImage);
+			myButton->RegisterOnEvent(this, widget::Button::eventValue, l_eventChangeImage);
 			mySizerHori->SubWidgetAdd(myButton);
 		}
 	widget::Spacer* mySpacer = new widget::Spacer();

@@ -11,15 +11,15 @@
 #include <etk/os/FSNode.h>
 #include <ewol/ewol.h>
 #include <ewol/Dimension.h>
-#include <ewol/config.h>
+//#include <ewol/config.h>
 #include <ewol/commandLine.h>
-#include <ewol/eObject/EObject.h>
+#include <ewol/renderer/EObject.h>
+#include <ewol/renderer/eContext.h>
 #include <ewol/widget/WidgetManager.h>
 
 #include <appl/Debug.h>
 #include <appl/MainWindows.h>
 
-MainWindows * basicWindows = NULL;
 
 
 /**
@@ -100,58 +100,42 @@ void tmpTestOfTheDimension(void)
 /**
  * @brief main application function Initialisation
  */
-void APP_Init(void)
+bool APP_Init(ewol::eContext& _context)
 {
-	#ifdef MODE_RELEASE
-		const char * debugMode = "Release";
-	#else
-		const char * debugMode = "Debug";
-	#endif
-	#ifdef __TARGET_OS__Linux
-		const char * osMode = "Linux";
-	#elif defined(__TARGET_OS__Android)
-		const char * osMode = "Android";
-	#elif defined(__TARGET_OS__Windows)
-		const char * osMode = "Windows";
-	#elif defined(__TARGET_OS__IOs)
-		const char * osMode = "IOs";
-	#elif defined(__TARGET_OS__MacOs)
-		const char * osMode = "MacOs";
-	#else
-		const char * osMode = "Unknown";
-	#endif
-	APPL_INFO("==> Init "PROJECT_NAME" (START) [" << osMode << "] (" << debugMode << ")");
+	APPL_INFO("==> Init "PROJECT_NAME" (START) [" << ewol::GetBoardType() << "] (" << ewol::GetCompilationMode() << ")");
 	
 	etk::InitDefaultFolder(PROJECT_NAME);
-	ewol::ChangeSize(ivec2(800, 300));
+	
+	_context.SetSize(vec2(800, 600));
+	
+	// select internal data for font ...
+	_context.GetFontDefault().SetUseExternal(false);
 	#ifdef __TARGET_OS__Android
-		ewol::config::FontSetDefault("FreeSerif", 19);
+		_context.GetFontDefault().Set("FreeSerif;DejaVuSansMono", 19);
 	#else
-		ewol::config::FontSetDefault("FreeSerif", 14);
+		_context.GetFontDefault().Set("FreeSerif;DejaVuSansMono", 14);
 	#endif
 	// set the application icon ...
-	ewol::SetIcon("DATA:icon.png");
+	_context.SetIcon("DATA:icon.png");
 	
-	basicWindows = new MainWindows();
-	
+	MainWindows* basicWindows = new MainWindows();
 	if (NULL == basicWindows) {
 		APPL_ERROR("Can not allocate the basic windows");
-		ewol::Stop();
-		return;
+		return false;
 	}
 	// create the specific windows
-	ewol::WindowsSet(basicWindows);
+	_context.SetWindows(basicWindows);
 	
 	//tmpTestOfTheFSNode();
 	//tmpTestOfTheDimension();
 	
 	// add files
 	APPL_INFO("show list of command line input : ");
-	for( int32_t iii=0 ; iii<ewol::commandLine::Size(); iii++) {
-		APPL_INFO("parameter [" << iii << "] is \"" << ewol::commandLine::Get(iii) << "\"");
+	for( int32_t iii=0 ; iii<_context.GetCmd().Size(); iii++) {
+		APPL_INFO("parameter [" << iii << "] is \"" << _context.GetCmd().Get(iii) << "\"");
 	}
-	
 	APPL_INFO("==> Init "PROJECT_NAME" (END)");
+	return true;
 }
 
 
@@ -160,15 +144,17 @@ void APP_Init(void)
 /**
  * @brief main application function Un-Initialisation
  */
-void APP_UnInit(void)
+void APP_UnInit(ewol::eContext& _context)
 {
 	APPL_INFO("==> Un-Init "PROJECT_NAME" (START)");
+	// Get the curent windows
+	ewol::Windows* tmpWindows = _context.GetWindows();
 	// Remove windows :
-	ewol::WindowsSet(NULL);
+	_context.SetWindows(NULL);
 	
-	if (NULL != basicWindows) {
-		delete(basicWindows);
-		basicWindows = NULL;
+	if (NULL != tmpWindows) {
+		delete(tmpWindows);
+		tmpWindows = NULL;
 	}
 	APPL_INFO("==> Un-Init "PROJECT_NAME" (END)");
 }

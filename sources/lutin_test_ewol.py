@@ -17,7 +17,7 @@ def Create(target):
 		'appl/TestLabel.cpp'])
 	# 'appl/TestScene.cpp'
 	
-	myModule.AddModuleDepend(['bullet', 'ewol'])
+	myModule.AddModuleDepend(['ewol'])
 	
 	now = datetime.datetime.now()
 	
@@ -39,7 +39,7 @@ def Create(target):
 	
 	myModule.AddPath(lutinTools.GetCurrentPath(__file__))
 	
-	myModule.CopyFile("../data/FreeSerif*","fonts/FreeSerif.ttf")
+	myModule.CopyFolder("../data/FreeSerif*","fonts/")
 	
 	
 	# set the package properties :
@@ -53,8 +53,8 @@ def Create(target):
 	myModule.pkgSet("DESCRIPTION", "ewol test software")
 	myModule.pkgSet("NAME", "test software")
 	
-	myModule.pkgAddRight("SET_ORIENTATION")
-	myModule.pkgAddRight("VIBRATE")
+	myModule.pkgAdd("RIGHT", "SET_ORIENTATION")
+	myModule.pkgAdd("RIGHT", "VIBRATE")
 	
 	# add the currrent module at the 
 	return myModule

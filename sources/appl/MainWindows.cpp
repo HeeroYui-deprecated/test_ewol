@@ -23,6 +23,7 @@
 #include <ewol/widget/meta/FileChooser.h>
 #include <ewol/widget/meta/Parameter.h>
 #include <ewol/widget/WidgetManager.h>
+#include <ewol/renderer/eContext.h>
 #include <appl/TestButton.h>
 #include <appl/TestButtonColor.h>
 #include <appl/TestLabel.h>
@@ -118,7 +119,7 @@ void MainWindows::OnReceiveMessage(const ewol::EMessage& _msg)
 			etk::theme::SetName("GUI", "default");
 		}
 		// Reload shaders and graphic system ...
-		ewol::resource::ReLoadResources();
+		ewol::GetContext().GetResourcesManager().ReLoadResources();
 		return;
 	} else if (_msg.GetMessage() == l_eventChangeWidgetPrevious) {
 		m_idWidget--;
