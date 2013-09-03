@@ -33,69 +33,6 @@ int main(int argc, const char *argv[])
 	return ewol::Run(argc, argv);
 }
 
-void tmpTestOfTheFSNode(void)
-{
-	APPL_INFO("==> Start test of FSNode");
-	etk::UString fileName("USERDATA:myFileTest.txt");
-	etk::FSNode myNodeTest1(fileName);
-	APPL_INFO("********************************************");
-	APPL_INFO("** Filename=\"" << fileName << "\"");
-	APPL_INFO("********************************************");
-	APPL_INFO("      GetNameFolder()      =\"" <<myNodeTest1.GetNameFolder() << "\"");
-	APPL_INFO("      GetName()            =\"" <<myNodeTest1.GetName() << "\"");
-	APPL_INFO("      GetNameFile()        =\"" <<myNodeTest1.GetNameFile() << "\"");
-	APPL_INFO("      GetRelativeFolder()  =\"" <<myNodeTest1.GetRelativeFolder() << "\"");
-	APPL_INFO("      exist                =" <<myNodeTest1.Exist());
-	if (true==myNodeTest1.Exist()) {
-		APPL_ERROR(" ==> remove the file ==> bad for the test");
-	} else {
-		APPL_INFO("      Display time when file does not exist :");
-		APPL_INFO("          TimeCreatedString()  =\"" <<myNodeTest1.TimeCreatedString() << "\"");
-		APPL_INFO("          TimeModifiedString() =\"" <<myNodeTest1.TimeModifiedString() << "\"");
-		APPL_INFO("          TimeAccessedString() =\"" <<myNodeTest1.TimeAccessedString() << "\"");
-	}
-	myNodeTest1.Touch();
-	if (false==myNodeTest1.Exist()) {
-		APPL_ERROR(" ==> Error, can not create the file ....");
-	} else {
-		APPL_INFO("      Display time when file does exist :");
-		APPL_INFO("          TimeCreatedString()  =\"" <<myNodeTest1.TimeCreatedString() << "\"");
-		APPL_INFO("          TimeModifiedString() =\"" <<myNodeTest1.TimeModifiedString() << "\"");
-		APPL_INFO("          TimeAccessedString() =\"" <<myNodeTest1.TimeAccessedString() << "\"");
-	}
-	// Try remove the file : 
-	myNodeTest1.Remove();
-	if (true==myNodeTest1.Exist()) {
-		APPL_ERROR(" ==> The file might be removed ==> but it is not the case ...");
-	} else {
-		APPL_INFO(" ==> The file is removed");
-	}
-	APPL_INFO("********************************************");
-	
-	
-	APPL_INFO("==> Stop test of FSNode");
-	
-	exit(0);
-}
-
-void tmpTestOfTheDimension(void)
-{
-	APPL_INFO("==> test of Dimension (START)");
-	
-	ewol::Dimension myDimention(vec2(5,5), ewol::Dimension::Centimeter);
-	APPL_INFO("    set dimension at : " << myDimention);
-	APPL_INFO("    set dimension at : " << myDimention.GetCentimeter() << " cm");
-	APPL_INFO("    set dimension at : " << myDimention.GetMillimeter() << " mm");
-	APPL_INFO("    set dimension at : " << myDimention.GetKilometer() << " km");
-	APPL_INFO("    set dimension at : " << myDimention.GetMeter() << " m");
-	APPL_INFO("    set dimension at : " << myDimention.GetInch() << " Inch");
-	APPL_INFO("    set dimension at : " << myDimention.GetFoot() << " ft");
-	APPL_INFO("    set dimension at : " << myDimention.GetPourcent() << " %");
-	APPL_INFO("    set dimension at : " << myDimention.GetPixel() << " px");
-	
-	APPL_INFO("==> test of Dimension (STOP)");
-	exit(0);
-}
 
 /**
  * @brief main application function Initialisation
@@ -125,9 +62,6 @@ bool APP_Init(ewol::eContext& _context)
 	}
 	// create the specific windows
 	_context.SetWindows(basicWindows);
-	
-	//tmpTestOfTheFSNode();
-	//tmpTestOfTheDimension();
 	
 	// add files
 	APPL_INFO("show list of command line input : ");
