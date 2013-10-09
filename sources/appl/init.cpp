@@ -27,33 +27,31 @@
  * @param std IO
  * @return std IO
  */
-int main(int argc, const char *argv[])
-{
+int main(int argc, const char *argv[]) {
 	// only one things to do : 
-	return ewol::Run(argc, argv);
+	return ewol::run(argc, argv);
 }
 
 
 /**
  * @brief main application function Initialisation
  */
-bool APP_Init(ewol::eContext& _context)
-{
-	APPL_INFO("==> Init "PROJECT_NAME" (START) [" << ewol::GetBoardType() << "] (" << ewol::GetCompilationMode() << ")");
+bool APP_Init(ewol::eContext& _context) {
+	APPL_INFO("==> Init "PROJECT_NAME" (START) [" << ewol::getBoardType() << "] (" << ewol::getCompilationMode() << ")");
 	
-	etk::InitDefaultFolder(PROJECT_NAME);
+	etk::initDefaultFolder(PROJECT_NAME);
 	
-	_context.SetSize(vec2(800, 600));
+	_context.setSize(vec2(800, 600));
 	
 	// select internal data for font ...
-	_context.GetFontDefault().SetUseExternal(false);
+	_context.getFontDefault().setUseExternal(false);
 	#ifdef __TARGET_OS__Android
-		_context.GetFontDefault().Set("FreeSerif;DejaVuSansMono", 19);
+		_context.getFontDefault().set("FreeSerif;DejaVuSansMono", 19);
 	#else
-		_context.GetFontDefault().Set("FreeSerif;DejaVuSansMono", 14);
+		_context.getFontDefault().set("FreeSerif;DejaVuSansMono", 14);
 	#endif
 	// set the application icon ...
-	_context.SetIcon("DATA:icon.png");
+	_context.setIcon("DATA:icon.png");
 	
 	MainWindows* basicWindows = new MainWindows();
 	if (NULL == basicWindows) {
@@ -61,12 +59,12 @@ bool APP_Init(ewol::eContext& _context)
 		return false;
 	}
 	// create the specific windows
-	_context.SetWindows(basicWindows);
+	_context.setWindows(basicWindows);
 	
 	// add files
 	APPL_INFO("show list of command line input : ");
-	for( int32_t iii=0 ; iii<_context.GetCmd().Size(); iii++) {
-		APPL_INFO("parameter [" << iii << "] is \"" << _context.GetCmd().Get(iii) << "\"");
+	for( int32_t iii=0 ; iii<_context.getCmd().size(); iii++) {
+		APPL_INFO("parameter [" << iii << "] is \"" << _context.getCmd().get(iii) << "\"");
 	}
 	APPL_INFO("==> Init "PROJECT_NAME" (END)");
 	return true;
@@ -78,13 +76,12 @@ bool APP_Init(ewol::eContext& _context)
 /**
  * @brief main application function Un-Initialisation
  */
-void APP_UnInit(ewol::eContext& _context)
-{
+void APP_UnInit(ewol::eContext& _context) {
 	APPL_INFO("==> Un-Init "PROJECT_NAME" (START)");
 	// Get the curent windows
-	ewol::Windows* tmpWindows = _context.GetWindows();
+	ewol::Windows* tmpWindows = _context.getWindows();
 	// Remove windows :
-	_context.SetWindows(NULL);
+	_context.setWindows(NULL);
 	
 	if (NULL != tmpWindows) {
 		delete(tmpWindows);

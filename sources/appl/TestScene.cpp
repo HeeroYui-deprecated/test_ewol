@@ -42,9 +42,9 @@ static const char * l_eventDown = "event-down";
 
 
 #undef __class__
-#define __class__	"TestScene"
+#define __class__ "TestScene"
 
-TestScene::TestScene(void) : 
+TestScene::TestScene(void) :
 	widget::Sizer(widget::Sizer::modeVert)
 {
 	/*
@@ -140,11 +140,11 @@ TestScene::TestScene(void) :
 	*/
 	widget::Spacer* mySpacer = new widget::Spacer();
 	if (NULL != mySpacer) {
-		mySpacer->SetExpand(bvec2(false,false));
-		mySpacer->SetFill(bvec2(true,false));
-		mySpacer->SetMinSize(vec2(10,10));
-		mySpacer->SetColor(0xFF000080);
-		SubWidgetAdd(mySpacer);
+		mySpacer->setExpand(bvec2(false,false));
+		mySpacer->setFill(bvec2(true,false));
+		mySpacer->setMinSize(vec2(10,10));
+		mySpacer->setColor(0xFF000080);
+		subWidgetAdd(mySpacer);
 	}
 	
 	mySizerHori = new widget::Sizer(widget::Sizer::modeHori);
@@ -152,49 +152,46 @@ TestScene::TestScene(void) :
 		APPL_DEBUG("Allocation error mySizerHori");
 		return;
 	}
-	SubWidgetAdd(mySizerHori);
-	
+	subWidgetAdd(mySizerHori);
 		mySpacer = new widget::Spacer();
 		if (NULL != mySpacer) {
-			mySpacer->SetExpand(bvec2(false,false));
-			mySpacer->SetFill(bvec2(false,true));
-			mySpacer->SetMinSize(vec2(10,10));
-			mySpacer->SetColor(0x00FF0080);
-			mySizerHori->SubWidgetAdd(mySpacer);
+			mySpacer->setExpand(bvec2(false,false));
+			mySpacer->setFill(bvec2(false,true));
+			mySpacer->setMinSize(vec2(10,10));
+			mySpacer->setColor(0x00FF0080);
+			mySizerHori->subWidgetAdd(mySpacer);
 		}
 		
 		m_testWidget = new widget::Scene(/*&m_gameEngine*/ NULL);
 		if (NULL != m_testWidget) {
-			m_testWidget->SetExpand(bvec2(true,true));
-			m_testWidget->SetFill(bvec2(true,true));
-			mySizerHori->SubWidgetAdd(m_testWidget);
+			m_testWidget->setExpand(bvec2(true,true));
+			m_testWidget->setFill(bvec2(true,true));
+			mySizerHori->subWidgetAdd(m_testWidget);
 		}
 		
 		mySpacer = new widget::Spacer();
 		if (NULL != mySpacer) {
-			mySpacer->SetExpand(bvec2(false,false));
-			mySpacer->SetFill(bvec2(false,true));
-			mySpacer->SetMinSize(vec2(10,10));
-			mySpacer->SetColor(0x0000FF80);
-			mySizerHori->SubWidgetAdd(mySpacer);
+			mySpacer->setExpand(bvec2(false,false));
+			mySpacer->setFill(bvec2(false,true));
+			mySpacer->setMinSize(vec2(10,10));
+			mySpacer->setColor(0x0000FF80);
+			mySizerHori->subWidgetAdd(mySpacer);
 		}
 		
 	mySpacer = new widget::Spacer();
 	if (NULL != mySpacer) {
-		mySpacer->SetExpand(bvec2(false,false));
-		mySpacer->SetFill(bvec2(true,false));
-		mySpacer->SetMinSize(vec2(10,10));
-		mySpacer->SetColor(0x00FFFF80);
-		SubWidgetAdd(mySpacer);
+		mySpacer->setExpand(bvec2(false,false));
+		mySpacer->setFill(bvec2(true,false));
+		mySpacer->setMinSize(vec2(10,10));
+		mySpacer->setColor(0x00FFFF80);
+		subWidgetAdd(mySpacer);
 	}
-	
-	APPL_CRITICAL("Create "__class__" (end)");
+	APPL_INFO("Create "__class__" (end)");
 }
 
 
-TestScene::~TestScene(void)
-{
-	APPL_CRITICAL("Remove "__class__" ...");
+TestScene::~TestScene(void) {
+	APPL_INFO("Remove "__class__" ...");
 }
 
 /*
@@ -258,10 +255,8 @@ class stupidSphere : public game::Element
 
 
 
-void TestScene::OnReceiveMessage(const ewol::EMessage& _msg)
-{
-	widget::Sizer::OnReceiveMessage(_msg);
-	
+void TestScene::onReceiveMessage(const ewol::EMessage& _msg) {
+	widget::Sizer::onReceiveMessage(_msg);
 	/*
 	//APPL_INFO("Receive Event from the main windows ... : \"" << eventId << "\" ==> data=\"" << data << "\"" );
 	if (m_testWidget == CallerObject) {
@@ -342,10 +337,9 @@ void TestScene::OnReceiveMessage(const ewol::EMessage& _msg)
 	return;
 }
 
-void TestScene::OnObjectRemove(ewol::EObject * removeObject)
-{
-	widget::Sizer::OnObjectRemove(removeObject);
-	if (m_testWidget == removeObject) {
+void TestScene::onObjectRemove(ewol::EObject* _removeObject) {
+	widget::Sizer::OnObjectRemove(_removeObject);
+	if (m_testWidget == _removeObject) {
 		m_testWidget = NULL;
 	}
 }

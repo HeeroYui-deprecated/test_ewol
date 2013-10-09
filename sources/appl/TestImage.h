@@ -16,19 +16,19 @@
 #include <ewol/widget/Spacer.h>
 #include <ewol/widget/Sizer.h>
 
-class TestImage : public widget::Sizer
-{
+class TestImage : public widget::Sizer {
 	private:
 		widget::Image* m_testWidget;
 	public:
 		// Constructeur
 		TestImage(void);
 		virtual ~TestImage(void);
-	public:
-		// Derived function
-		virtual const char * const GetObjectType(void) { return "appl::TestImage"; };
-		virtual void OnReceiveMessage(const ewol::EMessage& _msg);
-		virtual void OnObjectRemove(ewol::EObject * removeObject);
+	public: // Derived function
+		virtual const char * const getObjectType(void) {
+			return "appl::TestImage";
+		};
+		virtual void onReceiveMessage(const ewol::EMessage& _msg);
+		virtual void onObjectRemove(ewol::EObject* _removeObject);
 };
 
 #endif

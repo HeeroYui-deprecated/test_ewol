@@ -39,10 +39,9 @@ static const char * l_eventChangeImageToggle = "event-change-image-toggle";
 #undef __class__
 #define __class__	"TestButton"
 
-TestButton::TestButton(void) : 
-	widget::Sizer(widget::Sizer::modeVert),
-	m_testWidget(NULL)
-{
+TestButton::TestButton(void) :
+  widget::Sizer(widget::Sizer::modeVert),
+  m_testWidget(NULL) {
 	APPL_CRITICAL("Create "__class__" (start)");
 	widget::Sizer* mySizerVert2 = NULL;
 	widget::Sizer* mySizerHori = NULL;
@@ -53,38 +52,38 @@ TestButton::TestButton(void) :
 		APPL_DEBUG("Allocation error mySizerHori");
 		return;
 	}
-	SubWidgetAdd(mySizerHori);
+	subWidgetAdd(mySizerHori);
 		myButton = new widget::Button();
 		if (NULL != myButton) {
-			myButton->SetToggleMode(true);
-			myButton->SetSubWidget(      new widget::Label("Expend X <br/> (false)"));
-			myButton->SetSubWidgetToggle(new widget::Label("Expend X <br/><b>(true)</b>"));
-			myButton->RegisterOnEvent(this, widget::Button::eventValue, l_eventChangeExpendX);
-			mySizerHori->SubWidgetAdd(myButton);
+			myButton->setToggleMode(true);
+			myButton->setSubWidget(      new widget::Label("Expend X <br/> (false)"));
+			myButton->setSubWidgetToggle(new widget::Label("Expend X <br/><b>(true)</b>"));
+			myButton->registerOnEvent(this, widget::Button::eventValue, l_eventChangeExpendX);
+			mySizerHori->subWidgetAdd(myButton);
 		}
 		myButton = new widget::Button();
 		if (NULL != myButton) {
-			myButton->SetToggleMode(true);
-			myButton->SetSubWidget(      new widget::Label("Expend Y <br/> (false)"));
-			myButton->SetSubWidgetToggle(new widget::Label("Expend Y <br/><b>(true)</b>"));
-			myButton->RegisterOnEvent(this, widget::Button::eventValue, l_eventChangeExpendY);
-			mySizerHori->SubWidgetAdd(myButton);
+			myButton->setToggleMode(true);
+			myButton->setSubWidget(      new widget::Label("Expend Y <br/> (false)"));
+			myButton->setSubWidgetToggle(new widget::Label("Expend Y <br/><b>(true)</b>"));
+			myButton->registerOnEvent(this, widget::Button::eventValue, l_eventChangeExpendY);
+			mySizerHori->subWidgetAdd(myButton);
 		}
 		myButton = new widget::Button();
 		if (NULL != myButton) {
-			myButton->SetToggleMode(true);
-			myButton->SetSubWidget(      new widget::Label("Toggle<br/>(false)"));
-			myButton->SetSubWidgetToggle(new widget::Label("Toggle<br/><b>(true)</b>"));
-			myButton->RegisterOnEvent(this, widget::Button::eventValue, l_eventChangeToggle);
-			mySizerHori->SubWidgetAdd(myButton);
+			myButton->setToggleMode(true);
+			myButton->setSubWidget(      new widget::Label("Toggle<br/>(false)"));
+			myButton->setSubWidgetToggle(new widget::Label("Toggle<br/><b>(true)</b>"));
+			myButton->registerOnEvent(this, widget::Button::eventValue, l_eventChangeToggle);
+			mySizerHori->subWidgetAdd(myButton);
 		}
 		myButton = new widget::Button();
 		if (NULL != myButton) {
-			myButton->SetToggleMode(true);
-			myButton->SetSubWidget(      new widget::Label("Text On toggle state<br/>(false)"));
-			myButton->SetSubWidgetToggle(new widget::Label("Text On toggle state<br/><b>(true)</b>"));
-			myButton->RegisterOnEvent(this, widget::Button::eventValue, l_eventChangeTextToggle);
-			mySizerHori->SubWidgetAdd(myButton);
+			myButton->setToggleMode(true);
+			myButton->setSubWidget(      new widget::Label("Text On toggle state<br/>(false)"));
+			myButton->setSubWidgetToggle(new widget::Label("Text On toggle state<br/><b>(true)</b>"));
+			myButton->registerOnEvent(this, widget::Button::eventValue, l_eventChangeTextToggle);
+			mySizerHori->subWidgetAdd(myButton);
 		}
 	
 	mySizerHori = new widget::Sizer(widget::Sizer::modeHori);
@@ -92,37 +91,37 @@ TestButton::TestButton(void) :
 		APPL_DEBUG("Allocation error mySizerHori");
 		return;
 	}
-	SubWidgetAdd(mySizerHori);
+	subWidgetAdd(mySizerHori);
 		
 		myButton = new widget::Button();
 		if (NULL != myButton) {
-			myButton->SetToggleMode(true);
-			myButton->SetSubWidget(      new widget::Label("Fill X <br/> (false)"));
-			myButton->SetSubWidgetToggle(new widget::Label("Fill X <br/> (true)"));
-			myButton->RegisterOnEvent(this, widget::Button::eventValue, l_eventChangeFillX);
-			mySizerHori->SubWidgetAdd(myButton);
+			myButton->setToggleMode(true);
+			myButton->setSubWidget(      new widget::Label("Fill X <br/> (false)"));
+			myButton->setSubWidgetToggle(new widget::Label("Fill X <br/> (true)"));
+			myButton->registerOnEvent(this, widget::Button::eventValue, l_eventChangeFillX);
+			mySizerHori->subWidgetAdd(myButton);
 		}
 		myButton = new widget::Button();
 		if (NULL != myButton) {
-			myButton->SetToggleMode(true);
-			myButton->SetSubWidget(      new widget::Label("Fill Y <br/> (false)"));
-			myButton->SetSubWidgetToggle(new widget::Label("Fill Y <br/> (true)"));
-			myButton->RegisterOnEvent(this, widget::Button::eventValue, l_eventChangeFillY);
-			mySizerHori->SubWidgetAdd(myButton);
+			myButton->setToggleMode(true);
+			myButton->setSubWidget(      new widget::Label("Fill Y <br/> (false)"));
+			myButton->setSubWidgetToggle(new widget::Label("Fill Y <br/> (true)"));
+			myButton->registerOnEvent(this, widget::Button::eventValue, l_eventChangeFillY);
+			mySizerHori->subWidgetAdd(myButton);
 		}
 		myButton = new widget::Button();
 		if (NULL != myButton) {
-			myButton->SetSubWidget(new widget::Label("Change Text<br/> and other ..."));
-			myButton->RegisterOnEvent(this, widget::Button::eventPressed, l_eventChangeText);
-			mySizerHori->SubWidgetAdd(myButton);
+			myButton->setSubWidget(new widget::Label("Change Text<br/> and other ..."));
+			myButton->registerOnEvent(this, widget::Button::eventPressed, l_eventChangeText);
+			mySizerHori->subWidgetAdd(myButton);
 		}
 	widget::Spacer* mySpacer = new widget::Spacer();
 	if (NULL != mySpacer) {
-		mySpacer->SetExpand(bvec2(false,false));
-		mySpacer->SetFill(bvec2(true,false));
-		mySpacer->SetMinSize(vec2(10,10));
-		mySpacer->SetColor(0xFF000080);
-		SubWidgetAdd(mySpacer);
+		mySpacer->setExpand(bvec2(false,false));
+		mySpacer->setFill(bvec2(true,false));
+		mySpacer->setMinSize(vec2(10,10));
+		mySpacer->setColor(0xFF000080);
+		subWidgetAdd(mySpacer);
 	}
 	
 	mySizerHori = new widget::Sizer(widget::Sizer::modeHori);
@@ -130,175 +129,172 @@ TestButton::TestButton(void) :
 		APPL_DEBUG("Allocation error mySizerHori");
 		return;
 	}
-	SubWidgetAdd(mySizerHori);
+	subWidgetAdd(mySizerHori);
 	
 		mySpacer = new widget::Spacer();
 		if (NULL != mySpacer) {
-			mySpacer->SetExpand(bvec2(false,false));
-			mySpacer->SetFill(bvec2(false,true));
-			mySpacer->SetMinSize(vec2(10,10));
-			mySpacer->SetColor(0x00FF0080);
-			mySizerHori->SubWidgetAdd(mySpacer);
+			mySpacer->setExpand(bvec2(false,false));
+			mySpacer->setFill(bvec2(false,true));
+			mySpacer->setMinSize(vec2(10,10));
+			mySpacer->setColor(0x00FF0080);
+			mySizerHori->subWidgetAdd(mySpacer);
 		}
 		
 		m_testWidget = new widget::Button();
 		if (NULL != m_testWidget) {
-			m_testWidget->SetSubWidget(new widget::Label("My <font color=\"#FF0000\">Button</font> <br/> And Some under line<br/> plop <br/> and an other super long line ..."));
-			m_testWidget->SetExpand(bvec2(false,false));
-			m_testWidget->SetFill(bvec2(false,false));
-			m_testWidget->RegisterOnEvent(this, widget::Button::eventPressed);
-			m_testWidget->RegisterOnEvent(this, widget::Button::eventDown);
-			m_testWidget->RegisterOnEvent(this, widget::Button::eventUp);
-			m_testWidget->RegisterOnEvent(this, widget::Button::eventEnter);
-			m_testWidget->RegisterOnEvent(this, widget::Button::eventLeave);
-			m_testWidget->RegisterOnEvent(this, widget::Button::eventValue);
-			mySizerHori->SubWidgetAdd(m_testWidget);
+			m_testWidget->setSubWidget(new widget::Label("My <font color=\"#FF0000\">Button</font> <br/> And Some under line<br/> plop <br/> and an other super long line ..."));
+			m_testWidget->setExpand(bvec2(false,false));
+			m_testWidget->setFill(bvec2(false,false));
+			m_testWidget->registerOnEvent(this, widget::Button::eventPressed);
+			m_testWidget->registerOnEvent(this, widget::Button::eventDown);
+			m_testWidget->registerOnEvent(this, widget::Button::eventUp);
+			m_testWidget->registerOnEvent(this, widget::Button::eventEnter);
+			m_testWidget->registerOnEvent(this, widget::Button::eventLeave);
+			m_testWidget->registerOnEvent(this, widget::Button::eventValue);
+			mySizerHori->subWidgetAdd(m_testWidget);
 		}
 		
 		mySpacer = new widget::Spacer();
 		if (NULL != mySpacer) {
-			mySpacer->SetExpand(bvec2(false,false));
-			mySpacer->SetFill(bvec2(false,true));
-			mySpacer->SetMinSize(vec2(10,10));
-			mySpacer->SetColor(0x0000FF80);
-			mySizerHori->SubWidgetAdd(mySpacer);
+			mySpacer->setExpand(bvec2(false,false));
+			mySpacer->setFill(bvec2(false,true));
+			mySpacer->setMinSize(vec2(10,10));
+			mySpacer->setColor(0x0000FF80);
+			mySizerHori->subWidgetAdd(mySpacer);
 		}
 		
 	mySpacer = new widget::Spacer();
 	if (NULL != mySpacer) {
-		mySpacer->SetExpand(bvec2(false,false));
-		mySpacer->SetFill(bvec2(true,false));
-		mySpacer->SetMinSize(vec2(10,10));
-		mySpacer->SetColor(0x00FFFF80);
-		SubWidgetAdd(mySpacer);
+		mySpacer->setExpand(bvec2(false,false));
+		mySpacer->setFill(bvec2(true,false));
+		mySpacer->setMinSize(vec2(10,10));
+		mySpacer->setColor(0x00FFFF80);
+		subWidgetAdd(mySpacer);
 	}
-	APPL_CRITICAL("Create "__class__" (end)");
+	APPL_INFO("Create "__class__" (end)");
 }
 
 
-TestButton::~TestButton(void)
-{
-	APPL_CRITICAL("Remove "__class__" ...");
+TestButton::~TestButton(void) {
+	APPL_INFO("Remove "__class__" ...");
 }
 
 
-void TestButton::OnReceiveMessage(const ewol::EMessage& _msg)
-{
-	widget::Sizer::OnReceiveMessage(_msg);
-	
+void TestButton::onReceiveMessage(const ewol::EMessage& _msg) {
+	widget::Sizer::onReceiveMessage(_msg);
 	//APPL_INFO("Receive Event from the main windows ... : \"" << eventId << "\" ==> data=\"" << data << "\"" );
-	if (m_testWidget == _msg.GetCaller()) {
+	if (m_testWidget == _msg.getCaller()) {
 		APPL_WARNING("Receive Event from tested Button ... : " << _msg );
 	}
-	if (_msg.GetMessage() == l_eventChangeExpendX) {
+	if (_msg.getMessage() == l_eventChangeExpendX) {
 		if (NULL!=m_testWidget) {
-			if (_msg.GetData()=="1") {
-				m_testWidget->SetExpand(bvec2(true,m_testWidget->GetExpand().y()));
+			if (_msg.getData()=="1") {
+				m_testWidget->setExpand(bvec2(true,m_testWidget->getExpand().y()));
 			} else {
-				m_testWidget->SetExpand(bvec2(false,m_testWidget->GetExpand().y()));
+				m_testWidget->setExpand(bvec2(false,m_testWidget->getExpand().y()));
 			}
 		}
-	} else if (_msg.GetMessage() == l_eventChangeExpendY) {
+	} else if (_msg.getMessage() == l_eventChangeExpendY) {
 		if (NULL!=m_testWidget) {
-			if (_msg.GetData()=="1") {
-				m_testWidget->SetExpand(bvec2(m_testWidget->GetExpand().x(),true));
+			if (_msg.getData()=="1") {
+				m_testWidget->setExpand(bvec2(m_testWidget->getExpand().x(),true));
 			} else {
-				m_testWidget->SetExpand(bvec2(m_testWidget->GetExpand().x(),false));
+				m_testWidget->setExpand(bvec2(m_testWidget->getExpand().x(),false));
 			}
 		}
-	} else if (_msg.GetMessage() == l_eventChangeFillX) {
+	} else if (_msg.getMessage() == l_eventChangeFillX) {
 		if (NULL!=m_testWidget) {
-			if (_msg.GetData()=="1") {
-				m_testWidget->SetFill(bvec2(true,m_testWidget->GetFill().y()));
+			if (_msg.getData()=="1") {
+				m_testWidget->setFill(bvec2(true,m_testWidget->getFill().y()));
 			} else {
-				m_testWidget->SetFill(bvec2(false,m_testWidget->GetFill().y()));
+				m_testWidget->setFill(bvec2(false,m_testWidget->getFill().y()));
 			}
 		}
-	} else if (_msg.GetMessage() == l_eventChangeFillY) {
+	} else if (_msg.getMessage() == l_eventChangeFillY) {
 		if (NULL!=m_testWidget) {
-			if (_msg.GetData()=="1") {
-				m_testWidget->SetFill(bvec2(m_testWidget->GetFill().x(),true));
+			if (_msg.getData()=="1") {
+				m_testWidget->setFill(bvec2(m_testWidget->getFill().x(),true));
 			} else {
-				m_testWidget->SetFill(bvec2(m_testWidget->GetFill().x(),false));
+				m_testWidget->setFill(bvec2(m_testWidget->getFill().x(),false));
 			}
 		}
-	} else if (_msg.GetMessage() == l_eventChangeToggle) {
+	} else if (_msg.getMessage() == l_eventChangeToggle) {
 		if (NULL!=m_testWidget) {
-			if (_msg.GetData()=="1") {
-				m_testWidget->SetToggleMode(true);
+			if (_msg.getData()=="1") {
+				m_testWidget->setToggleMode(true);
 			} else {
-				m_testWidget->SetToggleMode(false);
+				m_testWidget->setToggleMode(false);
 			}
 		}
-	} else if (_msg.GetMessage() == l_eventChangeTextToggle) {
+	} else if (_msg.getMessage() == l_eventChangeTextToggle) {
 		if (NULL!=m_testWidget) {
-			if (_msg.GetData()=="1") {
-				m_testWidget->SetSubWidgetToggle(new widget::Label("A stupid very long text on toggle <br/><br/> and on multiple lines"));
+			if (_msg.getData()=="1") {
+				m_testWidget->setSubWidgetToggle(new widget::Label("A stupid very long text on toggle <br/><br/> and on multiple lines"));
 			} else {
-				m_testWidget->SetSubWidgetToggle(NULL);
+				m_testWidget->setSubWidgetToggle(NULL);
 			}
 		}
-	} else if (_msg.GetMessage() == l_eventChangeImage) {
+	} else if (_msg.getMessage() == l_eventChangeImage) {
 		if (NULL!=m_testWidget) {
-			if (_msg.GetData()=="1") {
+			if (_msg.getData()=="1") {
 				//m_testWidget->SetImage("THEME:GUI:icon.png");
 				//m_testWidget->SetImageSize(50);
 			} else {
 				//m_testWidget->SetImage("");
 			}
 		}
-	} else if (_msg.GetMessage() == l_eventChangeImageToggle) {
+	} else if (_msg.getMessage() == l_eventChangeImageToggle) {
 		if (NULL!=m_testWidget) {
-			if (_msg.GetData()=="1") {
+			if (_msg.getData()=="1") {
 				//m_testWidget->SetImageToggle("THEME:GUI:icon.png");
 			} else {
 				//m_testWidget->SetImageToggle("");
 			}
 		}
-	} else if (_msg.GetMessage() == l_eventChangeText) {
+	} else if (_msg.getMessage() == l_eventChangeText) {
 		if (NULL!=m_testWidget) {
 			static int32_t countTextID = 1;
 			switch (countTextID)
 			{
 				case 0:
-					m_testWidget->SetSubWidget(new widget::Label("simple Text"));
+					m_testWidget->setSubWidget(new widget::Label("simple Text"));
 					break;
 				case 1:
-					m_testWidget->SetSubWidget(new widget::Label("<left>Align Left</left>"));
+					m_testWidget->setSubWidget(new widget::Label("<left>Align Left</left>"));
 					break;
 				case 2:
-					m_testWidget->SetSubWidget(new widget::Label("<right>Align right</right>"));
+					m_testWidget->setSubWidget(new widget::Label("<right>Align right</right>"));
 					break;
 				case 3:
-					m_testWidget->SetSubWidget(new widget::Label("<center>Align center</center>"));
+					m_testWidget->setSubWidget(new widget::Label("<center>Align center</center>"));
 					break;
 				case 4:
-					m_testWidget->SetSubWidget(new widget::Label("simple Text<br/> With Some Other Lines<br/> and more if you want ...<br/> plop"));
+					m_testWidget->setSubWidget(new widget::Label("simple Text<br/> With Some Other Lines<br/> and more if you want ...<br/> plop"));
 					break;
 				case 5:
-					m_testWidget->SetSubWidget(new widget::Label("simple <bold>Text</bold> with bold"));
+					m_testWidget->setSubWidget(new widget::Label("simple <bold>Text</bold> with bold"));
 					break;
 				case 6:
-					m_testWidget->SetSubWidget(new widget::Label("simple <italic>Text</italic> with italic"));
+					m_testWidget->setSubWidget(new widget::Label("simple <italic>Text</italic> with italic"));
 					break;
 				case 7:
-					m_testWidget->SetSubWidget(new widget::Label("simple <italic><bold>Text</bold></italic> with italic bold"));
+					m_testWidget->setSubWidget(new widget::Label("simple <italic><bold>Text</bold></italic> with italic bold"));
 					break;
 				case 8:
-					m_testWidget->SetSubWidget(NULL);
+					m_testWidget->setSubWidget(NULL);
 					break;
 				case 9:
-					m_testWidget->SetSubWidget(new widget::Label("simple <font color=\"#FFFF0088\">Text</font> with colored text"));
+					m_testWidget->setSubWidget(new widget::Label("simple <font color=\"#FFFF0088\">Text</font> with colored text"));
 					break;
 				case 10:
-					m_testWidget->SetSubWidget(
+					m_testWidget->setSubWidget(
 					    new widget::Composer(widget::Composer::String,
 					        "<composer>\n"
 					        "	<label>ploppp</label>\n"
 					        "</composer\n"));
 					break;
 				case 11:
-					m_testWidget->SetSubWidget(
+					m_testWidget->setSubWidget(
 					    new widget::Composer(widget::Composer::String,
 					        "<composer>\n"
 					        "	<sizer mode=\"vert\" addmode=\"invert\">\n"
@@ -310,14 +306,14 @@ void TestButton::OnReceiveMessage(const ewol::EMessage& _msg)
 					        "</composer\n"));
 					break;
 				default:
-					m_testWidget->SetSubWidget(new widget::Label("My <font color=\"#FF0000\">Button</font> <br/> And Some under line<br/> plop <br/> and an other super long line ..."));
+					m_testWidget->setSubWidget(new widget::Label("My <font color=\"#FF0000\">Button</font> <br/> And Some under line<br/> plop <br/> and an other super long line ..."));
 					countTextID=-1;
 					break;
 			}
 			// set at the subWidget all the space they can ...
-			if (NULL != m_testWidget->GetSubWidget()){
-				m_testWidget->GetSubWidget()->SetFill(bvec2(true,true));
-				m_testWidget->GetSubWidget()->SetExpand(bvec2(true,true));
+			if (NULL != m_testWidget->getSubWidget()){
+				m_testWidget->getSubWidget()->setFill(bvec2(true,true));
+				m_testWidget->getSubWidget()->setExpand(bvec2(true,true));
 			}
 			countTextID++;
 		}
@@ -326,10 +322,9 @@ void TestButton::OnReceiveMessage(const ewol::EMessage& _msg)
 	return;
 }
 
-void TestButton::OnObjectRemove(ewol::EObject * removeObject)
-{
-	widget::Sizer::OnObjectRemove(removeObject);
-	if (m_testWidget == removeObject) {
+void TestButton::onObjectRemove(ewol::EObject* _removeObject) {
+	widget::Sizer::onObjectRemove(_removeObject);
+	if (m_testWidget == _removeObject) {
 		m_testWidget = NULL;
 	}
 }

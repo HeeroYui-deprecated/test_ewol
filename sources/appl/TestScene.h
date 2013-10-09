@@ -14,20 +14,19 @@
 #include <ewol/widget/Scene.h>
 #include <ewol/widget/Sizer.h>
 
-class TestScene : public widget::Sizer
-{
+class TestScene : public widget::Sizer {
 	private:
 		widget::Scene* m_testWidget;
 	public:
 		// Constructeur
 		TestScene(void);
 		virtual ~TestScene(void);
-		// Derived function
-		virtual const char * const GetObjectType(void) { return "TestButton"; };
-		// Derived function
-		virtual void OnReceiveMessage(const ewol::EMessage& _msg);
-		// Derived function
-		virtual void OnObjectRemove(ewol::EObject * removeObject);
+	public: // Derived function
+		virtual const char * const getObjectType(void) {
+			return "TestButton";
+		};
+		virtual void onReceiveMessage(const ewol::EMessage& _msg);
+		virtual void onObjectRemove(ewol::EObject* _removeObject);
 };
 
 #endif

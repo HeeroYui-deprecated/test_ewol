@@ -17,8 +17,7 @@
 #include <ewol/widget/Label.h>
 #include <ewol/widget/Spacer.h>
 
-class MainWindows : public ewol::Windows
-{
+class MainWindows : public ewol::Windows {
 	private:
 		widget::Sizer* m_sizerVert;
 		ewol::Widget* m_subWidget;
@@ -28,12 +27,12 @@ class MainWindows : public ewol::Windows
 		// Constructeur
 		MainWindows(void);
 		~MainWindows(void);
-		// Derived function
-		const char * const GetObjectType(void) { return "MainWindows"; };
-		// Derived function
-		virtual void OnReceiveMessage(const ewol::EMessage& _msg);
-		// Derived function
-		virtual void OnObjectRemove(ewol::EObject* _removeObject);
+	public: // derived fuction
+		const char * const getObjectType(void) {
+			return "MainWindows";
+		};
+		virtual void onReceiveMessage(const ewol::EMessage& _msg);
+		virtual void onObjectRemove(ewol::EObject* _removeObject);
 };
 
 #endif
