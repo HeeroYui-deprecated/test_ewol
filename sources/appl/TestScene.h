@@ -9,7 +9,7 @@
 #ifndef __TEST_SCENE_H__
 #define __TEST_SCENE_H__
 
-#include <appl/Debug.h>
+#include <appl/debug.h>
 #include <ewol/widget/Widget.h>
 #include <ewol/widget/Scene.h>
 #include <ewol/widget/Sizer.h>

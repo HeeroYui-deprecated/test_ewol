@@ -8,7 +8,7 @@ def Create(target):
 	myModule = lutinModule.module(__file__, 'test_ewol', 'PACKAGE')
 	# add the file to compile:
 	myModule.AddSrcFile([
-		'appl/Debug.cpp',
+		'appl/debug.cpp',
 		'appl/init.cpp',
 		'appl/MainWindows.cpp',
 		'appl/TestButton.cpp',

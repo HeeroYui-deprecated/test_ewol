@@ -9,7 +9,7 @@
 #ifndef __TEST_IMAGE_H__
 #define __TEST_IMAGE_H__
 
-#include <appl/Debug.h>
+#include <appl/debug.h>
 #include <ewol/widget/Widget.h>
 #include <ewol/widget/Button.h>
 #include <ewol/widget/Image.h>

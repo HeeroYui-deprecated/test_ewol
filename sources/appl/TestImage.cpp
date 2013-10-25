@@ -7,7 +7,7 @@
  */
 
 
-#include <appl/Debug.h>
+#include <appl/debug.h>
 #include <appl/TestImage.h>
 
 #include <ewol/widget/Button.h>

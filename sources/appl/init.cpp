@@ -17,7 +17,7 @@
 #include <ewol/renderer/eContext.h>
 #include <ewol/widget/WidgetManager.h>
 
-#include <appl/Debug.h>
+#include <appl/debug.h>
 #include <appl/MainWindows.h>
 
 
