@@ -37,7 +37,7 @@ int main(int argc, const char *argv[]) {
  * @brief main application function Initialisation
  */
 bool APP_Init(ewol::eContext& _context) {
-	APPL_INFO("==> Init "PROJECT_NAME" (START) [" << ewol::getBoardType() << "] (" << ewol::getCompilationMode() << ")");
+	APPL_INFO("==> Init " PROJECT_NAME " (START) [" << ewol::getBoardType() << "] (" << ewol::getCompilationMode() << ")");
 	
 	etk::initDefaultFolder(PROJECT_NAME);
 	
@@ -66,7 +66,7 @@ bool APP_Init(ewol::eContext& _context) {
 	for( int32_t iii=0 ; iii<_context.getCmd().size(); iii++) {
 		APPL_INFO("parameter [" << iii << "] is \"" << _context.getCmd().get(iii) << "\"");
 	}
-	APPL_INFO("==> Init "PROJECT_NAME" (END)");
+	APPL_INFO("==> Init " PROJECT_NAME " (END)");
 	return true;
 }
 
@@ -77,7 +77,7 @@ bool APP_Init(ewol::eContext& _context) {
  * @brief main application function Un-Initialisation
  */
 void APP_UnInit(ewol::eContext& _context) {
-	APPL_INFO("==> Un-Init "PROJECT_NAME" (START)");
+	APPL_INFO("==> Un-Init " PROJECT_NAME " (START)");
 	// Get the curent windows
 	ewol::Windows* tmpWindows = _context.getWindows();
 	// Remove windows :
@@ -87,6 +87,6 @@ void APP_UnInit(ewol::eContext& _context) {
 		delete(tmpWindows);
 		tmpWindows = NULL;
 	}
-	APPL_INFO("==> Un-Init "PROJECT_NAME" (END)");
+	APPL_INFO("==> Un-Init " PROJECT_NAME " (END)");
 }
 

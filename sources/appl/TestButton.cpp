@@ -42,7 +42,7 @@ static const char * l_eventChangeImageToggle = "event-change-image-toggle";
 TestButton::TestButton(void) :
   widget::Sizer(widget::Sizer::modeVert),
   m_testWidget(NULL) {
-	APPL_CRITICAL("Create "__class__" (start)");
+	APPL_CRITICAL("Create " __class__ " (start)");
 	widget::Sizer* mySizerVert2 = NULL;
 	widget::Sizer* mySizerHori = NULL;
 	widget::Button*    myButton = NULL;
@@ -171,12 +171,12 @@ TestButton::TestButton(void) :
 		mySpacer->setColor(0x00FFFF80);
 		subWidgetAdd(mySpacer);
 	}
-	APPL_INFO("Create "__class__" (end)");
+	APPL_INFO("Create " __class__ " (end)");
 }
 
 
 TestButton::~TestButton(void) {
-	APPL_INFO("Remove "__class__" ...");
+	APPL_INFO("Remove " __class__ " ...");
 }
 
 

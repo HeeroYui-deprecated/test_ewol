@@ -38,7 +38,7 @@ static const char * l_eventChangeLabel       = "event-change-label";
 TestLabel::TestLabel(void) :
   widget::Sizer(widget::Sizer::modeVert),
   m_labelId(0) {
-	APPL_DEBUG("CREATE "__class__" ... ");
+	APPL_DEBUG("CREATE " __class__ " ... ");
 	widget::Sizer* mySizerVert2 = NULL;
 	widget::Sizer* mySizerHori = NULL;
 	widget::Button* myButton = NULL;
