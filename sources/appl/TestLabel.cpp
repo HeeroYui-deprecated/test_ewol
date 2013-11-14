@@ -159,10 +159,9 @@ void TestLabel::onReceiveMessage(const ewol::EMessage& _msg) {
 	if (m_testWidget == _msg.getCaller()) {
 		APPL_WARNING("Receive Event from tested Button ... : " << _msg );
 	}
-	
 	if (_msg.getMessage() == l_eventChangeExpendX) {
 		if (NULL!=m_testWidget) {
-			if (_msg.getData()=="1") {
+			if (_msg.getData()=="true") {
 				m_testWidget->setExpand(bvec2(true,m_testWidget->getExpand().y()));
 			} else {
 				m_testWidget->setExpand(bvec2(true,m_testWidget->getExpand().y()));
@@ -170,7 +169,7 @@ void TestLabel::onReceiveMessage(const ewol::EMessage& _msg) {
 		}
 	} else if (_msg.getMessage() == l_eventChangeExpendY) {
 		if (NULL!=m_testWidget) {
-			if (_msg.getData()=="1") {
+			if (_msg.getData()=="true") {
 				m_testWidget->setExpand(bvec2(m_testWidget->getExpand().x(),true));
 			} else {
 				m_testWidget->setExpand(bvec2(m_testWidget->getExpand().x(),false));
@@ -178,7 +177,7 @@ void TestLabel::onReceiveMessage(const ewol::EMessage& _msg) {
 		}
 	} else if (_msg.getMessage() == l_eventChangeFillX) {
 		if (NULL!=m_testWidget) {
-			if (_msg.getData()=="1") {
+			if (_msg.getData()=="true") {
 				m_testWidget->setFill(bvec2(true,m_testWidget->getFill().y()));
 			} else {
 				m_testWidget->setFill(bvec2(false,m_testWidget->getFill().y()));
@@ -186,7 +185,7 @@ void TestLabel::onReceiveMessage(const ewol::EMessage& _msg) {
 		}
 	} else if (_msg.getMessage() == l_eventChangeFillY) {
 		if (NULL!=m_testWidget) {
-			if (_msg.getData()=="1") {
+			if (_msg.getData()=="true") {
 				m_testWidget->setFill(bvec2(m_testWidget->getFill().x(),true));
 			} else {
 				m_testWidget->setFill(bvec2(m_testWidget->getFill().x(),false));
@@ -194,7 +193,7 @@ void TestLabel::onReceiveMessage(const ewol::EMessage& _msg) {
 		}
 	} else if (_msg.getMessage() == l_eventChangeMaxSize) {
 		if (NULL!=m_testWidget) {
-			if (_msg.getData()=="1") {
+			if (_msg.getData()=="true") {
 				m_testWidget->setMaxSize(vec2(400,9999999999));
 			} else {
 				m_testWidget->setNoMaxSize();

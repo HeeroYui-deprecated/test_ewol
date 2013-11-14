@@ -38,7 +38,7 @@ static const char * l_eventChangeImage      = "event-change-image";
 TestImage::TestImage(void) :
   widget::Sizer(widget::Sizer::modeVert),
   m_testWidget(NULL) {
-	APPL_CRITICAL("Create " __class__ " (start)");
+	APPL_INFO("Create " __class__ " (start)");
 	widget::Sizer* mySizerVert2 = NULL;
 	widget::Sizer* mySizerHori = NULL;
 	widget::Button*    myButton = NULL;
@@ -162,7 +162,7 @@ void TestImage::onReceiveMessage(const ewol::EMessage& _msg) {
 	}
 	if (_msg.getMessage() == l_eventChangeExpendX) {
 		if (NULL!=m_testWidget) {
-			if (_msg.getData()=="1") {
+			if (_msg.getData()=="true") {
 				m_testWidget->setExpand(bvec2(true,m_testWidget->getExpand().y()));
 			} else {
 				m_testWidget->setExpand(bvec2(false,m_testWidget->getExpand().y()));
@@ -170,7 +170,7 @@ void TestImage::onReceiveMessage(const ewol::EMessage& _msg) {
 		}
 	} else if (_msg.getMessage() == l_eventChangeExpendY) {
 		if (NULL!=m_testWidget) {
-			if (_msg.getData()=="1") {
+			if (_msg.getData()=="true") {
 				m_testWidget->setExpand(bvec2(m_testWidget->getExpand().x(),true));
 			} else {
 				m_testWidget->setExpand(bvec2(m_testWidget->getExpand().x(),false));
@@ -178,7 +178,7 @@ void TestImage::onReceiveMessage(const ewol::EMessage& _msg) {
 		}
 	} else if (_msg.getMessage() == l_eventChangeFillX) {
 		if (NULL!=m_testWidget) {
-			if (_msg.getData()=="1") {
+			if (_msg.getData()=="true") {
 				m_testWidget->setFill(bvec2(true,m_testWidget->getFill().y()));
 			} else {
 				m_testWidget->setFill(bvec2(false,m_testWidget->getFill().y()));
@@ -186,7 +186,7 @@ void TestImage::onReceiveMessage(const ewol::EMessage& _msg) {
 		}
 	} else if (_msg.getMessage() == l_eventChangeFillY) {
 		if (NULL!=m_testWidget) {
-			if (_msg.getData()=="1") {
+			if (_msg.getData()=="true") {
 				m_testWidget->setFill(bvec2(m_testWidget->getFill().x(),true));
 			} else {
 				m_testWidget->setFill(bvec2(m_testWidget->getFill().x(),false));
@@ -195,8 +195,7 @@ void TestImage::onReceiveMessage(const ewol::EMessage& _msg) {
 	} else if (_msg.getMessage() == l_eventChangeImage) {
 		if (NULL!=m_testWidget) {
 			static int32_t countID = 1;
-			switch (countID)
-			{
+			switch (countID) {
 				case 0:
 					m_testWidget->setFile("DATA:stone.png");
 					break;

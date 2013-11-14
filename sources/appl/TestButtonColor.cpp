@@ -36,7 +36,7 @@ static const char * l_eventChangeFillY       = "event-change-fill-Y";
 TestButtonColor::TestButtonColor(void) :
   widget::Sizer(widget::Sizer::modeVert),
   m_testWidget(NULL) {
-	APPL_DEBUG("CREATE " __class__ " ... ");
+	APPL_INFO("CREATE " __class__ " ... ");
 	widget::Sizer* mySizerVert2 = NULL;
 	widget::Sizer* mySizerHori = NULL;
 	widget::Button*    myButton = NULL;
@@ -104,15 +104,13 @@ TestButtonColor::TestButtonColor(void) :
 			mySpacer->setColor(0x00FF0080);
 			mySizerHori->subWidgetAdd(mySpacer);
 		}
-		/*
-		m_testWidget = new widget::ButtonColor(draw::color::olive);
+		m_testWidget = new widget::ButtonColor(etk::color::olive);
 		if (NULL != m_testWidget) {
 			m_testWidget->setExpand(bvec2(false,false));
 			m_testWidget->setFill(bvec2(false,false));
 			m_testWidget->registerOnEvent(this, ewolEventButtonColorChange);
 			mySizerHori->subWidgetAdd(m_testWidget);
 		}
-		*/
 		mySpacer = new widget::Spacer();
 		if (NULL != mySpacer) {
 			mySpacer->setExpand(bvec2(false,false));
@@ -138,13 +136,13 @@ TestButtonColor::~TestButtonColor(void) {
 
 void TestButtonColor::onReceiveMessage(const ewol::EMessage& _msg) {
 	widget::Sizer::onReceiveMessage(_msg);
-	//APPL_INFO("Receive Event from the main windows ... : \"" << eventId << "\" ==> data=\"" << data << "\"" );
+	//APPL_INFO("Receive Event from the main windows : " << _msg);
 	if (m_testWidget == _msg.getCaller()) {
 		APPL_WARNING("Receive Event from tested Button ... : " << _msg );
 	}
 	if (_msg.getMessage() == l_eventChangeExpendX) {
 		if (NULL!=m_testWidget) {
-			if (_msg.getData()=="1") {
+			if (_msg.getData()=="true") {
 				m_testWidget->setExpand(bvec2(true,m_testWidget->getExpand().y()));
 			} else {
 				m_testWidget->setExpand(bvec2(true,m_testWidget->getExpand().y()));
@@ -152,7 +150,7 @@ void TestButtonColor::onReceiveMessage(const ewol::EMessage& _msg) {
 		}
 	} else if (_msg.getMessage() == l_eventChangeExpendY) {
 		if (NULL!=m_testWidget) {
-			if (_msg.getData()=="1") {
+			if (_msg.getData()=="true") {
 				m_testWidget->setExpand(bvec2(m_testWidget->getExpand().x(),true));
 			} else {
 				m_testWidget->setExpand(bvec2(m_testWidget->getExpand().x(),false));
@@ -160,7 +158,7 @@ void TestButtonColor::onReceiveMessage(const ewol::EMessage& _msg) {
 		}
 	} else if (_msg.getMessage() == l_eventChangeFillX) {
 		if (NULL!=m_testWidget) {
-			if (_msg.getData()=="1") {
+			if (_msg.getData()=="true") {
 				m_testWidget->setFill(bvec2(true,m_testWidget->getFill().y()));
 			} else {
 				m_testWidget->setFill(bvec2(false,m_testWidget->getFill().y()));
@@ -168,7 +166,7 @@ void TestButtonColor::onReceiveMessage(const ewol::EMessage& _msg) {
 		}
 	} else if (_msg.getMessage() == l_eventChangeFillY) {
 		if (NULL!=m_testWidget) {
-			if (_msg.getData()=="1") {
+			if (_msg.getData()=="true") {
 				m_testWidget->setFill(bvec2(m_testWidget->getFill().x(),true));
 			} else {
 				m_testWidget->setFill(bvec2(m_testWidget->getFill().x(),false));

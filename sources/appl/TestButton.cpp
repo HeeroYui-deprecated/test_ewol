@@ -42,7 +42,7 @@ static const char * l_eventChangeImageToggle = "event-change-image-toggle";
 TestButton::TestButton(void) :
   widget::Sizer(widget::Sizer::modeVert),
   m_testWidget(NULL) {
-	APPL_CRITICAL("Create " __class__ " (start)");
+	APPL_INFO("Create " __class__ " (start)");
 	widget::Sizer* mySizerVert2 = NULL;
 	widget::Sizer* mySizerHori = NULL;
 	widget::Button*    myButton = NULL;
@@ -182,13 +182,13 @@ TestButton::~TestButton(void) {
 
 void TestButton::onReceiveMessage(const ewol::EMessage& _msg) {
 	widget::Sizer::onReceiveMessage(_msg);
-	//APPL_INFO("Receive Event from the main windows ... : \"" << eventId << "\" ==> data=\"" << data << "\"" );
+	APPL_VERBOSE("Receive Event from the main windows ... : " << _msg );
 	if (m_testWidget == _msg.getCaller()) {
 		APPL_WARNING("Receive Event from tested Button ... : " << _msg );
 	}
 	if (_msg.getMessage() == l_eventChangeExpendX) {
 		if (NULL!=m_testWidget) {
-			if (_msg.getData()=="1") {
+			if (_msg.getData()=="true") {
 				m_testWidget->setExpand(bvec2(true,m_testWidget->getExpand().y()));
 			} else {
 				m_testWidget->setExpand(bvec2(false,m_testWidget->getExpand().y()));
@@ -196,7 +196,7 @@ void TestButton::onReceiveMessage(const ewol::EMessage& _msg) {
 		}
 	} else if (_msg.getMessage() == l_eventChangeExpendY) {
 		if (NULL!=m_testWidget) {
-			if (_msg.getData()=="1") {
+			if (_msg.getData()=="true") {
 				m_testWidget->setExpand(bvec2(m_testWidget->getExpand().x(),true));
 			} else {
 				m_testWidget->setExpand(bvec2(m_testWidget->getExpand().x(),false));
@@ -204,7 +204,7 @@ void TestButton::onReceiveMessage(const ewol::EMessage& _msg) {
 		}
 	} else if (_msg.getMessage() == l_eventChangeFillX) {
 		if (NULL!=m_testWidget) {
-			if (_msg.getData()=="1") {
+			if (_msg.getData()=="true") {
 				m_testWidget->setFill(bvec2(true,m_testWidget->getFill().y()));
 			} else {
 				m_testWidget->setFill(bvec2(false,m_testWidget->getFill().y()));
@@ -212,7 +212,7 @@ void TestButton::onReceiveMessage(const ewol::EMessage& _msg) {
 		}
 	} else if (_msg.getMessage() == l_eventChangeFillY) {
 		if (NULL!=m_testWidget) {
-			if (_msg.getData()=="1") {
+			if (_msg.getData()=="true") {
 				m_testWidget->setFill(bvec2(m_testWidget->getFill().x(),true));
 			} else {
 				m_testWidget->setFill(bvec2(m_testWidget->getFill().x(),false));
@@ -220,7 +220,7 @@ void TestButton::onReceiveMessage(const ewol::EMessage& _msg) {
 		}
 	} else if (_msg.getMessage() == l_eventChangeToggle) {
 		if (NULL!=m_testWidget) {
-			if (_msg.getData()=="1") {
+			if (_msg.getData()=="true") {
 				m_testWidget->setToggleMode(true);
 			} else {
 				m_testWidget->setToggleMode(false);
@@ -228,7 +228,7 @@ void TestButton::onReceiveMessage(const ewol::EMessage& _msg) {
 		}
 	} else if (_msg.getMessage() == l_eventChangeTextToggle) {
 		if (NULL!=m_testWidget) {
-			if (_msg.getData()=="1") {
+			if (_msg.getData()=="true") {
 				m_testWidget->setSubWidgetToggle(new widget::Label("A stupid very long text on toggle <br/><br/> and on multiple lines"));
 			} else {
 				m_testWidget->setSubWidgetToggle(NULL);
@@ -236,7 +236,7 @@ void TestButton::onReceiveMessage(const ewol::EMessage& _msg) {
 		}
 	} else if (_msg.getMessage() == l_eventChangeImage) {
 		if (NULL!=m_testWidget) {
-			if (_msg.getData()=="1") {
+			if (_msg.getData()=="true") {
 				//m_testWidget->SetImage("THEME:GUI:icon.png");
 				//m_testWidget->SetImageSize(50);
 			} else {
@@ -245,7 +245,7 @@ void TestButton::onReceiveMessage(const ewol::EMessage& _msg) {
 		}
 	} else if (_msg.getMessage() == l_eventChangeImageToggle) {
 		if (NULL!=m_testWidget) {
-			if (_msg.getData()=="1") {
+			if (_msg.getData()=="true") {
 				//m_testWidget->SetImageToggle("THEME:GUI:icon.png");
 			} else {
 				//m_testWidget->SetImageToggle("");

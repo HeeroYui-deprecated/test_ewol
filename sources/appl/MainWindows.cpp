@@ -123,16 +123,15 @@ void MainWindows::onReceiveMessage(const ewol::EMessage& _msg) {
 	}
 	
 	if (m_subWidget != NULL) {
-		delete (m_subWidget);
-		// inn theory it must be removed ...
+		m_subWidget->removeObject();
+		// in theory it must be removed ...
 		m_subWidget = NULL;
 	}
 	// special init forcing ...
 	if(_msg.getCaller() == NULL) {
 		m_idWidget = 1;
 	}
-	switch(m_idWidget)
-	{
+	switch(m_idWidget) {
 		default:
 			m_idWidget = 0;
 		case 0:
