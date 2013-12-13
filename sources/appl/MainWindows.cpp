@@ -22,8 +22,8 @@
 #include <ewol/widget/Menu.h>
 #include <ewol/widget/meta/FileChooser.h>
 #include <ewol/widget/meta/Parameter.h>
-#include <ewol/widget/WidgetManager.h>
-#include <ewol/renderer/eContext.h>
+#include <ewol/widget/Manager.h>
+#include <ewol/context/Context.h>
 #include <appl/TestButton.h>
 #include <appl/TestButtonColor.h>
 #include <appl/TestLabel.h>
@@ -44,47 +44,47 @@ MainWindows::MainWindows(void) :
   m_subWidget(NULL),
   m_testName(NULL) {
 	APPL_DEBUG("CREATE WINDOWS ... ");
-	widget::Sizer* mySizerHori = NULL;
-	widget::Button* myButton = NULL;
+	ewol::widget::Sizer* mySizerHori = NULL;
+	ewol::widget::Button* myButton = NULL;
 	
-	m_sizerVert = new widget::Sizer(widget::Sizer::modeVert);
+	m_sizerVert = new ewol::widget::Sizer(ewol::widget::Sizer::modeVert);
 	if (NULL == m_sizerVert) {
 		APPL_DEBUG("Allocation error mySizerVert");
 		return;
 	}
 	setSubWidget(m_sizerVert);
 		
-		mySizerHori = new widget::Sizer(widget::Sizer::modeHori);
+		mySizerHori = new ewol::widget::Sizer(ewol::widget::Sizer::modeHori);
 		if (NULL == mySizerHori) {
 			APPL_DEBUG("Allocation error mySizerHori");
 			return;
 		}
 		m_sizerVert->subWidgetAdd(mySizerHori);
-			myButton = new widget::Button();
+			myButton = new ewol::widget::Button();
 			if (NULL != myButton) {
-				myButton->setSubWidget(new widget::Label("default theme (cube)"));
-				myButton->setSubWidgetToggle(new widget::Label("rounded theme"));
+				myButton->setSubWidget(new ewol::widget::Label("default theme (cube)"));
+				myButton->setSubWidgetToggle(new ewol::widget::Label("rounded theme"));
 				myButton->setToggleMode(true);
-				myButton->registerOnEvent(this, widget::Button::eventValue, l_eventChangeTheme);
+				myButton->registerOnEvent(this, ewol::widget::Button::eventValue, l_eventChangeTheme);
 				mySizerHori->subWidgetAdd(myButton);
 			}
-			myButton = new widget::Button();
+			myButton = new ewol::widget::Button();
 			if (NULL != myButton) {
-				myButton->setSubWidget(new widget::Label("Previous Widget test"));
-				myButton->registerOnEvent(this, widget::Button::eventPressed, l_eventChangeWidgetPrevious);
+				myButton->setSubWidget(new ewol::widget::Label("Previous Widget test"));
+				myButton->registerOnEvent(this, ewol::widget::Button::eventPressed, l_eventChangeWidgetPrevious);
 				mySizerHori->subWidgetAdd(myButton);
 			}
-			myButton = new widget::Button();
+			myButton = new ewol::widget::Button();
 			if (NULL != myButton) {
-				myButton->setSubWidget(new widget::Label("Next Widget test"));
-				myButton->registerOnEvent(this, widget::Button::eventPressed, l_eventChangeWidgetNext);
+				myButton->setSubWidget(new ewol::widget::Label("Next Widget test"));
+				myButton->registerOnEvent(this, ewol::widget::Button::eventPressed, l_eventChangeWidgetNext);
 				mySizerHori->subWidgetAdd(myButton);
 			}
-			m_testName = new widget::Label("none");
+			m_testName = new ewol::widget::Label("none");
 			if (NULL != m_testName) {
 				mySizerHori->subWidgetAdd(m_testName);
 			}
-		widget::Spacer* mySpacer = new widget::Spacer();
+		ewol::widget::Spacer* mySpacer = new ewol::widget::Spacer();
 		if (NULL != mySpacer) {
 			mySpacer->setExpand(bvec2(false,false));
 			mySpacer->setFill(bvec2(true,false));
@@ -93,7 +93,7 @@ MainWindows::MainWindows(void) :
 			m_sizerVert->subWidgetAdd(mySpacer);
 		}
 		// add the basic widget with a strange methode ...
-		ewol::EMessage msg(NULL, NULL, "");
+		ewol::object::Message msg(NULL, NULL, "");
 		onReceiveMessage(msg);
 }
 
@@ -101,10 +101,10 @@ MainWindows::~MainWindows(void) {
 	
 }
 
-void MainWindows::onReceiveMessage(const ewol::EMessage& _msg) {
+void MainWindows::onReceiveMessage(const ewol::object::Message& _msg) {
 	if(    _msg.getCaller() != this
 	    && _msg.getCaller() != NULL) {
-		ewol::Windows::onReceiveMessage(_msg);
+		ewol::widget::Windows::onReceiveMessage(_msg);
 	}
 	APPL_INFO("Receive Event from the main windows ... : " << _msg );
 	if (_msg.getMessage() == l_eventChangeTheme) {
@@ -135,7 +135,7 @@ void MainWindows::onReceiveMessage(const ewol::EMessage& _msg) {
 		default:
 			m_idWidget = 0;
 		case 0:
-			m_subWidget = (ewol::Widget*)new widget::Label("Test software for EWOL");
+			m_subWidget = (ewol::Widget*)new ewol::widget::Label("Test software for EWOL");
 			if (NULL != m_subWidget) {
 				m_subWidget->setExpand(bvec2(true,true));
 				m_sizerVert->subWidgetAdd(m_subWidget);
@@ -193,8 +193,8 @@ void MainWindows::onReceiveMessage(const ewol::EMessage& _msg) {
 	}
 }
 
-void MainWindows::onObjectRemove(ewol::EObject* _removeObject) {
-	ewol::Windows::onObjectRemove(_removeObject);
+void MainWindows::onObjectRemove(ewol::Object* _removeObject) {
+	ewol::widget::Windows::onObjectRemove(_removeObject);
 	if (m_subWidget == _removeObject) {
 		m_subWidget = NULL;
 	} else if (m_sizerVert == _removeObject) {

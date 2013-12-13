@@ -22,7 +22,7 @@
 #include <ewol/widget/Menu.h>
 #include <ewol/widget/meta/FileChooser.h>
 #include <ewol/widget/meta/Parameter.h>
-#include <ewol/widget/WidgetManager.h>
+#include <ewol/widget/Manager.h>
 
 
 static const char * l_eventChangeExpendX     = "event-change-expend-X";
@@ -36,67 +36,67 @@ static const char * l_eventChangeLabel       = "event-change-label";
 #define __class__	"TestButton"
 
 TestLabel::TestLabel(void) :
-  widget::Sizer(widget::Sizer::modeVert),
+  ewol::widget::Sizer(ewol::widget::Sizer::modeVert),
   m_labelId(0) {
 	APPL_DEBUG("CREATE " __class__ " ... ");
-	widget::Sizer* mySizerVert2 = NULL;
-	widget::Sizer* mySizerHori = NULL;
-	widget::Button* myButton = NULL;
+	ewol::widget::Sizer* mySizerVert2 = NULL;
+	ewol::widget::Sizer* mySizerHori = NULL;
+	ewol::widget::Button* myButton = NULL;
 	
-	mySizerHori = new widget::Sizer(widget::Sizer::modeHori);
+	mySizerHori = new ewol::widget::Sizer(ewol::widget::Sizer::modeHori);
 	if (NULL == mySizerHori) {
 		APPL_DEBUG("Allocation error mySizerHori");
 		return;
 	}
 	subWidgetAdd(mySizerHori);
-		myButton = new widget::Button();
+		myButton = new ewol::widget::Button();
 		if (NULL != myButton) {
 			myButton->setToggleMode(true);
-			myButton->setSubWidget(      new widget::Label("Expand X (false)"));
-			myButton->setSubWidgetToggle(new widget::Label("Expand X (true)"));
-			myButton->registerOnEvent(this, widget::Button::eventValue, l_eventChangeExpendX);
+			myButton->setSubWidget(      new ewol::widget::Label("Expand X (false)"));
+			myButton->setSubWidgetToggle(new ewol::widget::Label("Expand X (true)"));
+			myButton->registerOnEvent(this, ewol::widget::Button::eventValue, l_eventChangeExpendX);
 			mySizerHori->subWidgetAdd(myButton);
 		}
-		myButton = new widget::Button();
+		myButton = new ewol::widget::Button();
 		if (NULL != myButton) {
 			myButton->setToggleMode(true);
-			myButton->setSubWidget(      new widget::Label("Expand Y (false)"));
-			myButton->setSubWidgetToggle(new widget::Label("Expand Y (true)"));
-			myButton->registerOnEvent(this, widget::Button::eventValue, l_eventChangeExpendY);
+			myButton->setSubWidget(      new ewol::widget::Label("Expand Y (false)"));
+			myButton->setSubWidgetToggle(new ewol::widget::Label("Expand Y (true)"));
+			myButton->registerOnEvent(this, ewol::widget::Button::eventValue, l_eventChangeExpendY);
 			mySizerHori->subWidgetAdd(myButton);
 		}
-		myButton = new widget::Button();
+		myButton = new ewol::widget::Button();
 		if (NULL != myButton) {
 			myButton->setToggleMode(true);
-			myButton->setSubWidget(      new widget::Label("Fill X (false)"));
-			myButton->setSubWidgetToggle(new widget::Label("Fill X (true)"));
-			myButton->registerOnEvent(this, widget::Button::eventValue, l_eventChangeFillX);
+			myButton->setSubWidget(      new ewol::widget::Label("Fill X (false)"));
+			myButton->setSubWidgetToggle(new ewol::widget::Label("Fill X (true)"));
+			myButton->registerOnEvent(this, ewol::widget::Button::eventValue, l_eventChangeFillX);
 			mySizerHori->subWidgetAdd(myButton);
 		}
-		myButton = new widget::Button();
+		myButton = new ewol::widget::Button();
 		if (NULL != myButton) {
 			myButton->setToggleMode(true);
-			myButton->setSubWidget(      new widget::Label("Fill Y (false)"));
-			myButton->setSubWidgetToggle(new widget::Label("Fill Y (true)"));
-			myButton->registerOnEvent(this, widget::Button::eventValue, l_eventChangeFillY);
+			myButton->setSubWidget(      new ewol::widget::Label("Fill Y (false)"));
+			myButton->setSubWidgetToggle(new ewol::widget::Label("Fill Y (true)"));
+			myButton->registerOnEvent(this, ewol::widget::Button::eventValue, l_eventChangeFillY);
 			mySizerHori->subWidgetAdd(myButton);
 		}
-		myButton = new widget::Button();
+		myButton = new ewol::widget::Button();
 		if (NULL != myButton) {
 			myButton->setToggleMode(true);
-			myButton->setSubWidget(      new widget::Label("no Max size"));
-			myButton->setSubWidgetToggle(new widget::Label("maxSize (400,99999999)"));
-			myButton->registerOnEvent(this, widget::Button::eventValue, l_eventChangeMaxSize);
+			myButton->setSubWidget(      new ewol::widget::Label("no Max size"));
+			myButton->setSubWidgetToggle(new ewol::widget::Label("maxSize (400,99999999)"));
+			myButton->registerOnEvent(this, ewol::widget::Button::eventValue, l_eventChangeMaxSize);
 			mySizerHori->subWidgetAdd(myButton);
 		}
-		myButton = new widget::Button();
+		myButton = new ewol::widget::Button();
 		if (NULL != myButton) {
-			myButton->setSubWidget(new widget::Label("Next Label"));
-			myButton->registerOnEvent(this, widget::Button::eventPressed, l_eventChangeLabel);
+			myButton->setSubWidget(new ewol::widget::Label("Next Label"));
+			myButton->registerOnEvent(this, ewol::widget::Button::eventPressed, l_eventChangeLabel);
 			mySizerHori->subWidgetAdd(myButton);
 		}
 		
-	widget::Spacer* mySpacer = new widget::Spacer();
+	ewol::widget::Spacer* mySpacer = new ewol::widget::Spacer();
 	if (NULL != mySpacer) {
 		mySpacer->setExpand(bvec2(false,false));
 		mySpacer->setFill(bvec2(true,false));
@@ -105,13 +105,13 @@ TestLabel::TestLabel(void) :
 		subWidgetAdd(mySpacer);
 	}
 	
-	mySizerHori = new widget::Sizer(widget::Sizer::modeHori);
+	mySizerHori = new ewol::widget::Sizer(ewol::widget::Sizer::modeHori);
 	if (NULL == mySizerHori) {
 		APPL_DEBUG("Allocation error mySizerHori");
 		return;
 	}
 	subWidgetAdd(mySizerHori);
-		mySpacer = new widget::Spacer();
+		mySpacer = new ewol::widget::Spacer();
 		if (NULL != mySpacer) {
 			mySpacer->setExpand(bvec2(false,false));
 			mySpacer->setFill(bvec2(false,true));
@@ -120,7 +120,7 @@ TestLabel::TestLabel(void) :
 			mySizerHori->subWidgetAdd(mySpacer);
 		}
 		
-		m_testWidget = new widget::Label("Basic label");
+		m_testWidget = new ewol::widget::Label("Basic label");
 		if (NULL != m_testWidget) {
 			m_testWidget->setExpand(bvec2(false,false));
 			m_testWidget->setFill(bvec2(false,false));
@@ -128,7 +128,7 @@ TestLabel::TestLabel(void) :
 			mySizerHori->subWidgetAdd(m_testWidget);
 		}
 		
-		mySpacer = new widget::Spacer();
+		mySpacer = new ewol::widget::Spacer();
 		if (NULL != mySpacer) {
 			mySpacer->setExpand(bvec2(false,false));
 			mySpacer->setFill(bvec2(false,true));
@@ -137,7 +137,7 @@ TestLabel::TestLabel(void) :
 			mySizerHori->subWidgetAdd(mySpacer);
 		}
 		
-	mySpacer = new widget::Spacer();
+	mySpacer = new ewol::widget::Spacer();
 	if (NULL != mySpacer) {
 		mySpacer->setExpand(bvec2(false,false));
 		mySpacer->setFill(bvec2(true,false));
@@ -153,8 +153,8 @@ TestLabel::~TestLabel(void) {
 }
 
 
-void TestLabel::onReceiveMessage(const ewol::EMessage& _msg) {
-	widget::Sizer::onReceiveMessage(_msg);
+void TestLabel::onReceiveMessage(const ewol::object::Message& _msg) {
+	ewol::widget::Sizer::onReceiveMessage(_msg);
 	//APPL_INFO("Receive Event from the main windows ... : \"" << eventId << "\" ==> data=\"" << data << "\"" );
 	if (m_testWidget == _msg.getCaller()) {
 		APPL_WARNING("Receive Event from tested Button ... : " << _msg );
@@ -239,8 +239,8 @@ void TestLabel::onReceiveMessage(const ewol::EMessage& _msg) {
 	return;
 }
 
-void TestLabel::onObjectRemove(ewol::EObject* _removeObject) {
-	widget::Sizer::onObjectRemove(_removeObject);
+void TestLabel::onObjectRemove(ewol::Object* _removeObject) {
+	ewol::widget::Sizer::onObjectRemove(_removeObject);
 	if (m_testWidget == _removeObject) {
 		m_testWidget = NULL;
 	}

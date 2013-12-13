@@ -24,7 +24,7 @@
 #include <ewol/widget/Menu.h>
 #include <ewol/widget/meta/FileChooser.h>
 #include <ewol/widget/meta/Parameter.h>
-#include <ewol/widget/WidgetManager.h>
+#include <ewol/widget/Manager.h>
 
 static const char * l_eventAddBox       = "event-add-box";
 static const char * l_eventAddSphere    = "event-add-sphere";
@@ -45,7 +45,7 @@ static const char * l_eventDown = "event-down";
 #define __class__ "TestScene"
 
 TestScene::TestScene(void) :
-	widget::Sizer(widget::Sizer::modeVert)
+	ewol::widget::Sizer(ewol::widget::Sizer::modeVert)
 {
 	/*
 	m_ground = new game::Element("DATA:grass.obj");
@@ -56,89 +56,89 @@ TestScene::TestScene(void) :
 	*/
 	
 	APPL_CRITICAL("Create "__class__" (start)");
-	widget::Sizer* mySizerVert2 = NULL;
-	widget::Sizer* mySizerHori = NULL;
-	widget::Button*    myButton = NULL;
+	ewol::widget::Sizer* mySizerVert2 = NULL;
+	ewol::widget::Sizer* mySizerHori = NULL;
+	ewol::widget::Button*    myButton = NULL;
 	/*
-	mySizerHori = new widget::SizerHori();
+	mySizerHori = new ewol::widget::SizerHori();
 	if (NULL == mySizerHori) {
 		APPL_DEBUG("Allocation error mySizerHori");
 		return;
 	}
 	SubWidgetAdd(mySizerHori);
-		myButton = new widget::Button("Add Box");
+		myButton = new ewol::widget::Button("Add Box");
 		if (NULL != myButton) {
 			myButton->RegisterOnEvent(this, ewolEventButtonPressed, l_eventAddBox);
 			mySizerHori->SubWidgetAdd(myButton);
 		}
-		myButton = new widget::Button("Add Sphere");
+		myButton = new ewol::widget::Button("Add Sphere");
 		if (NULL != myButton) {
 			myButton->RegisterOnEvent(this, ewolEventButtonPressed, l_eventAddSphere);
 			mySizerHori->SubWidgetAdd(myButton);
 		}
-		myButton = new widget::Button("Rotation X");
+		myButton = new ewol::widget::Button("Rotation X");
 		if (NULL != myButton) {
 			myButton->RegisterOnEvent(this, ewolEventButtonPressed, l_eventRotationX);
 			mySizerHori->SubWidgetAdd(myButton);
 		}
-		myButton = new widget::Button("Rotation Y");
+		myButton = new ewol::widget::Button("Rotation Y");
 		if (NULL != myButton) {
 			myButton->RegisterOnEvent(this, ewolEventButtonPressed, l_eventRotationY);
 			mySizerHori->SubWidgetAdd(myButton);
 		}
-		myButton = new widget::Button("Rotation Z");
+		myButton = new ewol::widget::Button("Rotation Z");
 		if (NULL != myButton) {
 			myButton->RegisterOnEvent(this, ewolEventButtonPressed, l_eventRotationZ);
 			mySizerHori->SubWidgetAdd(myButton);
 		}
-		myButton = new widget::Button("Rotation -");
+		myButton = new ewol::widget::Button("Rotation -");
 		if (NULL != myButton) {
 			myButton->RegisterOnEvent(this, ewolEventButtonPressed, l_eventRotation0);
 			mySizerHori->SubWidgetAdd(myButton);
 		}
-		myButton = new widget::Button("UP");
+		myButton = new ewol::widget::Button("UP");
 		if (NULL != myButton) {
 			myButton->RegisterOnEvent(this, ewolEventButtonPressed, l_eventUp);
 			mySizerHori->SubWidgetAdd(myButton);
 		}
-		myButton = new widget::Button("DOWN");
+		myButton = new ewol::widget::Button("DOWN");
 		if (NULL != myButton) {
 			myButton->RegisterOnEvent(this, ewolEventButtonPressed, l_eventDown);
 			mySizerHori->SubWidgetAdd(myButton);
 		}
-	mySizerHori = new widget::SizerHori();
+	mySizerHori = new ewol::widget::SizerHori();
 	if (NULL == mySizerHori) {
 		APPL_DEBUG("Allocation error mySizerHori");
 		return;
 	}
 	SubWidgetAdd(mySizerHori);
-		myButton = new widget::Button("lunch object");
+		myButton = new ewol::widget::Button("lunch object");
 		if (NULL != myButton) {
 			myButton->RegisterOnEvent(this, ewolEventButtonPressed, l_eventLunch);
 			mySizerHori->SubWidgetAdd(myButton);
 		}
-		myButton = new widget::Button("1x speed");
+		myButton = new ewol::widget::Button("1x speed");
 		if (NULL != myButton) {
 			myButton->RegisterOnEvent(this, ewolEventButtonPressed, l_eventChangeTimeSpeed1);
 			mySizerHori->SubWidgetAdd(myButton);
 		}
-		myButton = new widget::Button("0.5x speed");
+		myButton = new ewol::widget::Button("0.5x speed");
 		if (NULL != myButton) {
 			myButton->RegisterOnEvent(this, ewolEventButtonPressed, l_eventChangeTimeSpeed0);
 			mySizerHori->SubWidgetAdd(myButton);
 		}
-		myButton = new widget::Button("2x speed");
+		myButton = new ewol::widget::Button("2x speed");
 		if (NULL != myButton) {
 			myButton->RegisterOnEvent(this, ewolEventButtonPressed, l_eventChangeTimeSpeed2);
 			mySizerHori->SubWidgetAdd(myButton);
 		}
-		myButton = new widget::Button("4x speed");
+		myButton = new ewol::widget::Button("4x speed");
 		if (NULL != myButton) {
 			myButton->RegisterOnEvent(this, ewolEventButtonPressed, l_eventChangeTimeSpeed4);
 			mySizerHori->SubWidgetAdd(myButton);
 		}
 	*/
-	widget::Spacer* mySpacer = new widget::Spacer();
+	ewol::widget::Spacer* mySpacer = new widget::Spacer();
 	if (NULL != mySpacer) {
 		mySpacer->setExpand(bvec2(false,false));
 		mySpacer->setFill(bvec2(true,false));
@@ -147,13 +147,13 @@ TestScene::TestScene(void) :
 		subWidgetAdd(mySpacer);
 	}
 	
-	mySizerHori = new widget::Sizer(widget::Sizer::modeHori);
+	mySizerHori = new ewol::widget::Sizer(ewol::widget::Sizer::modeHori);
 	if (NULL == mySizerHori) {
 		APPL_DEBUG("Allocation error mySizerHori");
 		return;
 	}
 	subWidgetAdd(mySizerHori);
-		mySpacer = new widget::Spacer();
+		mySpacer = new ewol::widget::Spacer();
 		if (NULL != mySpacer) {
 			mySpacer->setExpand(bvec2(false,false));
 			mySpacer->setFill(bvec2(false,true));
@@ -162,14 +162,14 @@ TestScene::TestScene(void) :
 			mySizerHori->subWidgetAdd(mySpacer);
 		}
 		
-		m_testWidget = new widget::Scene(/*&m_gameEngine*/ NULL);
+		m_testWidget = new ewol::widget::Scene(/*&m_gameEngine*/ NULL);
 		if (NULL != m_testWidget) {
 			m_testWidget->setExpand(bvec2(true,true));
 			m_testWidget->setFill(bvec2(true,true));
 			mySizerHori->subWidgetAdd(m_testWidget);
 		}
 		
-		mySpacer = new widget::Spacer();
+		mySpacer = new ewol::widget::Spacer();
 		if (NULL != mySpacer) {
 			mySpacer->setExpand(bvec2(false,false));
 			mySpacer->setFill(bvec2(false,true));
@@ -178,7 +178,7 @@ TestScene::TestScene(void) :
 			mySizerHori->subWidgetAdd(mySpacer);
 		}
 		
-	mySpacer = new widget::Spacer();
+	mySpacer = new ewol::widget::Spacer();
 	if (NULL != mySpacer) {
 		mySpacer->setExpand(bvec2(false,false));
 		mySpacer->setFill(bvec2(true,false));
@@ -255,8 +255,8 @@ class stupidSphere : public game::Element
 
 
 
-void TestScene::onReceiveMessage(const ewol::EMessage& _msg) {
-	widget::Sizer::onReceiveMessage(_msg);
+void TestScene::onReceiveMessage(const ewol::object::Message& _msg) {
+	ewol::widget::Sizer::onReceiveMessage(_msg);
 	/*
 	//APPL_INFO("Receive Event from the main windows ... : \"" << eventId << "\" ==> data=\"" << data << "\"" );
 	if (m_testWidget == CallerObject) {
@@ -337,8 +337,8 @@ void TestScene::onReceiveMessage(const ewol::EMessage& _msg) {
 	return;
 }
 
-void TestScene::onObjectRemove(ewol::EObject* _removeObject) {
-	widget::Sizer::OnObjectRemove(_removeObject);
+void TestScene::onObjectRemove(ewol::Object* _removeObject) {
+	ewol::widget::Sizer::OnObjectRemove(_removeObject);
 	if (m_testWidget == _removeObject) {
 		m_testWidget = NULL;
 	}

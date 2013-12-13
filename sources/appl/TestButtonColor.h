@@ -16,9 +16,9 @@
 #include <ewol/widget/Spacer.h>
 #include <ewol/widget/Sizer.h>
 
-class TestButtonColor : public widget::Sizer {
+class TestButtonColor : public ewol::widget::Sizer {
 	private:
-		widget::ButtonColor* m_testWidget;
+		ewol::widget::ButtonColor* m_testWidget;
 	public:
 		// Constructeur
 		TestButtonColor(void);
@@ -27,8 +27,8 @@ class TestButtonColor : public widget::Sizer {
 		virtual const char * const getObjectType(void) {
 			return "TestButton";
 		};
-		virtual void onReceiveMessage(const ewol::EMessage& _msg);
-		virtual void onObjectRemove(ewol::EObject* _removeObject);
+		virtual void onReceiveMessage(const ewol::object::Message& _msg);
+		virtual void onObjectRemove(ewol::Object* _removeObject);
 };
 
 #endif

@@ -15,9 +15,9 @@
 #include <ewol/widget/Spacer.h>
 #include <ewol/widget/Sizer.h>
 
-class TestButton : public widget::Sizer {
+class TestButton : public ewol::widget::Sizer {
 	private:
-		widget::Button* m_testWidget;
+		ewol::widget::Button* m_testWidget;
 	public:
 		// Constructeur
 		TestButton(void);
@@ -26,8 +26,8 @@ class TestButton : public widget::Sizer {
 		virtual const char * const getObjectType(void) {
 			return "TestButton";
 		};
-		virtual void onReceiveMessage(const ewol::EMessage& _msg);
-		virtual void onObjectRemove(ewol::EObject* _removeObject);
+		virtual void onReceiveMessage(const ewol::object::Message& _msg);
+		virtual void onObjectRemove(ewol::Object* _removeObject);
 };
 
 #endif

@@ -16,9 +16,9 @@
 #include <ewol/widget/Spacer.h>
 #include <ewol/widget/Sizer.h>
 
-class TestImage : public widget::Sizer {
+class TestImage : public ewol::widget::Sizer {
 	private:
-		widget::Image* m_testWidget;
+		ewol::widget::Image* m_testWidget;
 	public:
 		// Constructeur
 		TestImage(void);
@@ -27,8 +27,8 @@ class TestImage : public widget::Sizer {
 		virtual const char * const getObjectType(void) {
 			return "appl::TestImage";
 		};
-		virtual void onReceiveMessage(const ewol::EMessage& _msg);
-		virtual void onObjectRemove(ewol::EObject* _removeObject);
+		virtual void onReceiveMessage(const ewol::object::Message& _msg);
+		virtual void onObjectRemove(ewol::Object* _removeObject);
 };
 
 #endif

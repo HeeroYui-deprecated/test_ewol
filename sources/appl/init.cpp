@@ -12,10 +12,10 @@
 #include <ewol/ewol.h>
 #include <ewol/Dimension.h>
 //#include <ewol/config.h>
-#include <ewol/commandLine.h>
-#include <ewol/renderer/EObject.h>
-#include <ewol/renderer/eContext.h>
-#include <ewol/widget/WidgetManager.h>
+#include <ewol/context/commandLine.h>
+#include <ewol/object/Object.h>
+#include <ewol/context/Context.h>
+#include <ewol/widget/Manager.h>
 
 #include <appl/debug.h>
 #include <appl/MainWindows.h>
@@ -36,7 +36,7 @@ int main(int argc, const char *argv[]) {
 /**
  * @brief main application function Initialisation
  */
-bool APP_Init(ewol::eContext& _context) {
+bool APP_Init(ewol::Context& _context) {
 	APPL_INFO("==> Init " PROJECT_NAME " (START) [" << ewol::getBoardType() << "] (" << ewol::getCompilationMode() << ")");
 	
 	etk::initDefaultFolder(PROJECT_NAME);
@@ -76,10 +76,10 @@ bool APP_Init(ewol::eContext& _context) {
 /**
  * @brief main application function Un-Initialisation
  */
-void APP_UnInit(ewol::eContext& _context) {
+void APP_UnInit(ewol::Context& _context) {
 	APPL_INFO("==> Un-Init " PROJECT_NAME " (START)");
 	// Get the curent windows
-	ewol::Windows* tmpWindows = _context.getWindows();
+	ewol::widget::Windows* tmpWindows = _context.getWindows();
 	// Remove windows :
 	_context.setWindows(NULL);
 	

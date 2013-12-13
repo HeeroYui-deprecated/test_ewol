@@ -17,11 +17,11 @@
 #include <ewol/widget/Label.h>
 #include <ewol/widget/Spacer.h>
 
-class MainWindows : public ewol::Windows {
+class MainWindows : public ewol::widget::Windows {
 	private:
-		widget::Sizer* m_sizerVert;
+		ewol::widget::Sizer* m_sizerVert;
 		ewol::Widget* m_subWidget;
-		widget::Label* m_testName;
+		ewol::widget::Label* m_testName;
 		int32_t m_idWidget;
 	public:
 		// Constructeur
@@ -31,8 +31,8 @@ class MainWindows : public ewol::Windows {
 		const char * const getObjectType(void) {
 			return "MainWindows";
 		};
-		virtual void onReceiveMessage(const ewol::EMessage& _msg);
-		virtual void onObjectRemove(ewol::EObject* _removeObject);
+		virtual void onReceiveMessage(const ewol::object::Message& _msg);
+		virtual void onObjectRemove(ewol::Object* _removeObject);
 };
 
 #endif
