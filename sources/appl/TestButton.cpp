@@ -58,7 +58,7 @@ TestButton::TestButton(void) :
 			myButton->setToggleMode(true);
 			myButton->setSubWidget(      new ewol::widget::Label("Expend X <br/> (false)"));
 			myButton->setSubWidgetToggle(new ewol::widget::Label("Expend X <br/><b>(true)</b>"));
-			myButton->registerOnEvent(this, ewol::widget::Button::eventValue, l_eventChangeExpendX);
+			myButton->registerOnEvent(this, "value", l_eventChangeExpendX);
 			mySizerHori->subWidgetAdd(myButton);
 		}
 		myButton = new ewol::widget::Button();
@@ -66,7 +66,7 @@ TestButton::TestButton(void) :
 			myButton->setToggleMode(true);
 			myButton->setSubWidget(      new ewol::widget::Label("Expend Y <br/> (false)"));
 			myButton->setSubWidgetToggle(new ewol::widget::Label("Expend Y <br/><b>(true)</b>"));
-			myButton->registerOnEvent(this, ewol::widget::Button::eventValue, l_eventChangeExpendY);
+			myButton->registerOnEvent(this, "value", l_eventChangeExpendY);
 			mySizerHori->subWidgetAdd(myButton);
 		}
 		myButton = new ewol::widget::Button();
@@ -74,7 +74,7 @@ TestButton::TestButton(void) :
 			myButton->setToggleMode(true);
 			myButton->setSubWidget(      new ewol::widget::Label("Toggle<br/>(false)"));
 			myButton->setSubWidgetToggle(new ewol::widget::Label("Toggle<br/><b>(true)</b>"));
-			myButton->registerOnEvent(this, ewol::widget::Button::eventValue, l_eventChangeToggle);
+			myButton->registerOnEvent(this, "value", l_eventChangeToggle);
 			mySizerHori->subWidgetAdd(myButton);
 		}
 		myButton = new ewol::widget::Button();
@@ -82,7 +82,7 @@ TestButton::TestButton(void) :
 			myButton->setToggleMode(true);
 			myButton->setSubWidget(      new ewol::widget::Label("Text On toggle state<br/>(false)"));
 			myButton->setSubWidgetToggle(new ewol::widget::Label("Text On toggle state<br/><b>(true)</b>"));
-			myButton->registerOnEvent(this, ewol::widget::Button::eventValue, l_eventChangeTextToggle);
+			myButton->registerOnEvent(this, "value", l_eventChangeTextToggle);
 			mySizerHori->subWidgetAdd(myButton);
 		}
 	
@@ -98,7 +98,7 @@ TestButton::TestButton(void) :
 			myButton->setToggleMode(true);
 			myButton->setSubWidget(      new ewol::widget::Label("Fill X <br/> (false)"));
 			myButton->setSubWidgetToggle(new ewol::widget::Label("Fill X <br/> (true)"));
-			myButton->registerOnEvent(this, ewol::widget::Button::eventValue, l_eventChangeFillX);
+			myButton->registerOnEvent(this, "value", l_eventChangeFillX);
 			mySizerHori->subWidgetAdd(myButton);
 		}
 		myButton = new ewol::widget::Button();
@@ -106,13 +106,13 @@ TestButton::TestButton(void) :
 			myButton->setToggleMode(true);
 			myButton->setSubWidget(      new ewol::widget::Label("Fill Y <br/> (false)"));
 			myButton->setSubWidgetToggle(new ewol::widget::Label("Fill Y <br/> (true)"));
-			myButton->registerOnEvent(this, ewol::widget::Button::eventValue, l_eventChangeFillY);
+			myButton->registerOnEvent(this, "value", l_eventChangeFillY);
 			mySizerHori->subWidgetAdd(myButton);
 		}
 		myButton = new ewol::widget::Button();
 		if (NULL != myButton) {
 			myButton->setSubWidget(new ewol::widget::Label("Change Text<br/> and other ..."));
-			myButton->registerOnEvent(this, ewol::widget::Button::eventPressed, l_eventChangeText);
+			myButton->registerOnEvent(this, "value", l_eventChangeText);
 			mySizerHori->subWidgetAdd(myButton);
 		}
 	ewol::widget::Spacer* mySpacer = new ewol::widget::Spacer();
@@ -145,12 +145,7 @@ TestButton::TestButton(void) :
 			m_testWidget->setSubWidget(new ewol::widget::Label("My <font color=\"#FF0000\">Button</font> <br/> And Some under line<br/> plop <br/> and an other super long line ..."));
 			m_testWidget->setExpand(bvec2(false,false));
 			m_testWidget->setFill(bvec2(false,false));
-			m_testWidget->registerOnEvent(this, ewol::widget::Button::eventPressed);
-			m_testWidget->registerOnEvent(this, ewol::widget::Button::eventDown);
-			m_testWidget->registerOnEvent(this, ewol::widget::Button::eventUp);
-			m_testWidget->registerOnEvent(this, ewol::widget::Button::eventEnter);
-			m_testWidget->registerOnEvent(this, ewol::widget::Button::eventLeave);
-			m_testWidget->registerOnEvent(this, ewol::widget::Button::eventValue);
+			m_testWidget->registerOnEvent(this, "*");
 			mySizerHori->subWidgetAdd(m_testWidget);
 		}
 		

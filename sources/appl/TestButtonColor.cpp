@@ -52,7 +52,7 @@ TestButtonColor::TestButtonColor(void) :
 			myButton->setToggleMode(true);
 			myButton->setSubWidget(      new ewol::widget::Label("Expand X (false)"));
 			myButton->setSubWidgetToggle(new ewol::widget::Label("Expand X (true)"));
-			myButton->registerOnEvent(this, ewol::widget::Button::eventValue, l_eventChangeExpendX);
+			myButton->registerOnEvent(this, "value", l_eventChangeExpendX);
 			mySizerHori->subWidgetAdd(myButton);
 		}
 		myButton = new ewol::widget::Button();
@@ -60,7 +60,7 @@ TestButtonColor::TestButtonColor(void) :
 			myButton->setToggleMode(true);
 			myButton->setSubWidget(      new ewol::widget::Label("Expand Y (false)"));
 			myButton->setSubWidgetToggle(new ewol::widget::Label("Expand Y (true)"));
-			myButton->registerOnEvent(this, ewol::widget::Button::eventValue, l_eventChangeExpendY);
+			myButton->registerOnEvent(this, "value", l_eventChangeExpendY);
 			mySizerHori->subWidgetAdd(myButton);
 		}
 		myButton = new ewol::widget::Button();
@@ -68,7 +68,7 @@ TestButtonColor::TestButtonColor(void) :
 			myButton->setToggleMode(true);
 			myButton->setSubWidget(      new ewol::widget::Label("Fill X (false)"));
 			myButton->setSubWidgetToggle(new ewol::widget::Label("Fill X (true)"));
-			myButton->registerOnEvent(this, ewol::widget::Button::eventValue, l_eventChangeFillX);
+			myButton->registerOnEvent(this, "value", l_eventChangeFillX);
 			mySizerHori->subWidgetAdd(myButton);
 		}
 		myButton = new ewol::widget::Button();
@@ -76,7 +76,7 @@ TestButtonColor::TestButtonColor(void) :
 			myButton->setToggleMode(true);
 			myButton->setSubWidget(      new ewol::widget::Label("Fill Y (false)"));
 			myButton->setSubWidgetToggle(new ewol::widget::Label("Fill Y (true)"));
-			myButton->registerOnEvent(this, ewol::widget::Button::eventValue, l_eventChangeFillY);
+			myButton->registerOnEvent(this, "value", l_eventChangeFillY);
 			mySizerHori->subWidgetAdd(myButton);
 		}
 		
@@ -108,7 +108,7 @@ TestButtonColor::TestButtonColor(void) :
 		if (NULL != m_testWidget) {
 			m_testWidget->setExpand(bvec2(false,false));
 			m_testWidget->setFill(bvec2(false,false));
-			m_testWidget->registerOnEvent(this, ewolEventButtonColorChange);
+			m_testWidget->registerOnEvent(this, "*");
 			mySizerHori->subWidgetAdd(m_testWidget);
 		}
 		mySpacer = new ewol::widget::Spacer();

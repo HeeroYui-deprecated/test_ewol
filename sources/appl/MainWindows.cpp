@@ -65,19 +65,19 @@ MainWindows::MainWindows(void) :
 				myButton->setSubWidget(new ewol::widget::Label("default theme (cube)"));
 				myButton->setSubWidgetToggle(new ewol::widget::Label("rounded theme"));
 				myButton->setToggleMode(true);
-				myButton->registerOnEvent(this, ewol::widget::Button::eventValue, l_eventChangeTheme);
+				myButton->registerOnEvent(this, "value", l_eventChangeTheme);
 				mySizerHori->subWidgetAdd(myButton);
 			}
 			myButton = new ewol::widget::Button();
 			if (NULL != myButton) {
 				myButton->setSubWidget(new ewol::widget::Label("Previous Widget test"));
-				myButton->registerOnEvent(this, ewol::widget::Button::eventPressed, l_eventChangeWidgetPrevious);
+				myButton->registerOnEvent(this, "value", l_eventChangeWidgetPrevious);
 				mySizerHori->subWidgetAdd(myButton);
 			}
 			myButton = new ewol::widget::Button();
 			if (NULL != myButton) {
 				myButton->setSubWidget(new ewol::widget::Label("Next Widget test"));
-				myButton->registerOnEvent(this, ewol::widget::Button::eventPressed, l_eventChangeWidgetNext);
+				myButton->registerOnEvent(this, "value", l_eventChangeWidgetNext);
 				mySizerHori->subWidgetAdd(myButton);
 			}
 			m_testName = new ewol::widget::Label("none");
