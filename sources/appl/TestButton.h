@@ -23,9 +23,6 @@ class TestButton : public ewol::widget::Sizer {
 		TestButton(void);
 		virtual ~TestButton(void);
 	public: // Derived function
-		virtual const char * const getObjectType(void) {
-			return "TestButton";
-		};
 		virtual void onReceiveMessage(const ewol::object::Message& _msg);
 		virtual void onObjectRemove(ewol::Object* _removeObject);
 };

@@ -18,7 +18,8 @@ def create(target):
 		'appl/TestButton.cpp',
 		'appl/TestImage.cpp',
 		'appl/TestButtonColor.cpp',
-		'appl/TestLabel.cpp'])
+		'appl/TestLabel.cpp',
+		'appl/TestDistanceField.cpp'])
 	# 'appl/TestScene.cpp'
 	
 	myModule.add_module_depend(['ewol'])

@@ -28,7 +28,8 @@
 #include <appl/TestButtonColor.h>
 #include <appl/TestLabel.h>
 #include <appl/TestImage.h>
-//#include <appl/TestScene.h>
+#include <appl/TestDistanceField.h>
+#include <etk/os/FSNode.h>
 
 
 static const char * l_eventChangeTheme           = "event-change-theme";
@@ -135,22 +136,21 @@ void MainWindows::onReceiveMessage(const ewol::object::Message& _msg) {
 		default:
 			m_idWidget = 0;
 		case 0:
-			m_subWidget = (ewol::Widget*)new ewol::widget::Label("Test software for EWOL");
-			if (NULL != m_subWidget) {
-				m_subWidget->setExpand(bvec2(true,true));
-				m_sizerVert->subWidgetAdd(m_subWidget);
-			}
-			if (m_testName!=NULL) {
-				m_testName->setLabel("Label");
-			};
-			break;
-		case 1:
 			m_subWidget = (ewol::Widget*)new TestButton();
 			if (NULL != m_subWidget) {
 				m_sizerVert->subWidgetAdd(m_subWidget);
 			}
 			if (m_testName!=NULL) {
 				m_testName->setLabel("TestButton");
+			};
+			break;
+		case 1:
+			m_subWidget = (ewol::Widget*)new TestDistanceField();
+			if (NULL != m_subWidget) {
+				m_sizerVert->subWidgetAdd(m_subWidget);
+			}
+			if (m_testName!=NULL) {
+				m_testName->setLabel("Test Distance Field");
 			};
 			break;
 		case 2:
@@ -178,6 +178,16 @@ void MainWindows::onReceiveMessage(const ewol::object::Message& _msg) {
 			}
 			if (m_testName!=NULL) {
 				m_testName->setLabel("TestImage");
+			};
+			break;
+		case 5:
+			m_subWidget = (ewol::Widget*)new ewol::widget::Label("Test software for EWOL");
+			if (NULL != m_subWidget) {
+				m_subWidget->setExpand(bvec2(true,true));
+				m_sizerVert->subWidgetAdd(m_subWidget);
+			}
+			if (m_testName!=NULL) {
+				m_testName->setLabel("Label");
 			};
 			break;
 		/*case 5:
