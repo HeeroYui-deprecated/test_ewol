@@ -25,6 +25,7 @@ class TestDistanceField : public ewol::Widget {
 		virtual void calculateMinMaxSize(void);
 		virtual void calculateSize(const vec2& _availlable);
 		virtual void onRegenerateDisplay(void);
+		virtual bool onEventInput(const ewol::event::Input& _event);
 		void clear(void);
 		void print(const ivec2& _size);
 	private:
@@ -44,13 +45,13 @@ class TestDistanceField : public ewol::Widget {
 		std::vector<etk::Color<float> > m_coordColor; //!< internal color of the different point
 	protected:
 		mat4 m_matrixApply;
-				/**
-				 * @brief set position for the next text writen
-				 * @param[in] _pos Position of the text (in 3D)
-				 */
-				void setPos(const vec3& _pos) {
-					m_position = _pos;
-				};
+		/**
+		 * @brief set position for the next text writen
+		 * @param[in] _pos Position of the text (in 3D)
+		 */
+		void setPos(const vec3& _pos) {
+			m_position = _pos;
+		};
 };
 
 #endif

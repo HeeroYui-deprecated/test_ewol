@@ -34,7 +34,8 @@ TestDistanceField::TestDistanceField(void){
 	
 	// get the shader resource :
 	m_GLPosition = 0;
-	m_GLprogram = ewol::resource::Program::keep("DATA:textured3D.prog");
+	//m_GLprogram = ewol::resource::Program::keep("DATA:textured3D.prog");
+	m_GLprogram = ewol::resource::Program::keep("DATA:fontDistanceField/font1.prog");
 	if (NULL != m_GLprogram) {
 		m_GLPosition = m_GLprogram->getAttribute("EW_coord3d");
 		m_GLColor    = m_GLprogram->getAttribute("EW_color");
@@ -44,6 +45,8 @@ TestDistanceField::TestDistanceField(void){
 	}
 	m_DFFont = ewol::resource::DistanceFieldFont::keep("FreeMono;DejaVuSansMono;FreeSerif");
 	clear();
+	setExpand(bvec2(true, true));
+	setFill(bvec2(true, true));
 	APPL_INFO("Create " __class__ " (end)");
 }
 
@@ -68,22 +71,23 @@ void TestDistanceField::calculateMinMaxSize(void) {
 
 
 void TestDistanceField::onDraw(void) {
-	
 	if (m_coord.size() <= 0) {
-		//EWOL_WARNING("Nothink to draw...");
+		APPL_WARNING("Nothink to draw...");
 		return;
 	}
 	if (m_DFFont == NULL) {
 		// this is a normale case ... the user can choice to have no image ...
+		APPL_ERROR("No FONT ...");
 		return;
 	}
 	if (m_GLprogram == NULL) {
-		EWOL_ERROR("No shader ...");
+		APPL_ERROR("No shader ...");
 		return;
 	}
 	// set Matrix : translation/positionMatrix
 	mat4 tmpMatrix = ewol::openGL::getMatrix()*m_matrixApply;
-	m_GLprogram->use(); 
+	
+	m_GLprogram->use();
 	m_GLprogram->uniformMatrix4fv(m_GLMatrix, 1, tmpMatrix.m_mat);
 	// TextureID
 	m_GLprogram->setTexture0(m_GLtexID, m_DFFont->getId());
@@ -104,8 +108,10 @@ void TestDistanceField::onRegenerateDisplay(void) {
 	if (false == needRedraw()) {
 		return;
 	}
-	setPos(vec3(200,200,0));
-	print(ivec2(256,256));
+	clear();
+	APPL_WARNING("Regenerate...");
+	setPos(vec3(-200,-500,0));
+	print(ivec2(2048,2048));
 }
 
 
@@ -117,6 +123,7 @@ void TestDistanceField::clear(void) {
 	// reset temporal variables :
 	m_position = vec3(0.0, 0.0, 0.0);
 	m_matrixApply.identity();
+	m_color = etk::Color<>(0xFFFFFFFF);
 }
 
 void TestDistanceField::print(const ivec2& _size) {
@@ -161,4 +168,13 @@ void TestDistanceField::print(const ivec2& _size) {
 	m_coordColor.push_back(m_color);
 }
 
+bool TestDistanceField::onEventInput(const ewol::event::Input& _event) {
+	
+	if (_event.getId() == 4) {
+		setZoom(getZoom() + 0.01f);
+	} else if (_event.getId() == 5) {
+		setZoom(getZoom() - 0.01f);
+	} 
+	return true;
+}
 
