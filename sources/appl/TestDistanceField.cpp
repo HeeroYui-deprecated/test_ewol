@@ -71,6 +71,8 @@ void TestDistanceField::calculateMinMaxSize(void) {
 
 
 void TestDistanceField::onDraw(void) {
+	//m_text1.draw();
+	m_text2.draw();
 	if (m_coord.size() <= 0) {
 		APPL_WARNING("Nothink to draw...");
 		return;
@@ -100,6 +102,7 @@ void TestDistanceField::onDraw(void) {
 	// Request the draw od the elements : 
 	ewol::openGL::drawArrays(GL_TRIANGLES, 0, m_coord.size());
 	m_GLprogram->unUse();
+	
 }
 
 
@@ -110,8 +113,17 @@ void TestDistanceField::onRegenerateDisplay(void) {
 	}
 	clear();
 	APPL_WARNING("Regenerate...");
-	setPos(vec3(-200,-500,0));
-	print(ivec2(2048,2048));
+	//setPos(vec3(-200,-500,0));
+	//print(ivec2(2048,2048));
+	/*
+	m_text1.reset();
+	m_text1.setPos(vec3(50,50,0));
+	m_text1.printDecorated("exemple Text 1");
+	*/
+	m_text2.reset();
+	m_text2.setPos(vec3(100,100,0));
+	m_text2.printDecorated("exemple Text 2");
+	
 }
 
 

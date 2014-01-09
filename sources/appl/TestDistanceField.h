@@ -11,11 +11,14 @@
 
 #include <appl/debug.h>
 #include <ewol/widget/Widget.h>
-#include <ewol/compositing/Compositing.h>
+#include <ewol/compositing/Text.h>
+#include <ewol/compositing/TextDF.h>
 #include <ewol/resource/Program.h>
 #include <ewol/resource/DistanceFieldFont.h>
 
 class TestDistanceField : public ewol::Widget {
+		ewol::compositing::Text   m_text1;
+		ewol::compositing::TextDF m_text2;
 	public:
 		// Constructeur
 		TestDistanceField(void);
