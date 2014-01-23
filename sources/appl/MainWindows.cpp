@@ -72,13 +72,13 @@ MainWindows::MainWindows(void) :
 			myButton = new ewol::widget::Button();
 			if (NULL != myButton) {
 				myButton->setSubWidget(new ewol::widget::Label("Previous Widget test"));
-				myButton->registerOnEvent(this, "value", l_eventChangeWidgetPrevious);
+				myButton->registerOnEvent(this, "pressed", l_eventChangeWidgetPrevious);
 				mySizerHori->subWidgetAdd(myButton);
 			}
 			myButton = new ewol::widget::Button();
 			if (NULL != myButton) {
 				myButton->setSubWidget(new ewol::widget::Label("Next Widget test"));
-				myButton->registerOnEvent(this, "value", l_eventChangeWidgetNext);
+				myButton->registerOnEvent(this, "pressed", l_eventChangeWidgetNext);
 				mySizerHori->subWidgetAdd(myButton);
 			}
 			m_testName = new ewol::widget::Label("none");
@@ -130,7 +130,7 @@ void MainWindows::onReceiveMessage(const ewol::object::Message& _msg) {
 	}
 	// special init forcing ...
 	if(_msg.getCaller() == NULL) {
-		m_idWidget = 1;
+		m_idWidget = 0;
 	}
 	switch(m_idWidget) {
 		default:

@@ -112,7 +112,7 @@ TestButton::TestButton(void) :
 		myButton = new ewol::widget::Button();
 		if (NULL != myButton) {
 			myButton->setSubWidget(new ewol::widget::Label("Change Text<br/> and other ..."));
-			myButton->registerOnEvent(this, "value", l_eventChangeText);
+			myButton->registerOnEvent(this, "pressed", l_eventChangeText);
 			mySizerHori->subWidgetAdd(myButton);
 		}
 	ewol::widget::Spacer* mySpacer = new ewol::widget::Spacer();
@@ -249,8 +249,7 @@ void TestButton::onReceiveMessage(const ewol::object::Message& _msg) {
 	} else if (_msg.getMessage() == l_eventChangeText) {
 		if (NULL!=m_testWidget) {
 			static int32_t countTextID = 1;
-			switch (countTextID)
-			{
+			switch (countTextID) {
 				case 0:
 					m_testWidget->setSubWidget(new ewol::widget::Label("simple Text"));
 					break;
@@ -286,7 +285,7 @@ void TestButton::onReceiveMessage(const ewol::object::Message& _msg) {
 					    new ewol::widget::Composer(ewol::widget::Composer::String,
 					        "<composer>\n"
 					        "	<label>ploppp</label>\n"
-					        "</composer\n"));
+					        "</composer>\n"));
 					break;
 				case 11:
 					m_testWidget->setSubWidget(
@@ -294,11 +293,11 @@ void TestButton::onReceiveMessage(const ewol::object::Message& _msg) {
 					        "<composer>\n"
 					        "	<sizer mode=\"vert\" addmode=\"invert\">\n"
 					        "		<label>ploppp</label>\n"
-					        "		<label expand=\"true,true\"><![CDATA[<center>** ** * *<br/>** * * * *</center>]]></label>\n"
+					        "		<label expand=\"true,true\"><center>** ** * *<br/>** * * * *</center></label>\n"
 					        "	</sizer>\n"
 					        "	\n"
 					        "	\n"
-					        "</composer\n"));
+					        "</composer>\n"));
 					break;
 				default:
 					m_testWidget->setSubWidget(new ewol::widget::Label("My <font color=\"#FF0000\">Button</font> <br/> And Some under line<br/> plop <br/> and an other super long line ..."));

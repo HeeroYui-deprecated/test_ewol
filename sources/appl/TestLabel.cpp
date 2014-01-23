@@ -92,7 +92,7 @@ TestLabel::TestLabel(void) :
 		myButton = new ewol::widget::Button();
 		if (NULL != myButton) {
 			myButton->setSubWidget(new ewol::widget::Label("Next Label"));
-			myButton->registerOnEvent(this, "value", l_eventChangeLabel);
+			myButton->registerOnEvent(this, "pressed", l_eventChangeLabel);
 			mySizerHori->subWidgetAdd(myButton);
 		}
 		
