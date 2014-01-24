@@ -25,6 +25,7 @@
 #include <ewol/widget/Manager.h>
 #include <ewol/context/Context.h>
 #include <appl/TestButton.h>
+#include <appl/TestCheckBox.h>
 #include <appl/TestButtonColor.h>
 #include <appl/TestLabel.h>
 #include <appl/TestImage.h>
@@ -133,10 +134,8 @@ void MainWindows::onReceiveMessage(const ewol::object::Message& _msg) {
 		m_idWidget = 0;
 	}
 	switch(m_idWidget) {
-		default:
-			m_idWidget = 0;
 		case 0:
-			m_subWidget = (ewol::Widget*)new TestButton();
+			m_subWidget = (ewol::Widget*)new appl::TestButton();
 			if (NULL != m_subWidget) {
 				m_sizerVert->subWidgetAdd(m_subWidget);
 			}
@@ -181,6 +180,15 @@ void MainWindows::onReceiveMessage(const ewol::object::Message& _msg) {
 			};
 			break;
 		case 5:
+			m_subWidget = (ewol::Widget*)new appl::TestCheckBox();
+			if (NULL != m_subWidget) {
+				m_sizerVert->subWidgetAdd(m_subWidget);
+			}
+			if (m_testName!=NULL) {
+				m_testName->setLabel("TestButton");
+			};
+			break;
+		default:
 			m_subWidget = (ewol::Widget*)new ewol::widget::Label("Test software for EWOL");
 			if (NULL != m_subWidget) {
 				m_subWidget->setExpand(bvec2(true,true));
@@ -189,6 +197,7 @@ void MainWindows::onReceiveMessage(const ewol::object::Message& _msg) {
 			if (m_testName!=NULL) {
 				m_testName->setLabel("Label");
 			};
+			m_idWidget = 0;
 			break;
 		/*case 5:
 			m_subWidget = (ewol::Widget*)new TestScene();

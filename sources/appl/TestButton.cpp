@@ -39,144 +39,78 @@ static const char * l_eventChangeImageToggle = "event-change-image-toggle";
 #undef __class__
 #define __class__	"TestButton"
 
-TestButton::TestButton(void) :
-  ewol::widget::Sizer(ewol::widget::Sizer::modeVert),
+appl::TestButton::TestButton(void) :
   m_testWidget(NULL) {
 	APPL_INFO("Create " __class__ " (start)");
-	ewol::widget::Sizer* mySizerVert2 = NULL;
-	ewol::widget::Sizer* mySizerHori = NULL;
-	ewol::widget::Button*    myButton = NULL;
 	
-	mySizerHori = new ewol::widget::Sizer(ewol::widget::Sizer::modeHori);
-	if (NULL == mySizerHori) {
-		APPL_DEBUG("Allocation error mySizerHori");
-		return;
-	}
-	subWidgetAdd(mySizerHori);
-		myButton = new ewol::widget::Button();
-		if (NULL != myButton) {
-			myButton->setToggleMode(true);
-			myButton->setSubWidget(      new ewol::widget::Label("Expend X <br/> (false)"));
-			myButton->setSubWidgetToggle(new ewol::widget::Label("Expend X <br/><b>(true)</b>"));
-			myButton->registerOnEvent(this, "value", l_eventChangeExpendX);
-			mySizerHori->subWidgetAdd(myButton);
-		}
-		myButton = new ewol::widget::Button();
-		if (NULL != myButton) {
-			myButton->setToggleMode(true);
-			myButton->setSubWidget(      new ewol::widget::Label("Expend Y <br/> (false)"));
-			myButton->setSubWidgetToggle(new ewol::widget::Label("Expend Y <br/><b>(true)</b>"));
-			myButton->registerOnEvent(this, "value", l_eventChangeExpendY);
-			mySizerHori->subWidgetAdd(myButton);
-		}
-		myButton = new ewol::widget::Button();
-		if (NULL != myButton) {
-			myButton->setToggleMode(true);
-			myButton->setSubWidget(      new ewol::widget::Label("Toggle<br/>(false)"));
-			myButton->setSubWidgetToggle(new ewol::widget::Label("Toggle<br/><b>(true)</b>"));
-			myButton->registerOnEvent(this, "value", l_eventChangeToggle);
-			mySizerHori->subWidgetAdd(myButton);
-		}
-		myButton = new ewol::widget::Button();
-		if (NULL != myButton) {
-			myButton->setToggleMode(true);
-			myButton->setSubWidget(      new ewol::widget::Label("Text On toggle state<br/>(false)"));
-			myButton->setSubWidgetToggle(new ewol::widget::Label("Text On toggle state<br/><b>(true)</b>"));
-			myButton->registerOnEvent(this, "value", l_eventChangeTextToggle);
-			mySizerHori->subWidgetAdd(myButton);
-		}
-	
-	mySizerHori = new ewol::widget::Sizer(ewol::widget::Sizer::modeHori);
-	if (NULL == mySizerHori) {
-		APPL_DEBUG("Allocation error mySizerHori");
-		return;
-	}
-	subWidgetAdd(mySizerHori);
-		
-		myButton = new ewol::widget::Button();
-		if (NULL != myButton) {
-			myButton->setToggleMode(true);
-			myButton->setSubWidget(      new ewol::widget::Label("Fill X <br/> (false)"));
-			myButton->setSubWidgetToggle(new ewol::widget::Label("Fill X <br/> (true)"));
-			myButton->registerOnEvent(this, "value", l_eventChangeFillX);
-			mySizerHori->subWidgetAdd(myButton);
-		}
-		myButton = new ewol::widget::Button();
-		if (NULL != myButton) {
-			myButton->setToggleMode(true);
-			myButton->setSubWidget(      new ewol::widget::Label("Fill Y <br/> (false)"));
-			myButton->setSubWidgetToggle(new ewol::widget::Label("Fill Y <br/> (true)"));
-			myButton->registerOnEvent(this, "value", l_eventChangeFillY);
-			mySizerHori->subWidgetAdd(myButton);
-		}
-		myButton = new ewol::widget::Button();
-		if (NULL != myButton) {
-			myButton->setSubWidget(new ewol::widget::Label("Change Text<br/> and other ..."));
-			myButton->registerOnEvent(this, "pressed", l_eventChangeText);
-			mySizerHori->subWidgetAdd(myButton);
-		}
-	ewol::widget::Spacer* mySpacer = new ewol::widget::Spacer();
-	if (NULL != mySpacer) {
-		mySpacer->setExpand(bvec2(false,false));
-		mySpacer->setFill(bvec2(true,false));
-		mySpacer->setMinSize(vec2(10,10));
-		mySpacer->setColor(0xFF000080);
-		subWidgetAdd(mySpacer);
-	}
-	
-	mySizerHori = new ewol::widget::Sizer(ewol::widget::Sizer::modeHori);
-	if (NULL == mySizerHori) {
-		APPL_DEBUG("Allocation error mySizerHori");
-		return;
-	}
-	subWidgetAdd(mySizerHori);
-	
-		mySpacer = new ewol::widget::Spacer();
-		if (NULL != mySpacer) {
-			mySpacer->setExpand(bvec2(false,false));
-			mySpacer->setFill(bvec2(false,true));
-			mySpacer->setMinSize(vec2(10,10));
-			mySpacer->setColor(0x00FF0080);
-			mySizerHori->subWidgetAdd(mySpacer);
-		}
-		
-		m_testWidget = new ewol::widget::Button();
-		if (NULL != m_testWidget) {
-			m_testWidget->setSubWidget(new ewol::widget::Label("My <font color=\"#FF0000\">Button</font> <br/> And Some under line<br/> plop <br/> and an other super long line ..."));
-			m_testWidget->setExpand(bvec2(false,false));
-			m_testWidget->setFill(bvec2(false,false));
-			m_testWidget->registerOnEvent(this, "*");
-			mySizerHori->subWidgetAdd(m_testWidget);
-		}
-		
-		mySpacer = new ewol::widget::Spacer();
-		if (NULL != mySpacer) {
-			mySpacer->setExpand(bvec2(false,false));
-			mySpacer->setFill(bvec2(false,true));
-			mySpacer->setMinSize(vec2(10,10));
-			mySpacer->setColor(0x0000FF80);
-			mySizerHori->subWidgetAdd(mySpacer);
-		}
-		
-	mySpacer = new ewol::widget::Spacer();
-	if (NULL != mySpacer) {
-		mySpacer->setExpand(bvec2(false,false));
-		mySpacer->setFill(bvec2(true,false));
-		mySpacer->setMinSize(vec2(10,10));
-		mySpacer->setColor(0x00FFFF80);
-		subWidgetAdd(mySpacer);
+	std::string myDescription = std::string("")
+	      + "<sizer mode='vert' fill='true' expand='true'>\n"
+	      + "	<sizer mode='hori'>\n"
+	      + "		<button name='[TEST]Button:Expand-x' toggle='true'>\n"
+	      + "			<label>Expend X <br/> (false)</label>\n"
+	      + "			<label>Expend X <br/> <b>(true)</b></label>\n"
+	      + "		</button>\n"
+	      + "		<button name='[TEST]Button:Expand-y' toggle='true'>\n"
+	      + "			<label>Expend Y <br/> (false)</label>\n"
+	      + "			<label>Expend Y <br/> <b>(true)</b></label>\n"
+	      + "		</button>\n"
+	      + "		<button name='[TEST]Button:Toggle' toggle='true'>\n"
+	      + "			<label>Toggle <br/> (false)</label>\n"
+	      + "			<label>Toggle <br/> <b>(true)</b></label>\n"
+	      + "		</button>\n"
+	      + "		<button name='[TEST]Button:TextToggle' toggle='true'>\n"
+	      + "			<label>Text On toggle state <br/> (false)</label>\n"
+	      + "			<label>Text On toggle state <br/> <b>(true)</b></label>\n"
+	      + "		</button>\n"
+	      + "	</sizer>\n"
+	      + "	<sizer mode='hori'>\n"
+	      + "		<button name='[TEST]Button:Fill-x' toggle='true'>\n"
+	      + "			<label>Fill X <br/> (false)</label>\n"
+	      + "			<label>Fill X <br/> <b>(true)</b></label>\n"
+	      + "		</button>\n"
+	      + "		<button name='[TEST]Button:Fill-y' toggle='true'>\n"
+	      + "			<label>Fill Y <br/> (false)</label>\n"
+	      + "			<label>Fill Y <br/> <b>(true)</b></label>\n"
+	      + "		</button>\n"
+	      + "		<button name='[TEST]Button:ChangeText'>\n"
+	      + "			<label>Change Text<br/> and other ...</label>\n"
+	      + "		</button>\n"
+	      + "	</sizer>\n"
+	      + "	<sizer mode='hori'>\n"
+	      + "		<spacer expand='false,false' fill='true,false' min-size='10,10px' color='#F008'/>\n"
+	      + "		<sizer mode='vert'>\n"
+	      + "			<spacer expand='false,false' fill='false,true' min-size='10,10px' color='#FF08'/>\n"
+	      + "			<button name='[TEST]Button:TO-TEST' expand='false,false' fill='false,false' >\n"
+	      + "				<label>My <font color='#FF0000'>Button</font> <br/> And Some under line<br/> plop <br/> and an other super long line ...</label>\n"
+	      + "			</button>\n"
+	      + "			<spacer expand='false,false' fill='false,true' min-size='10,10px' color='#0FF8'/>\n"
+	      + "		</sizer>\n"
+	      + "		<spacer expand='false,false' fill='true,false' min-size='10,10px' color='#0F08'/>\n"
+	      + "	</sizer>\n"
+	      + "</sizer>";
+	loadFromString(myDescription);
+	setExpand(bvec2(true,true));
+	setFill(bvec2(true,true));
+	registerOnEventNameWidget("[TEST]Button:Expand-x", "value", l_eventChangeExpendX);
+	registerOnEventNameWidget("[TEST]Button:Expand-y", "value", l_eventChangeExpendY);
+	registerOnEventNameWidget("[TEST]Button:Toggle", "value", l_eventChangeToggle);
+	registerOnEventNameWidget("[TEST]Button:TextToggle", "value", l_eventChangeTextToggle);
+	registerOnEventNameWidget("[TEST]Button:Fill-x", "value", l_eventChangeFillX);
+	registerOnEventNameWidget("[TEST]Button:Fill-y", "value", l_eventChangeFillY);
+	registerOnEventNameWidget("[TEST]Button:ChangeText", "pressed", l_eventChangeText);
+	// show all event from a button :
+	registerOnEventNameWidget("[TEST]Button:TO-TEST", "*");
+	m_testWidget = dynamic_cast<ewol::widget::Button*>(getWidgetNamed("[TEST]Button:TO-TEST"));
+	if (m_testWidget == NULL) {
+		APPL_CRITICAL("Can not get the pointer of the widget button pointer");
 	}
 	APPL_INFO("Create " __class__ " (end)");
 }
 
 
-TestButton::~TestButton(void) {
-	APPL_INFO("Remove " __class__ " ...");
-}
 
-
-void TestButton::onReceiveMessage(const ewol::object::Message& _msg) {
-	ewol::widget::Sizer::onReceiveMessage(_msg);
+void appl::TestButton::onReceiveMessage(const ewol::object::Message& _msg) {
+	ewol::widget::Composer::onReceiveMessage(_msg);
 	APPL_VERBOSE("Receive Event from the main windows ... : " << _msg );
 	if (m_testWidget == _msg.getCaller()) {
 		APPL_WARNING("Receive Event from tested Button ... : " << _msg );
@@ -229,23 +163,6 @@ void TestButton::onReceiveMessage(const ewol::object::Message& _msg) {
 				m_testWidget->setSubWidgetToggle(NULL);
 			}
 		}
-	} else if (_msg.getMessage() == l_eventChangeImage) {
-		if (NULL!=m_testWidget) {
-			if (_msg.getData()=="true") {
-				//m_testWidget->SetImage("THEME:GUI:icon.png");
-				//m_testWidget->SetImageSize(50);
-			} else {
-				//m_testWidget->SetImage("");
-			}
-		}
-	} else if (_msg.getMessage() == l_eventChangeImageToggle) {
-		if (NULL!=m_testWidget) {
-			if (_msg.getData()=="true") {
-				//m_testWidget->SetImageToggle("THEME:GUI:icon.png");
-			} else {
-				//m_testWidget->SetImageToggle("");
-			}
-		}
 	} else if (_msg.getMessage() == l_eventChangeText) {
 		if (NULL!=m_testWidget) {
 			static int32_t countTextID = 1;
@@ -283,21 +200,15 @@ void TestButton::onReceiveMessage(const ewol::object::Message& _msg) {
 				case 10:
 					m_testWidget->setSubWidget(
 					    new ewol::widget::Composer(ewol::widget::Composer::String,
-					        "<composer>\n"
-					        "	<label>ploppp</label>\n"
-					        "</composer>\n"));
+					        "<label>ploppp</label>\n"));
 					break;
 				case 11:
 					m_testWidget->setSubWidget(
 					    new ewol::widget::Composer(ewol::widget::Composer::String,
-					        "<composer>\n"
 					        "	<sizer mode=\"vert\" addmode=\"invert\">\n"
 					        "		<label>ploppp</label>\n"
 					        "		<label expand=\"true,true\"><center>** ** * *<br/>** * * * *</center></label>\n"
-					        "	</sizer>\n"
-					        "	\n"
-					        "	\n"
-					        "</composer>\n"));
+					        "	</sizer>\n"));
 					break;
 				default:
 					m_testWidget->setSubWidget(new ewol::widget::Label("My <font color=\"#FF0000\">Button</font> <br/> And Some under line<br/> plop <br/> and an other super long line ..."));
@@ -316,8 +227,8 @@ void TestButton::onReceiveMessage(const ewol::object::Message& _msg) {
 	return;
 }
 
-void TestButton::onObjectRemove(ewol::Object* _removeObject) {
-	ewol::widget::Sizer::onObjectRemove(_removeObject);
+void appl::TestButton::onObjectRemove(ewol::Object* _removeObject) {
+	ewol::widget::Composer::onObjectRemove(_removeObject);
 	if (m_testWidget == _removeObject) {
 		m_testWidget = NULL;
 	}
