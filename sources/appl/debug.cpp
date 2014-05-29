@@ -3,8 +3,13 @@
  * 
  * @copyright 2010, Edouard DUPIN, all right reserved
  * 
- * @license BSD v3 (see license file)
+ * @license GPL v3 (see license file)
  */
- 
-//                     *********** << needed to have a goo display (do not exeed)
-const char * applLog = "human    ";
+
+
+#include <appl/debug.h>
+
+int32_t appl::getLogId() {
+	static int32_t g_val = etk::log::registerInstance("test_ewol");
+	return g_val;
+}

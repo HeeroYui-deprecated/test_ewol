@@ -21,13 +21,13 @@ class TestDistanceField : public ewol::Widget {
 		ewol::compositing::TextDF m_text2;
 	public:
 		// Constructeur
-		TestDistanceField(void);
-		virtual ~TestDistanceField(void);
+		TestDistanceField();
+		virtual ~TestDistanceField();
 	public: // Derived function
-		virtual void onDraw(void);
-		virtual void calculateMinMaxSize(void);
+		virtual void onDraw();
+		virtual void calculateMinMaxSize();
 		virtual void calculateSize(const vec2& _availlable);
-		virtual void onRegenerateDisplay(void);
+		virtual void onRegenerateDisplay();
 		virtual bool onEventInput(const ewol::event::Input& _event);
 };
 

@@ -18,17 +18,14 @@
 
 class TestImage : public ewol::widget::Sizer {
 	private:
-		ewol::widget::Image* m_testWidget;
+		ewol::object::Shared<ewol::widget::Image> m_testWidget;
 	public:
 		// Constructeur
-		TestImage(void);
-		virtual ~TestImage(void);
+		TestImage();
+		virtual ~TestImage();
 	public: // Derived function
-		virtual const char * const getObjectType(void) {
-			return "appl::TestImage";
-		};
 		virtual void onReceiveMessage(const ewol::object::Message& _msg);
-		virtual void onObjectRemove(ewol::Object* _removeObject);
+		virtual void onObjectRemove(const ewol::object::Shared<ewol::Object>& _object);
 };
 
 #endif

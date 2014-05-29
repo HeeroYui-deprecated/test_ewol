@@ -41,53 +41,54 @@ static const char * l_eventChangeWidgetPrevious  = "event-change-widget-test-pre
 #undef __class__
 #define __class__ "MainWindows"
 
-MainWindows::MainWindows(void) :
+MainWindows::MainWindows() :
   m_idWidget(0),
-  m_subWidget(NULL),
-  m_testName(NULL) {
+  m_subWidget(nullptr),
+  m_testName(nullptr) {
 	APPL_DEBUG("CREATE WINDOWS ... ");
-	ewol::widget::Sizer* mySizerHori = NULL;
-	ewol::widget::Button* myButton = NULL;
+	addObjectType("appl::MainWindows");
+	ewol::object::Shared<ewol::widget::Sizer> mySizerHori = nullptr;
+	ewol::object::Shared<ewol::widget::Button> myButton = nullptr;
 	
-	m_sizerVert = new ewol::widget::Sizer(ewol::widget::Sizer::modeVert);
-	if (NULL == m_sizerVert) {
+	m_sizerVert = ewol::object::makeShared(new ewol::widget::Sizer(ewol::widget::Sizer::modeVert));
+	if (nullptr == m_sizerVert) {
 		APPL_DEBUG("Allocation error mySizerVert");
 		return;
 	}
 	setSubWidget(m_sizerVert);
 		
-		mySizerHori = new ewol::widget::Sizer(ewol::widget::Sizer::modeHori);
-		if (NULL == mySizerHori) {
+		mySizerHori = ewol::object::makeShared(new ewol::widget::Sizer(ewol::widget::Sizer::modeHori));
+		if (nullptr == mySizerHori) {
 			APPL_DEBUG("Allocation error mySizerHori");
 			return;
 		}
 		m_sizerVert->subWidgetAdd(mySizerHori);
-			myButton = new ewol::widget::Button();
-			if (NULL != myButton) {
-				myButton->setSubWidget(new ewol::widget::Label("default theme (cube)"));
-				myButton->setSubWidgetToggle(new ewol::widget::Label("rounded theme"));
+			myButton = ewol::object::makeShared(new ewol::widget::Button());
+			if (nullptr != myButton) {
+				myButton->setSubWidget(ewol::object::makeShared(new ewol::widget::Label("default theme (cube)")));
+				myButton->setSubWidgetToggle(ewol::object::makeShared(new ewol::widget::Label("rounded theme")));
 				myButton->setToggleMode(true);
 				myButton->registerOnEvent(this, "value", l_eventChangeTheme);
 				mySizerHori->subWidgetAdd(myButton);
 			}
-			myButton = new ewol::widget::Button();
-			if (NULL != myButton) {
-				myButton->setSubWidget(new ewol::widget::Label("Previous Widget test"));
+			myButton = ewol::object::makeShared(new ewol::widget::Button());
+			if (nullptr != myButton) {
+				myButton->setSubWidget(ewol::object::makeShared(new ewol::widget::Label("Previous Widget test")));
 				myButton->registerOnEvent(this, "pressed", l_eventChangeWidgetPrevious);
 				mySizerHori->subWidgetAdd(myButton);
 			}
-			myButton = new ewol::widget::Button();
-			if (NULL != myButton) {
-				myButton->setSubWidget(new ewol::widget::Label("Next Widget test"));
+			myButton = ewol::object::makeShared(new ewol::widget::Button());
+			if (nullptr != myButton) {
+				myButton->setSubWidget(ewol::object::makeShared(new ewol::widget::Label("Next Widget test")));
 				myButton->registerOnEvent(this, "pressed", l_eventChangeWidgetNext);
 				mySizerHori->subWidgetAdd(myButton);
 			}
 			m_testName = new ewol::widget::Label("none");
-			if (NULL != m_testName) {
+			if (nullptr != m_testName) {
 				mySizerHori->subWidgetAdd(m_testName);
 			}
-		ewol::widget::Spacer* mySpacer = new ewol::widget::Spacer();
-		if (NULL != mySpacer) {
+		ewol::object::Shared<ewol::widget::Spacer> mySpacer = ewol::object::makeShared(new ewol::widget::Spacer());
+		if (nullptr != mySpacer) {
 			mySpacer->setExpand(bvec2(false,false));
 			mySpacer->setFill(bvec2(true,false));
 			mySpacer->setMinSize(vec2(3,3));
@@ -95,17 +96,17 @@ MainWindows::MainWindows(void) :
 			m_sizerVert->subWidgetAdd(mySpacer);
 		}
 		// add the basic widget with a strange methode ...
-		ewol::object::Message msg(NULL, NULL, "");
+		ewol::object::Message msg(nullptr, NULL, "");
 		onReceiveMessage(msg);
 }
 
-MainWindows::~MainWindows(void) {
+MainWindows::~MainWindows() {
 	
 }
 
 void MainWindows::onReceiveMessage(const ewol::object::Message& _msg) {
-	if(    _msg.getCaller() != this
-	    && _msg.getCaller() != NULL) {
+	if(    _msg.getCaller() != ewol::object::Shared<ewol::Object>(this)
+	    && _msg.getCaller() != nullptr) {
 		ewol::widget::Windows::onReceiveMessage(_msg);
 	}
 	APPL_INFO("Receive Event from the main windows ... : " << _msg );
@@ -125,87 +126,87 @@ void MainWindows::onReceiveMessage(const ewol::object::Message& _msg) {
 		m_idWidget++;
 	}
 	
-	if (m_subWidget != NULL) {
+	if (m_subWidget != nullptr) {
 		m_subWidget->removeObject();
 		// in theory it must be removed ...
-		m_subWidget = NULL;
+		m_subWidget.reset();
 	}
 	// special init forcing ...
-	if(_msg.getCaller() == NULL) {
+	if(_msg.getCaller() == nullptr) {
 		m_idWidget = 0;
 	}
 	switch(m_idWidget) {
 		case 0:
-			m_subWidget = (ewol::Widget*)new appl::TestButton();
-			if (NULL != m_subWidget) {
+			m_subWidget = ewol::object::makeShared(new appl::TestButton());
+			if (nullptr != m_subWidget) {
 				m_sizerVert->subWidgetAdd(m_subWidget);
 			}
-			if (m_testName!=NULL) {
+			if (m_testName!=nullptr) {
 				m_testName->setLabel("TestButton");
 			};
 			break;
 		case 1:
-			m_subWidget = (ewol::Widget*)new TestDistanceField();
-			if (NULL != m_subWidget) {
+			m_subWidget = ewol::object::makeShared(new TestDistanceField());
+			if (nullptr != m_subWidget) {
 				m_sizerVert->subWidgetAdd(m_subWidget);
 			}
-			if (m_testName!=NULL) {
+			if (m_testName!=nullptr) {
 				m_testName->setLabel("Test Distance Field");
 			};
 			break;
 		case 2:
-			m_subWidget = (ewol::Widget*)new TestButtonColor();
-			if (NULL != m_subWidget) {
+			m_subWidget = ewol::object::makeShared(new TestButtonColor());
+			if (nullptr != m_subWidget) {
 				m_sizerVert->subWidgetAdd(m_subWidget);
 			}
-			if (m_testName!=NULL) {
+			if (m_testName!=nullptr) {
 				m_testName->setLabel("TestButtonColor");
 			};
 			break;
 		case 3:
-			m_subWidget = (ewol::Widget*)new TestLabel();
-			if (NULL != m_subWidget) {
+			m_subWidget = ewol::object::makeShared(new TestLabel());
+			if (nullptr != m_subWidget) {
 				m_sizerVert->subWidgetAdd(m_subWidget);
 			}
-			if (m_testName!=NULL) {
+			if (m_testName!=nullptr) {
 				m_testName->setLabel("TestLabel");
 			};
 			break;
 		case 4:
-			m_subWidget = (ewol::Widget*)new TestImage();
-			if (NULL != m_subWidget) {
+			m_subWidget = ewol::object::makeShared(new TestImage());
+			if (nullptr != m_subWidget) {
 				m_sizerVert->subWidgetAdd(m_subWidget);
 			}
-			if (m_testName!=NULL) {
+			if (m_testName!=nullptr) {
 				m_testName->setLabel("TestImage");
 			};
 			break;
 		case 5:
-			m_subWidget = (ewol::Widget*)new appl::TestCheckBox();
-			if (NULL != m_subWidget) {
+			m_subWidget = ewol::object::makeShared(new appl::TestCheckBox());
+			if (nullptr != m_subWidget) {
 				m_sizerVert->subWidgetAdd(m_subWidget);
 			}
-			if (m_testName!=NULL) {
-				m_testName->setLabel("TestButton");
+			if (m_testName!=nullptr) {
+				m_testName->setLabel("TestCheckbox");
 			};
 			break;
 		default:
-			m_subWidget = (ewol::Widget*)new ewol::widget::Label("Test software for EWOL");
-			if (NULL != m_subWidget) {
+			m_subWidget = ewol::object::makeShared(new ewol::widget::Label("Test software for EWOL"));
+			if (nullptr != m_subWidget) {
 				m_subWidget->setExpand(bvec2(true,true));
 				m_sizerVert->subWidgetAdd(m_subWidget);
 			}
-			if (m_testName!=NULL) {
+			if (m_testName!=nullptr) {
 				m_testName->setLabel("Label");
 			};
-			m_idWidget = 0;
+			m_idWidget = -1;
 			break;
 		/*case 5:
-			m_subWidget = (ewol::Widget*)new TestScene();
-			if (NULL != m_subWidget) {
+			m_subWidget = ewol::object::makeShared(new TestScene());
+			if (nullptr != m_subWidget) {
 				m_sizerVert->subWidgetAdd(m_subWidget);
 			}
-			if (m_testName!=NULL) {
+			if (m_testName!=nullptr) {
 				m_testName->setLabel("TestScene");
 			};
 			break;
@@ -213,13 +214,13 @@ void MainWindows::onReceiveMessage(const ewol::object::Message& _msg) {
 	}
 }
 
-void MainWindows::onObjectRemove(ewol::Object* _removeObject) {
-	ewol::widget::Windows::onObjectRemove(_removeObject);
-	if (m_subWidget == _removeObject) {
-		m_subWidget = NULL;
-	} else if (m_sizerVert == _removeObject) {
-		m_sizerVert = NULL;
-	} else if (m_testName == _removeObject) {
-		m_testName = NULL;
+void MainWindows::onObjectRemove(const ewol::object::Shared<ewol::Object>& _object) {
+	ewol::widget::Windows::onObjectRemove(_object);
+	if (m_subWidget == _object) {
+		m_subWidget.reset();
+	} else if (m_sizerVert == _object) {
+		m_sizerVert.reset();
+	} else if (m_testName == _object) {
+		m_testName.reset();
 	}
 }

@@ -35,68 +35,69 @@ static const char * l_eventChangeImage      = "event-change-image";
 #undef __class__
 #define __class__ "TestImage"
 
-TestImage::TestImage(void) :
+TestImage::TestImage() :
   ewol::widget::Sizer(ewol::widget::Sizer::modeVert),
-  m_testWidget(NULL) {
+  m_testWidget(nullptr) {
 	APPL_INFO("Create " __class__ " (start)");
-	ewol::widget::Sizer* mySizerVert2 = NULL;
-	ewol::widget::Sizer* mySizerHori = NULL;
-	ewol::widget::Button*    myButton = NULL;
+	addObjectType("appl::TestImage");
+	ewol::object::Shared<ewol::widget::Sizer> mySizerVert2;
+	ewol::object::Shared<ewol::widget::Sizer> mySizerHori;
+	ewol::object::Shared<ewol::widget::Button> myButton;
 	
-	mySizerHori = new ewol::widget::Sizer(ewol::widget::Sizer::modeHori);
-	if (NULL == mySizerHori) {
+	mySizerHori = ewol::object::makeShared(new ewol::widget::Sizer(ewol::widget::Sizer::modeHori));
+	if (nullptr == mySizerHori) {
 		APPL_DEBUG("Allocation error mySizerHori");
 		return;
 	}
 	subWidgetAdd(mySizerHori);
-		myButton = new ewol::widget::Button();
-		if (NULL != myButton) {
+		myButton = ewol::object::makeShared(new ewol::widget::Button());
+		if (nullptr != myButton) {
 			myButton->setToggleMode(true);
-			myButton->setSubWidget(      new ewol::widget::Label("Expend X <br/> (false)"));
-			myButton->setSubWidgetToggle(new ewol::widget::Label("Expend X <br/><b>(true)</b>"));
+			myButton->setSubWidget(      ewol::object::makeShared(new ewol::widget::Label("Expend X <br/> (false)")));
+			myButton->setSubWidgetToggle(ewol::object::makeShared(new ewol::widget::Label("Expend X <br/><b>(true)</b>")));
 			myButton->registerOnEvent(this, "value", l_eventChangeExpendX);
 			mySizerHori->subWidgetAdd(myButton);
 		}
-		myButton = new ewol::widget::Button();
-		if (NULL != myButton) {
+		myButton = ewol::object::makeShared(new ewol::widget::Button());
+		if (nullptr != myButton) {
 			myButton->setToggleMode(true);
-			myButton->setSubWidget(      new ewol::widget::Label("Expend Y <br/> (false)"));
-			myButton->setSubWidgetToggle(new ewol::widget::Label("Expend Y <br/><b>(true)</b>"));
+			myButton->setSubWidget(      ewol::object::makeShared(new ewol::widget::Label("Expend Y <br/> (false)")));
+			myButton->setSubWidgetToggle(ewol::object::makeShared(new ewol::widget::Label("Expend Y <br/><b>(true)</b>")));
 			myButton->registerOnEvent(this, "value", l_eventChangeExpendY);
 			mySizerHori->subWidgetAdd(myButton);
 		}
 	
-	mySizerHori = new ewol::widget::Sizer(ewol::widget::Sizer::modeHori);
-	if (NULL == mySizerHori) {
+	mySizerHori = ewol::object::makeShared(new ewol::widget::Sizer(ewol::widget::Sizer::modeHori));
+	if (nullptr == mySizerHori) {
 		APPL_DEBUG("Allocation error mySizerHori");
 		return;
 	}
 	subWidgetAdd(mySizerHori);
 		
-		myButton = new ewol::widget::Button();
-		if (NULL != myButton) {
+		myButton = ewol::object::makeShared(new ewol::widget::Button());
+		if (nullptr != myButton) {
 			myButton->setToggleMode(true);
-			myButton->setSubWidget(      new ewol::widget::Label("Fill X <br/> (false)"));
-			myButton->setSubWidgetToggle(new ewol::widget::Label("Fill X <br/> (true)"));
+			myButton->setSubWidget(      ewol::object::makeShared(new ewol::widget::Label("Fill X <br/> (false)")));
+			myButton->setSubWidgetToggle(ewol::object::makeShared(new ewol::widget::Label("Fill X <br/> (true)")));
 			myButton->registerOnEvent(this, "value", l_eventChangeFillX);
 			mySizerHori->subWidgetAdd(myButton);
 		}
-		myButton = new ewol::widget::Button();
-		if (NULL != myButton) {
+		myButton = ewol::object::makeShared(new ewol::widget::Button());
+		if (nullptr != myButton) {
 			myButton->setToggleMode(true);
-			myButton->setSubWidget(      new ewol::widget::Label("Fill Y <br/> (false)"));
-			myButton->setSubWidgetToggle(new ewol::widget::Label("Fill Y <br/> (true)"));
+			myButton->setSubWidget(      ewol::object::makeShared(new ewol::widget::Label("Fill Y <br/> (false)")));
+			myButton->setSubWidgetToggle(ewol::object::makeShared(new ewol::widget::Label("Fill Y <br/> (true)")));
 			myButton->registerOnEvent(this, "value", l_eventChangeFillY);
 			mySizerHori->subWidgetAdd(myButton);
 		}
-		myButton = new ewol::widget::Button();
-		if (NULL != myButton) {
-			myButton->setSubWidget(new ewol::widget::Label("Change Image"));
+		myButton = ewol::object::makeShared(new ewol::widget::Button());
+		if (nullptr != myButton) {
+			myButton->setSubWidget(ewol::object::makeShared(new ewol::widget::Label("Change Image")));
 			myButton->registerOnEvent(this, "value", l_eventChangeImage);
 			mySizerHori->subWidgetAdd(myButton);
 		}
-	ewol::widget::Spacer* mySpacer = new ewol::widget::Spacer();
-	if (NULL != mySpacer) {
+	ewol::object::Shared<ewol::widget::Spacer> mySpacer = ewol::object::makeShared(new ewol::widget::Spacer());
+	if (nullptr != mySpacer) {
 		mySpacer->setExpand(bvec2(false,false));
 		mySpacer->setFill(bvec2(true,false));
 		mySpacer->setMinSize(vec2(10,10));
@@ -104,15 +105,15 @@ TestImage::TestImage(void) :
 		subWidgetAdd(mySpacer);
 	}
 	
-	mySizerHori = new ewol::widget::Sizer(ewol::widget::Sizer::modeHori);
-	if (NULL == mySizerHori) {
+	mySizerHori = ewol::object::makeShared(new ewol::widget::Sizer(ewol::widget::Sizer::modeHori));
+	if (nullptr == mySizerHori) {
 		APPL_DEBUG("Allocation error mySizerHori");
 		return;
 	}
 	subWidgetAdd(mySizerHori);
 	
-		mySpacer = new ewol::widget::Spacer();
-		if (NULL != mySpacer) {
+		mySpacer = ewol::object::makeShared(new ewol::widget::Spacer());
+		if (nullptr != mySpacer) {
 			mySpacer->setExpand(bvec2(false,false));
 			mySpacer->setFill(bvec2(false,true));
 			mySpacer->setMinSize(vec2(10,10));
@@ -120,16 +121,16 @@ TestImage::TestImage(void) :
 			mySizerHori->subWidgetAdd(mySpacer);
 		}
 		
-		m_testWidget = new ewol::widget::Image("DATA:sphere.png");
-		if (NULL != m_testWidget) {
+		m_testWidget = ewol::object::makeShared(new ewol::widget::Image("DATA:sphere.png"));
+		if (nullptr != m_testWidget) {
 			m_testWidget->setExpand(bvec2(false,false));
 			m_testWidget->setFill(bvec2(false,false));
 			//m_testWidget->registerOnEvent(this, ewolEventButtonValue);
 			mySizerHori->subWidgetAdd(m_testWidget);
 		}
 		
-		mySpacer = new ewol::widget::Spacer();
-		if (NULL != mySpacer) {
+		mySpacer = ewol::object::makeShared(new ewol::widget::Spacer());
+		if (nullptr != mySpacer) {
 			mySpacer->setExpand(bvec2(false,false));
 			mySpacer->setFill(bvec2(false,true));
 			mySpacer->setMinSize(vec2(10,10));
@@ -137,8 +138,8 @@ TestImage::TestImage(void) :
 			mySizerHori->subWidgetAdd(mySpacer);
 		}
 		
-	mySpacer = new ewol::widget::Spacer();
-	if (NULL != mySpacer) {
+	mySpacer = ewol::object::makeShared(new ewol::widget::Spacer());
+	if (nullptr != mySpacer) {
 		mySpacer->setExpand(bvec2(false,false));
 		mySpacer->setFill(bvec2(true,false));
 		mySpacer->setMinSize(vec2(10,10));
@@ -149,7 +150,7 @@ TestImage::TestImage(void) :
 }
 
 
-TestImage::~TestImage(void) {
+TestImage::~TestImage() {
 	APPL_INFO("Remove " __class__ " ...");
 }
 
@@ -161,7 +162,7 @@ void TestImage::onReceiveMessage(const ewol::object::Message& _msg) {
 		APPL_WARNING("Receive Event from tested Button ... : " << _msg);
 	}
 	if (_msg.getMessage() == l_eventChangeExpendX) {
-		if (NULL!=m_testWidget) {
+		if (nullptr!=m_testWidget) {
 			if (_msg.getData()=="true") {
 				m_testWidget->setExpand(bvec2(true,m_testWidget->getExpand().y()));
 			} else {
@@ -169,7 +170,7 @@ void TestImage::onReceiveMessage(const ewol::object::Message& _msg) {
 			}
 		}
 	} else if (_msg.getMessage() == l_eventChangeExpendY) {
-		if (NULL!=m_testWidget) {
+		if (nullptr!=m_testWidget) {
 			if (_msg.getData()=="true") {
 				m_testWidget->setExpand(bvec2(m_testWidget->getExpand().x(),true));
 			} else {
@@ -177,7 +178,7 @@ void TestImage::onReceiveMessage(const ewol::object::Message& _msg) {
 			}
 		}
 	} else if (_msg.getMessage() == l_eventChangeFillX) {
-		if (NULL!=m_testWidget) {
+		if (nullptr!=m_testWidget) {
 			if (_msg.getData()=="true") {
 				m_testWidget->setFill(bvec2(true,m_testWidget->getFill().y()));
 			} else {
@@ -185,7 +186,7 @@ void TestImage::onReceiveMessage(const ewol::object::Message& _msg) {
 			}
 		}
 	} else if (_msg.getMessage() == l_eventChangeFillY) {
-		if (NULL!=m_testWidget) {
+		if (nullptr!=m_testWidget) {
 			if (_msg.getData()=="true") {
 				m_testWidget->setFill(bvec2(m_testWidget->getFill().x(),true));
 			} else {
@@ -193,7 +194,7 @@ void TestImage::onReceiveMessage(const ewol::object::Message& _msg) {
 			}
 		}
 	} else if (_msg.getMessage() == l_eventChangeImage) {
-		if (NULL!=m_testWidget) {
+		if (nullptr!=m_testWidget) {
 			static int32_t countID = 1;
 			switch (countID) {
 				case 0:
@@ -213,9 +214,9 @@ void TestImage::onReceiveMessage(const ewol::object::Message& _msg) {
 	return;
 }
 
-void TestImage::onObjectRemove(ewol::Object * _removeObject) {
-	ewol::widget::Sizer::onObjectRemove(_removeObject);
-	if (m_testWidget == _removeObject) {
-		m_testWidget = NULL;
+void TestImage::onObjectRemove(const ewol::object::Shared<ewol::Object>& _object) {
+	ewol::widget::Sizer::onObjectRemove(_object);
+	if (m_testWidget == _object) {
+		m_testWidget.reset();
 	}
 }

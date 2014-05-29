@@ -28,7 +28,7 @@
 #undef __class__
 #define __class__	"TestDistanceField"
 
-TestDistanceField::TestDistanceField(void){
+TestDistanceField::TestDistanceField(){
 	addObjectType("appl::TestDistanceField");
 	APPL_INFO("Create " __class__ " (start)");
 	setExpand(bvec2(true, true));
@@ -37,7 +37,7 @@ TestDistanceField::TestDistanceField(void){
 }
 
 
-TestDistanceField::~TestDistanceField(void) {
+TestDistanceField::~TestDistanceField() {
 	APPL_INFO("Remove " __class__ " ...");
 }
 
@@ -48,13 +48,13 @@ void TestDistanceField::calculateSize(const vec2& _availlable) {
 }
 
 
-void TestDistanceField::calculateMinMaxSize(void) {
+void TestDistanceField::calculateMinMaxSize() {
 	m_minSize = vec2(256,256);
 	markToRedraw();
 }
 
 
-void TestDistanceField::onDraw(void) {
+void TestDistanceField::onDraw() {
 	m_text2.draw();
 	
 	m_text1.draw();
@@ -62,7 +62,7 @@ void TestDistanceField::onDraw(void) {
 
 
 
-void TestDistanceField::onRegenerateDisplay(void) {
+void TestDistanceField::onRegenerateDisplay() {
 	if (false == needRedraw()) {
 		return;
 	}

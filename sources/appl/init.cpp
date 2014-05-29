@@ -36,7 +36,8 @@ int main(int argc, const char *argv[]) {
 /**
  * @brief main application function Initialisation
  */
-bool APP_Init(ewol::Context& _context) {
+bool APP_Init(ewol::Context& _context, size_t _initId, size_t& _nbInitStep) {
+	_nbInitStep = 1;
 	APPL_INFO("==> Init " PROJECT_NAME " (START) [" << ewol::getBoardType() << "] (" << ewol::getCompilationMode() << ")");
 	
 	etk::initDefaultFolder(PROJECT_NAME);
@@ -53,8 +54,8 @@ bool APP_Init(ewol::Context& _context) {
 	// set the application icon ...
 	_context.setIcon("DATA:icon.png");
 	
-	MainWindows* basicWindows = new MainWindows();
-	if (NULL == basicWindows) {
+	ewol::object::Shared<MainWindows> basicWindows = ewol::object::makeShared(new MainWindows());
+	if (basicWindows == nullptr) {
 		APPL_ERROR("Can not allocate the basic windows");
 		return false;
 	}
@@ -78,15 +79,6 @@ bool APP_Init(ewol::Context& _context) {
  */
 void APP_UnInit(ewol::Context& _context) {
 	APPL_INFO("==> Un-Init " PROJECT_NAME " (START)");
-	// Get the curent windows
-	ewol::widget::Windows* tmpWindows = _context.getWindows();
-	// Remove windows :
-	_context.setWindows(NULL);
-	
-	if (NULL != tmpWindows) {
-		delete(tmpWindows);
-		tmpWindows = NULL;
-	}
 	APPL_INFO("==> Un-Init " PROJECT_NAME " (END)");
 }
 
