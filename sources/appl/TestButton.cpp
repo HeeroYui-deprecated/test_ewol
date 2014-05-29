@@ -210,6 +210,11 @@ void appl::TestButton::onReceiveMessage(const ewol::object::Message& _msg) {
 					        "		<label expand=\"true,true\"><center>** ** * *<br/>** * * * *</center></label>\n"
 					        "	</sizer>\n"));
 					break;
+				case 12:
+					m_testWidget->setSubWidget(
+					    new ewol::widget::Composer(ewol::widget::Composer::String,
+					        "<spacer color='red' min-size='30,30px'/>\n"));
+					break;
 				default:
 					m_testWidget->setSubWidget(new ewol::widget::Label("My <font color=\"#FF0000\">Button</font> <br/> And Some under line<br/> plop <br/> and an other super long line ..."));
 					countTextID=-1;

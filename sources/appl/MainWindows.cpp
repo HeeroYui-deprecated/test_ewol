@@ -110,13 +110,14 @@ void MainWindows::onReceiveMessage(const ewol::object::Message& _msg) {
 	}
 	APPL_INFO("Receive Event from the main windows ... : " << _msg );
 	if (_msg.getMessage() == l_eventChangeTheme) {
-		if (_msg.getData()=="1") {
-			etk::theme::setName("GUI", "rounded");
+		if (_msg.getData()=="true") {
+			etk::theme::setName("GUI", "shape/round/");
 		} else {
-			etk::theme::setName("GUI", "default");
+			etk::theme::setName("GUI", "shape/square/");
 		}
 		// Reload shaders and graphic system ...
 		ewol::getContext().getResourcesManager().reLoadResources();
+		ewol::getContext().forceRedrawAll();
 		return;
 	} else if (_msg.getMessage() == l_eventChangeWidgetPrevious) {
 		m_idWidget--;
