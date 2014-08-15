@@ -20,65 +20,58 @@
 #include <appl/debug.h>
 #include <appl/MainWindows.h>
 
+class MainApplication : public ewol::context::Application {
+	public:
+		bool init(ewol::Context& _context, size_t _initId) {
+			APPL_INFO("==> Init " PROJECT_NAME " (START) [" << ewol::getBoardType() << "] (" << ewol::getCompilationMode() << ")");
+			
+			etk::initDefaultFolder(PROJECT_NAME);
+			
+			_context.setSize(vec2(800, 600));
+			
+			// select internal data for font ...
+			_context.getFontDefault().setUseExternal(false);
+			#ifdef __TARGET_OS__Android
+				_context.getFontDefault().set("FreeSerif;DejaVuSansMono", 19);
+			#else
+				_context.getFontDefault().set("FreeSerif;DejaVuSansMono", 14);
+			#endif
+			// set the application icon ...
+			_context.setIcon("DATA:icon.png");
+			
+			ewol::object::Shared<MainWindows> basicWindows = ewol::object::makeShared(new MainWindows());
+			if (basicWindows == nullptr) {
+				APPL_ERROR("Can not allocate the basic windows");
+				return false;
+			}
+			// create the specific windows
+			_context.setWindows(basicWindows);
+			
+			// add files
+			APPL_INFO("show list of command line input : ");
+			for( int32_t iii=0 ; iii<_context.getCmd().size(); iii++) {
+				APPL_INFO("parameter [" << iii << "] is \"" << _context.getCmd().get(iii) << "\"");
+			}
+			APPL_INFO("==> Init " PROJECT_NAME " (END)");
+			return true;
+		}
 
+		
+		void unInit(ewol::Context& _context) {
+			APPL_INFO("==> Un-Init APPL (START)");
+			// nothing to do ...
+			APPL_INFO("==> Un-Init APPL (END)");
+		}
+};
 
 /**
  * @brief Main of the program (This can be set in every case, but it is not used in Andoid...).
  * @param std IO
  * @return std IO
  */
-int main(int argc, const char *argv[]) {
-	// only one things to do : 
-	return ewol::run(argc, argv);
+int main(int _argc, const char *_argv[]) {
+	// second possibility
+	return ewol::run(new MainApplication(), _argc, _argv);
 }
 
-
-/**
- * @brief main application function Initialisation
- */
-bool APP_Init(ewol::Context& _context, size_t _initId, size_t& _nbInitStep) {
-	_nbInitStep = 1;
-	APPL_INFO("==> Init " PROJECT_NAME " (START) [" << ewol::getBoardType() << "] (" << ewol::getCompilationMode() << ")");
-	
-	etk::initDefaultFolder(PROJECT_NAME);
-	
-	_context.setSize(vec2(800, 600));
-	
-	// select internal data for font ...
-	_context.getFontDefault().setUseExternal(false);
-	#ifdef __TARGET_OS__Android
-		_context.getFontDefault().set("FreeSerif;DejaVuSansMono", 19);
-	#else
-		_context.getFontDefault().set("FreeSerif;DejaVuSansMono", 14);
-	#endif
-	// set the application icon ...
-	_context.setIcon("DATA:icon.png");
-	
-	ewol::object::Shared<MainWindows> basicWindows = ewol::object::makeShared(new MainWindows());
-	if (basicWindows == nullptr) {
-		APPL_ERROR("Can not allocate the basic windows");
-		return false;
-	}
-	// create the specific windows
-	_context.setWindows(basicWindows);
-	
-	// add files
-	APPL_INFO("show list of command line input : ");
-	for( int32_t iii=0 ; iii<_context.getCmd().size(); iii++) {
-		APPL_INFO("parameter [" << iii << "] is \"" << _context.getCmd().get(iii) << "\"");
-	}
-	APPL_INFO("==> Init " PROJECT_NAME " (END)");
-	return true;
-}
-
-
-
-
-/**
- * @brief main application function Un-Initialisation
- */
-void APP_UnInit(ewol::Context& _context) {
-	APPL_INFO("==> Un-Init " PROJECT_NAME " (START)");
-	APPL_INFO("==> Un-Init " PROJECT_NAME " (END)");
-}
 
