@@ -199,9 +199,3 @@ void appl::TestCheckBox::onReceiveMessage(const ewol::object::Message& _msg) {
 	return;
 }
 
-void appl::TestCheckBox::onObjectRemove(const ewol::object::Shared<ewol::Object>& _object) {
-	ewol::widget::Composer::onObjectRemove(_object);
-	if (m_testWidget == _object) {
-		m_testWidget.reset();
-	}
-}

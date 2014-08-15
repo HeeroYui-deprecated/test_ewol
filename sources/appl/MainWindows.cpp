@@ -214,13 +214,3 @@ void MainWindows::onReceiveMessage(const ewol::object::Message& _msg) {
 	}
 }
 
-void MainWindows::onObjectRemove(const ewol::object::Shared<ewol::Object>& _object) {
-	ewol::widget::Windows::onObjectRemove(_object);
-	if (m_subWidget == _object) {
-		m_subWidget.reset();
-	} else if (m_sizerVert == _object) {
-		m_sizerVert.reset();
-	} else if (m_testName == _object) {
-		m_testName.reset();
-	}
-}

@@ -338,9 +338,3 @@ void TestScene::onReceiveMessage(const ewol::object::Message& _msg) {
 	return;
 }
 
-void TestScene::onObjectRemove(const ewol::object::Shared<ewol::Object>& _object) {
-	ewol::widget::Sizer::OnObjectRemove(_object);
-	if (m_testWidget == _object) {
-		m_testWidget.reset();
-	}
-}

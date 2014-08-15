@@ -21,7 +21,6 @@ namespace appl {
 			TestButton();
 		public: // Derived function
 			virtual void onReceiveMessage(const ewol::object::Message& _msg);
-			virtual void onObjectRemove(const ewol::object::Shared<ewol::Object>& _object);
 	};
 };
 

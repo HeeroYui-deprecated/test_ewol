@@ -240,9 +240,3 @@ void TestLabel::onReceiveMessage(const ewol::object::Message& _msg) {
 	return;
 }
 
-void TestLabel::onObjectRemove(const ewol::object::Shared<ewol::Object>& _object) {
-	ewol::widget::Sizer::onObjectRemove(_object);
-	if (m_testWidget == _object) {
-		m_testWidget.reset();
-	}
-}

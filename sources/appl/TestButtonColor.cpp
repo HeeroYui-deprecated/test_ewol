@@ -178,9 +178,3 @@ void TestButtonColor::onReceiveMessage(const ewol::object::Message& _msg) {
 	return;
 }
 
-void TestButtonColor::onObjectRemove(const ewol::object::Shared<ewol::Object>& _object) {
-	ewol::widget::Sizer::onObjectRemove(_object);
-	if (m_testWidget == _object) {
-		m_testWidget.reset();
-	}
-}
