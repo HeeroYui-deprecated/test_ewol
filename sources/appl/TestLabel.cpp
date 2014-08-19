@@ -35,126 +35,123 @@ static const char * l_eventChangeLabel       = "event-change-label";
 #undef __class__
 #define __class__	"TestButton"
 
-TestLabel::TestLabel() :
-  ewol::widget::Sizer(ewol::widget::Sizer::modeVert),
-  m_labelId(0) {
-	APPL_DEBUG("CREATE " __class__ " ... ");
+appl::TestLabel::TestLabel() {
 	addObjectType("appl::TestLabel");
-	ewol::object::Shared<ewol::widget::Sizer> mySizerVert2;
-	ewol::object::Shared<ewol::widget::Sizer> mySizerHori;
-	ewol::object::Shared<ewol::widget::Button> myButton;
+}
+
+void appl::TestLabel::init() {
+	ewol::widget::Sizer::init(ewol::widget::Sizer::modeVert);
+	APPL_DEBUG("CREATE " __class__ " ... ");
+	std::shared_ptr<ewol::widget::Sizer> mySizerVert2;
+	std::shared_ptr<ewol::widget::Sizer> mySizerHori;
+	std::shared_ptr<ewol::widget::Button> myButton;
 	
-	mySizerHori = ewol::object::makeShared(new ewol::widget::Sizer(ewol::widget::Sizer::modeHori));
+	mySizerHori = ewol::widget::Sizer::create(ewol::widget::Sizer::modeHori);
 	if (nullptr == mySizerHori) {
 		APPL_DEBUG("Allocation error mySizerHori");
 		return;
 	}
 	subWidgetAdd(mySizerHori);
-		myButton = ewol::object::makeShared(new ewol::widget::Button());
+		myButton = ewol::widget::Button::create();
 		if (nullptr != myButton) {
 			myButton->setToggleMode(true);
-			myButton->setSubWidget(      ewol::object::makeShared(new ewol::widget::Label("Expand X (false)")));
-			myButton->setSubWidgetToggle(ewol::object::makeShared(new ewol::widget::Label("Expand X (true)")));
-			myButton->registerOnEvent(this, "value", l_eventChangeExpendX);
+			myButton->setSubWidget(      ewol::widget::Label::create("Expand X (false)"));
+			myButton->setSubWidgetToggle(ewol::widget::Label::create("Expand X (true)"));
+			myButton->registerOnEvent(shared_from_this(), "value", l_eventChangeExpendX);
 			mySizerHori->subWidgetAdd(myButton);
 		}
-		myButton = ewol::object::makeShared(new ewol::widget::Button());
+		myButton = ewol::widget::Button::create();
 		if (nullptr != myButton) {
 			myButton->setToggleMode(true);
-			myButton->setSubWidget(      ewol::object::makeShared(new ewol::widget::Label("Expand Y (false)")));
-			myButton->setSubWidgetToggle(ewol::object::makeShared(new ewol::widget::Label("Expand Y (true)")));
-			myButton->registerOnEvent(this, "value", l_eventChangeExpendY);
+			myButton->setSubWidget(      ewol::widget::Label::create("Expand Y (false)"));
+			myButton->setSubWidgetToggle(ewol::widget::Label::create("Expand Y (true)"));
+			myButton->registerOnEvent(shared_from_this(), "value", l_eventChangeExpendY);
 			mySizerHori->subWidgetAdd(myButton);
 		}
-		myButton = ewol::object::makeShared(new ewol::widget::Button());
+		myButton = ewol::widget::Button::create();
 		if (nullptr != myButton) {
 			myButton->setToggleMode(true);
-			myButton->setSubWidget(      ewol::object::makeShared(new ewol::widget::Label("Fill X (false)")));
-			myButton->setSubWidgetToggle(ewol::object::makeShared(new ewol::widget::Label("Fill X (true)")));
-			myButton->registerOnEvent(this, "value", l_eventChangeFillX);
+			myButton->setSubWidget(      ewol::widget::Label::create("Fill X (false)"));
+			myButton->setSubWidgetToggle(ewol::widget::Label::create("Fill X (true)"));
+			myButton->registerOnEvent(shared_from_this(), "value", l_eventChangeFillX);
 			mySizerHori->subWidgetAdd(myButton);
 		}
-		myButton = ewol::object::makeShared(new ewol::widget::Button());
+		myButton = ewol::widget::Button::create();
 		if (nullptr != myButton) {
 			myButton->setToggleMode(true);
-			myButton->setSubWidget(      ewol::object::makeShared(new ewol::widget::Label("Fill Y (false)")));
-			myButton->setSubWidgetToggle(ewol::object::makeShared(new ewol::widget::Label("Fill Y (true)")));
-			myButton->registerOnEvent(this, "value", l_eventChangeFillY);
+			myButton->setSubWidget(      ewol::widget::Label::create("Fill Y (false)"));
+			myButton->setSubWidgetToggle(ewol::widget::Label::create("Fill Y (true)"));
+			myButton->registerOnEvent(shared_from_this(), "value", l_eventChangeFillY);
 			mySizerHori->subWidgetAdd(myButton);
 		}
-		myButton = ewol::object::makeShared(new ewol::widget::Button());
+		myButton = ewol::widget::Button::create();
 		if (nullptr != myButton) {
 			myButton->setToggleMode(true);
-			myButton->setSubWidget(      ewol::object::makeShared(new ewol::widget::Label("no Max size")));
-			myButton->setSubWidgetToggle(ewol::object::makeShared(new ewol::widget::Label("maxSize (400,99999999)")));
-			myButton->registerOnEvent(this, "value", l_eventChangeMaxSize);
+			myButton->setSubWidget(      ewol::widget::Label::create("no Max size"));
+			myButton->setSubWidgetToggle(ewol::widget::Label::create("maxSize (400,99999999)"));
+			myButton->registerOnEvent(shared_from_this(), "value", l_eventChangeMaxSize);
 			mySizerHori->subWidgetAdd(myButton);
 		}
-		myButton = ewol::object::makeShared(new ewol::widget::Button());
+		myButton = ewol::widget::Button::create();
 		if (nullptr != myButton) {
-			myButton->setSubWidget(ewol::object::makeShared(new ewol::widget::Label("Next Label")));
-			myButton->registerOnEvent(this, "pressed", l_eventChangeLabel);
+			myButton->setSubWidget(ewol::widget::Label::create("Next Label"));
+			myButton->registerOnEvent(shared_from_this(), "pressed", l_eventChangeLabel);
 			mySizerHori->subWidgetAdd(myButton);
 		}
 		
-	ewol::object::Shared<ewol::widget::Spacer> mySpacer = ewol::object::makeShared(new ewol::widget::Spacer());
+	std::shared_ptr<ewol::widget::Spacer> mySpacer = ewol::widget::Spacer::create();
 	if (nullptr != mySpacer) {
 		mySpacer->setExpand(bvec2(false,false));
 		mySpacer->setFill(bvec2(true,false));
 		mySpacer->setMinSize(vec2(10,10));
-		mySpacer->setColor(0xFF000080);
+		mySpacer->setColor(etk::Color<>(0xFF, 0x00, 0x00, 0x80));
 		subWidgetAdd(mySpacer);
 	}
 	
-	mySizerHori = ewol::object::makeShared(new ewol::widget::Sizer(ewol::widget::Sizer::modeHori));
+	mySizerHori = ewol::widget::Sizer::create(ewol::widget::Sizer::modeHori);
 	if (nullptr == mySizerHori) {
 		APPL_DEBUG("Allocation error mySizerHori");
 		return;
 	}
 	subWidgetAdd(mySizerHori);
-		mySpacer = ewol::object::makeShared(new ewol::widget::Spacer());
+		mySpacer = ewol::widget::Spacer::create();
 		if (nullptr != mySpacer) {
 			mySpacer->setExpand(bvec2(false,false));
 			mySpacer->setFill(bvec2(false,true));
 			mySpacer->setMinSize(vec2(10,10));
-			mySpacer->setColor(0x00FF0080);
+			mySpacer->setColor(etk::Color<>(0x00, 0xFF, 0x00, 0x80));
 			mySizerHori->subWidgetAdd(mySpacer);
 		}
 		
-		m_testWidget = ewol::object::makeShared(new ewol::widget::Label("Basic label"));
+		m_testWidget = ewol::widget::Label::create("Basic label");
 		if (nullptr != m_testWidget) {
 			m_testWidget->setExpand(bvec2(false,false));
 			m_testWidget->setFill(bvec2(false,false));
-			//m_testWidget->registerOnEvent(this, ewolEventButtonColorChange);
+			//m_testWidget->registerOnEvent(shared_from_this(), ewolEventButtonColorChange);
 			mySizerHori->subWidgetAdd(m_testWidget);
 		}
 		
-		mySpacer = ewol::object::makeShared(new ewol::widget::Spacer());
+		mySpacer = ewol::widget::Spacer::create();
 		if (nullptr != mySpacer) {
 			mySpacer->setExpand(bvec2(false,false));
 			mySpacer->setFill(bvec2(false,true));
 			mySpacer->setMinSize(vec2(10,10));
-			mySpacer->setColor(0x0000FF80);
+			mySpacer->setColor(etk::Color<>(0x00, 0x00, 0xFF, 0x80));
 			mySizerHori->subWidgetAdd(mySpacer);
 		}
 		
-	mySpacer = ewol::object::makeShared(new ewol::widget::Spacer());
+	mySpacer = ewol::widget::Spacer::create();
 	if (nullptr != mySpacer) {
 		mySpacer->setExpand(bvec2(false,false));
 		mySpacer->setFill(bvec2(true,false));
 		mySpacer->setMinSize(vec2(10,10));
-		mySpacer->setColor(0x00FFFF80);
+		mySpacer->setColor(etk::Color<>(0x00, 0xFF, 0xFF, 0x80));
 		subWidgetAdd(mySpacer);
 	}
 }
 
 
-TestLabel::~TestLabel() {
-	
-}
-
-
-void TestLabel::onReceiveMessage(const ewol::object::Message& _msg) {
+void appl::TestLabel::onReceiveMessage(const ewol::object::Message& _msg) {
 	ewol::widget::Sizer::onReceiveMessage(_msg);
 	//APPL_INFO("Receive Event from the main windows ... : \"" << eventId << "\" ==> data=\"" << data << "\"" );
 	if (m_testWidget == _msg.getCaller()) {

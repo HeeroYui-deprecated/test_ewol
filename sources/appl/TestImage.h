@@ -16,15 +16,20 @@
 #include <ewol/widget/Spacer.h>
 #include <ewol/widget/Sizer.h>
 
-class TestImage : public ewol::widget::Sizer {
-	private:
-		ewol::object::Shared<ewol::widget::Image> m_testWidget;
-	public:
-		// Constructeur
-		TestImage();
-		virtual ~TestImage();
-	public: // Derived function
-		virtual void onReceiveMessage(const ewol::object::Message& _msg);
+namespace appl {
+	class TestImage : public ewol::widget::Sizer {
+		private:
+			std::shared_ptr<ewol::widget::Image> m_testWidget;
+		public:
+			// Constructeur
+			TestImage();
+			void init();
+		public:
+			DECLARE_FACTORY(TestImage);
+			virtual ~TestImage() {};
+		public: // Derived function
+			virtual void onReceiveMessage(const ewol::object::Message& _msg);
+	};
 };
 
 #endif

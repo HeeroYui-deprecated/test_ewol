@@ -28,8 +28,12 @@
 #undef __class__
 #define __class__	"TestDistanceField"
 
-TestDistanceField::TestDistanceField(){
+appl::TestDistanceField::TestDistanceField(){
 	addObjectType("appl::TestDistanceField");
+}
+
+void appl::TestDistanceField::init() {
+	ewol::Widget::init();
 	APPL_INFO("Create " __class__ " (start)");
 	setExpand(bvec2(true, true));
 	setFill(bvec2(true, true));
@@ -37,24 +41,19 @@ TestDistanceField::TestDistanceField(){
 }
 
 
-TestDistanceField::~TestDistanceField() {
-	APPL_INFO("Remove " __class__ " ...");
-}
-
-
-void TestDistanceField::calculateSize(const vec2& _availlable) {
+void appl::TestDistanceField::calculateSize(const vec2& _availlable) {
 	// set minimal size
 	m_size = _availlable;
 }
 
 
-void TestDistanceField::calculateMinMaxSize() {
+void appl::TestDistanceField::calculateMinMaxSize() {
 	m_minSize = vec2(256,256);
 	markToRedraw();
 }
 
 
-void TestDistanceField::onDraw() {
+void appl::TestDistanceField::onDraw() {
 	m_text2.draw();
 	
 	m_text1.draw();
@@ -62,7 +61,7 @@ void TestDistanceField::onDraw() {
 
 
 
-void TestDistanceField::onRegenerateDisplay() {
+void appl::TestDistanceField::onRegenerateDisplay() {
 	if (false == needRedraw()) {
 		return;
 	}
@@ -77,7 +76,7 @@ void TestDistanceField::onRegenerateDisplay() {
 	
 }
 
-bool TestDistanceField::onEventInput(const ewol::event::Input& _event) {
+bool appl::TestDistanceField::onEventInput(const ewol::event::Input& _event) {
 	if (_event.getId() == 4) {
 		setZoom(getZoom() + 0.01f);
 	} else if (_event.getId() == 5) {

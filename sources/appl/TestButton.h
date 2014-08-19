@@ -15,10 +15,13 @@
 namespace appl {
 	class TestButton : public ewol::widget::Composer {
 		private:
-			ewol::object::Shared<ewol::widget::Button> m_testWidget;
+			std::shared_ptr<ewol::widget::Button> m_testWidget;
 		public:
 			// Constructeur
 			TestButton();
+			void init();
+		public:
+			DECLARE_FACTORY(TestButton);
 		public: // Derived function
 			virtual void onReceiveMessage(const ewol::object::Message& _msg);
 	};

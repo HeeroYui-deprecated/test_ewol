@@ -39,7 +39,7 @@ class MainApplication : public ewol::context::Application {
 			// set the application icon ...
 			_context.setIcon("DATA:icon.png");
 			
-			ewol::object::Shared<MainWindows> basicWindows = ewol::object::makeShared(new MainWindows());
+			std::shared_ptr<appl::MainWindows> basicWindows = appl::MainWindows::create();
 			if (basicWindows == nullptr) {
 				APPL_ERROR("Can not allocate the basic windows");
 				return false;

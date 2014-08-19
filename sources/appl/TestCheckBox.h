@@ -16,10 +16,13 @@
 namespace appl {
 	class TestCheckBox : public ewol::widget::Composer {
 		private:
-			ewol::object::Shared<ewol::widget::CheckBox> m_testWidget;
+			std::shared_ptr<ewol::widget::CheckBox> m_testWidget;
 		public:
 			// Constructeur
 			TestCheckBox();
+			void init();
+		public:
+			DECLARE_FACTORY(TestCheckBox);
 		public: // Derived function
 			virtual void onReceiveMessage(const ewol::object::Message& _msg);
 	};

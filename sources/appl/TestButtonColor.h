@@ -16,15 +16,20 @@
 #include <ewol/widget/Spacer.h>
 #include <ewol/widget/Sizer.h>
 
-class TestButtonColor : public ewol::widget::Sizer {
-	private:
-		ewol::object::Shared<ewol::widget::ButtonColor> m_testWidget;
-	public:
-		// Constructeur
-		TestButtonColor();
-		virtual ~TestButtonColor();
-	public: // Derived function
-		virtual void onReceiveMessage(const ewol::object::Message& _msg);
+namespace appl {
+	class TestButtonColor : public ewol::widget::Sizer {
+		private:
+			std::shared_ptr<ewol::widget::ButtonColor> m_testWidget;
+		public:
+			// Constructeur
+			TestButtonColor();
+			void init();
+		public:
+			DECLARE_FACTORY(TestButtonColor);
+			virtual ~TestButtonColor() {};
+		public: // Derived function
+			virtual void onReceiveMessage(const ewol::object::Message& _msg);
+	};
 };
 
 #endif

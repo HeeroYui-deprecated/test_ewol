@@ -39,10 +39,13 @@ static const char * l_eventChangeImageToggle = "event-change-image-toggle";
 #undef __class__
 #define __class__	"TestButton"
 
-appl::TestButton::TestButton() :
-  m_testWidget(nullptr) {
-	APPL_INFO("Create " __class__ " (start)");
+appl::TestButton::TestButton() {
 	addObjectType("appl::TestButton");
+}
+
+void appl::TestButton::init() {
+	ewol::widget::Composer::init();
+	APPL_INFO("Create " __class__ " (start)");
 	
 	std::string myDescription = std::string("")
 	      + "<sizer mode='vert' fill='true' expand='true'>\n"
@@ -101,7 +104,7 @@ appl::TestButton::TestButton() :
 	registerOnEventNameWidget("[TEST]Button:ChangeText", "pressed", l_eventChangeText);
 	// show all event from a button :
 	registerOnEventNameWidget("[TEST]Button:TO-TEST", "*");
-	m_testWidget = ewol::dynamic_pointer_cast<ewol::widget::Button>(getWidgetNamed("[TEST]Button:TO-TEST"));
+	m_testWidget = std::dynamic_pointer_cast<ewol::widget::Button>(getWidgetNamed("[TEST]Button:TO-TEST"));
 	if (m_testWidget == nullptr) {
 		APPL_CRITICAL("Can not get the pointer of the widget button pointer");
 	}
@@ -159,7 +162,7 @@ void appl::TestButton::onReceiveMessage(const ewol::object::Message& _msg) {
 	} else if (_msg.getMessage() == l_eventChangeTextToggle) {
 		if (nullptr!=m_testWidget) {
 			if (_msg.getData()=="true") {
-				m_testWidget->setSubWidgetToggle(ewol::object::makeShared(new ewol::widget::Label("A stupid very long text on toggle <br/><br/> and on multiple lines")));
+				m_testWidget->setSubWidgetToggle(ewol::widget::Label::create("A stupid very long text on toggle <br/><br/> and on multiple lines"));
 			} else {
 				m_testWidget->setSubWidgetToggle(nullptr);
 			}
@@ -169,55 +172,50 @@ void appl::TestButton::onReceiveMessage(const ewol::object::Message& _msg) {
 			static int32_t countTextID = 1;
 			switch (countTextID) {
 				case 0:
-					m_testWidget->setSubWidget(ewol::object::makeShared(new ewol::widget::Label("simple Text")));
+					m_testWidget->setSubWidget(ewol::widget::Label::create("simple Text"));
 					break;
 				case 1:
-					m_testWidget->setSubWidget(ewol::object::makeShared(new ewol::widget::Label("<left>Align Left</left>")));
+					m_testWidget->setSubWidget(ewol::widget::Label::create("<left>Align Left</left>"));
 					break;
 				case 2:
-					m_testWidget->setSubWidget(ewol::object::makeShared(new ewol::widget::Label("<right>Align right</right>")));
+					m_testWidget->setSubWidget(ewol::widget::Label::create("<right>Align right</right>"));
 					break;
 				case 3:
-					m_testWidget->setSubWidget(ewol::object::makeShared(new ewol::widget::Label("<center>Align center</center>")));
+					m_testWidget->setSubWidget(ewol::widget::Label::create("<center>Align center</center>"));
 					break;
 				case 4:
-					m_testWidget->setSubWidget(ewol::object::makeShared(new ewol::widget::Label("simple Text<br/> With Some Other Lines<br/> and more if you want ...<br/> plop")));
+					m_testWidget->setSubWidget(ewol::widget::Label::create("simple Text<br/> With Some Other Lines<br/> and more if you want ...<br/> plop"));
 					break;
 				case 5:
-					m_testWidget->setSubWidget(ewol::object::makeShared(new ewol::widget::Label("simple <bold>Text</bold> with bold")));
+					m_testWidget->setSubWidget(ewol::widget::Label::create("simple <bold>Text</bold> with bold"));
 					break;
 				case 6:
-					m_testWidget->setSubWidget(ewol::object::makeShared(new ewol::widget::Label("simple <italic>Text</italic> with italic")));
+					m_testWidget->setSubWidget(ewol::widget::Label::create("simple <italic>Text</italic> with italic"));
 					break;
 				case 7:
-					m_testWidget->setSubWidget(ewol::object::makeShared(new ewol::widget::Label("simple <italic><bold>Text</bold></italic> with italic bold")));
+					m_testWidget->setSubWidget(ewol::widget::Label::create("simple <italic><bold>Text</bold></italic> with italic bold"));
 					break;
 				case 8:
 					m_testWidget->setSubWidget(nullptr);
 					break;
 				case 9:
-					m_testWidget->setSubWidget(ewol::object::makeShared(new ewol::widget::Label("simple <font color=\"#FFFF0088\">Text</font> with colored text")));
+					m_testWidget->setSubWidget(ewol::widget::Label::create("simple <font color=\"#FFFF0088\">Text</font> with colored text"));
 					break;
 				case 10:
-					m_testWidget->setSubWidget(ewol::object::makeShared(
-					    new ewol::widget::Composer(ewol::widget::Composer::String,
-					        "<label>ploppp</label>\n")));
+					m_testWidget->setSubWidget(ewol::widget::Composer::create(ewol::widget::Composer::String, "<label>ploppp</label>\n"));
 					break;
 				case 11:
-					m_testWidget->setSubWidget(ewol::object::makeShared(
-					    new ewol::widget::Composer(ewol::widget::Composer::String,
+					m_testWidget->setSubWidget(ewol::widget::Composer::create(ewol::widget::Composer::String,
 					        "	<sizer mode=\"vert\" addmode=\"invert\">\n"
 					        "		<label>ploppp</label>\n"
 					        "		<label expand=\"true,true\"><center>** ** * *<br/>** * * * *</center></label>\n"
-					        "	</sizer>\n")));
+					        "	</sizer>\n"));
 					break;
 				case 12:
-					m_testWidget->setSubWidget(ewol::object::makeShared(
-					    new ewol::widget::Composer(ewol::widget::Composer::String,
-					        "<spacer color='red' min-size='30,30px'/>\n")));
+					m_testWidget->setSubWidget(ewol::widget::Composer::create(ewol::widget::Composer::String, "<spacer color='red' min-size='30,30px'/>\n"));
 					break;
 				default:
-					m_testWidget->setSubWidget(ewol::object::makeShared(new ewol::widget::Label("My <font color=\"#FF0000\">Button</font> <br/> And Some under line<br/> plop <br/> and an other super long line ...")));
+					m_testWidget->setSubWidget(ewol::widget::Label::create("My <font color=\"#FF0000\">Button</font> <br/> And Some under line<br/> plop <br/> and an other super long line ..."));
 					countTextID=-1;
 					break;
 			}

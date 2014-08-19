@@ -57,9 +57,9 @@ TestScene::TestScene() :
 	*/
 	
 	APPL_CRITICAL("Create "__class__" (start)");
-	ewol::object::Shared<ewol::widget::Sizer> mySizerVert2 = nullptr;
-	ewol::object::Shared<ewol::widget::Sizer> mySizerHori = nullptr;
-	ewol::object::Shared<ewol::widget::Button> myButton = nullptr;
+	std::shared_ptr<ewol::widget::Sizer> mySizerVert2 = nullptr;
+	std::shared_ptr<ewol::widget::Sizer> mySizerHori = nullptr;
+	std::shared_ptr<ewol::widget::Button> myButton = nullptr;
 	/*
 	mySizerHori = new ewol::widget::SizerHori();
 	if (nullptr == mySizerHori) {
@@ -139,7 +139,7 @@ TestScene::TestScene() :
 			mySizerHori->SubWidgetAdd(myButton);
 		}
 	*/
-	ewol::object::Shared<ewol::widget::Spacer> mySpacer = new widget::Spacer();
+	std::shared_ptr<ewol::widget::Spacer> mySpacer = new widget::Spacer();
 	if (nullptr != mySpacer) {
 		mySpacer->setExpand(bvec2(false,false));
 		mySpacer->setFill(bvec2(true,false));

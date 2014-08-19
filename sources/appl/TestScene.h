@@ -16,7 +16,7 @@
 
 class TestScene : public ewol::widget::Sizer {
 	private:
-		ewol::object::Shared<ewol::widget::Scene> m_testWidget;
+		std::shared_ptr<ewol::widget::Scene> m_testWidget;
 	public:
 		// Constructeur
 		TestScene();

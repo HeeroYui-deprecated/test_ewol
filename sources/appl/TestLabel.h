@@ -16,21 +16,26 @@
 #include <ewol/widget/Spacer.h>
 #include <ewol/widget/Sizer.h>
 
-class TestLabel : public ewol::widget::Sizer {
-	private:
-		ewol::object::Shared<ewol::widget::Label> m_testWidget;
-		int32_t m_labelId;
-	public:
-		/**
-		 * @brief Constructeur
-		 */
-		TestLabel();
-		/**
-		 * @brief Destructor
-		 */
-		virtual ~TestLabel();
-	public: // Derived function
-		virtual void onReceiveMessage(const ewol::object::Message& _msg);
+namespace appl {
+	class TestLabel : public ewol::widget::Sizer {
+		private:
+			std::shared_ptr<ewol::widget::Label> m_testWidget;
+			int32_t m_labelId;
+		public:
+			/**
+			 * @brief Constructeur
+			 */
+			TestLabel();
+			void init();
+		public:
+			DECLARE_FACTORY(TestLabel);
+			/**
+			 * @brief Destructor
+			 */
+			virtual ~TestLabel() {};
+		public: // Derived function
+			virtual void onReceiveMessage(const ewol::object::Message& _msg);
+	};
 };
 
 #endif

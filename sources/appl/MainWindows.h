@@ -16,21 +16,24 @@
 #include <ewol/widget/Button.h>
 #include <ewol/widget/Label.h>
 #include <ewol/widget/Spacer.h>
-
-class MainWindows : public ewol::widget::Windows {
-	private:
-		ewol::object::Shared<ewol::widget::Sizer> m_sizerVert;
-		ewol::object::Shared<ewol::Widget> m_subWidget;
-		ewol::object::Shared<ewol::widget::Label> m_testName;
-		int32_t m_idWidget;
-	public:
-		// Constructeur
-		MainWindows();
-		~MainWindows();
-	public: // derived fuction
-		virtual void onReceiveMessage(const ewol::object::Message& _msg);
+namespace appl {
+	class MainWindows : public ewol::widget::Windows {
+		private:
+			std::shared_ptr<ewol::widget::Sizer> m_sizerVert;
+			std::shared_ptr<ewol::Widget> m_subWidget;
+			std::shared_ptr<ewol::widget::Label> m_testName;
+			int32_t m_idWidget;
+		public:
+			// Constructeur
+			MainWindows();
+			void init();
+		public:
+			DECLARE_FACTORY(MainWindows);
+			~MainWindows() {};
+		public: // derived fuction
+			virtual void onReceiveMessage(const ewol::object::Message& _msg);
+	};
 };
-
 #endif
 
 

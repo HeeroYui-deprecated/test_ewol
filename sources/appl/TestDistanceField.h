@@ -16,19 +16,24 @@
 #include <ewol/resource/Program.h>
 #include <ewol/resource/DistanceFieldFont.h>
 
-class TestDistanceField : public ewol::Widget {
-		ewol::compositing::Text   m_text1;
-		ewol::compositing::TextDF m_text2;
-	public:
-		// Constructeur
-		TestDistanceField();
-		virtual ~TestDistanceField();
-	public: // Derived function
-		virtual void onDraw();
-		virtual void calculateMinMaxSize();
-		virtual void calculateSize(const vec2& _availlable);
-		virtual void onRegenerateDisplay();
-		virtual bool onEventInput(const ewol::event::Input& _event);
+namespace appl {
+	class TestDistanceField : public ewol::Widget {
+			ewol::compositing::Text   m_text1;
+			ewol::compositing::TextDF m_text2;
+		public:
+			// Constructeur
+			TestDistanceField();
+			void init();
+		public:
+			DECLARE_FACTORY(TestDistanceField);
+			virtual ~TestDistanceField() {};
+		public: // Derived function
+			virtual void onDraw();
+			virtual void calculateMinMaxSize();
+			virtual void calculateSize(const vec2& _availlable);
+			virtual void onRegenerateDisplay();
+			virtual bool onEventInput(const ewol::event::Input& _event);
+	};
 };
 
 #endif
